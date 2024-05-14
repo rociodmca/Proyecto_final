@@ -10,13 +10,13 @@
 
     <!-- Phone -->
     <TabBar x:Name="PhoneTabs" Title="Prueba">
-        <Tab Title="Home" Icon="dotnet_bot.png">
+        <Tab Title="Home" Icon="inicio.png">
             <ShellContent Title="Home" ContentTemplate="{DataTemplate pages:Info}" />
         </Tab>
-        <Tab Title="Registro" Icon="dotnet_bot.png">
+        <Tab Title="Registro" Icon="editar.png">
             <ShellContent Title="Prueba1" ContentTemplate="{DataTemplate pages:RegistroUsuario}"/>
         </Tab>
-        <Tab Title="Manual" Icon="dotnet_bot.png">
+        <Tab Title="Manual" Icon="manual.png">
             <ShellContent Title="Prueba3" ContentTemplate="{DataTemplate pages:Manual}"/>
         </Tab>
     </TabBar>
@@ -25,5 +25,9 @@
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+
+    <FlyoutItem Title="Registro" Icon="editar.png">
+        <ShellContent Title="Prueba1" ContentTemplate="{DataTemplate pages:RegistroUsuario}"/>
+    </FlyoutItem>
 
 </Shell>

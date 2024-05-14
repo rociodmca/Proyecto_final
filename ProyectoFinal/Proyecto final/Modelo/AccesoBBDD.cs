@@ -19,7 +19,8 @@ namespace Proyecto_final.Modelo
 
         public AccesoBBDD()
         {
-            cliente = new MongoClient("mongodb://root:example@192.168.1.40:27017/");
+            cliente = new MongoClient("mongodb://root:example@192.168.1.41:27017/");
+            //cliente = new MongoClient("mongodb://root:example@localhost:27017/");
             db = cliente.GetDatabase("prueba_app");
         }
 
@@ -38,12 +39,19 @@ namespace Proyecto_final.Modelo
             }
         }
 
-        public void AddUser(string nombre, string ape, string email, string pass)
+        public void AddUser(string nombre, string ape, string email, string pass, int rol)
         {
             collectionUsuario = db.GetCollection<Usuario>("Usuarios");
             string passParser = PassParser(pass);
-            Usuario user = new Usuario { Nombre = nombre, Apellidos = ape, Email = email, Pass = passParser, Rol = 1 };
+            Usuario user = new Usuario { Nombre = nombre, Apellidos = ape, Email = email, Pass = passParser, Rol = rol };
             collectionUsuario.InsertOne(user);
+        }
+
+        public void RemoveUser(string id)
+        {
+            collectionUsuario = db.GetCollection<Usuario>("Usuarios");
+            FilterDefinition<Usuario> filtro = Builders<Usuario>.Filter.Eq(x => x.Id, id);
+            collectionUsuario.DeleteOne(filtro);
         }
 
         public void AddPet(string nombre, string tipo, string raza, string sexo, int peso, string vacunas, string id_cl)
@@ -51,6 +59,13 @@ namespace Proyecto_final.Modelo
             collectionMascota = db.GetCollection<Mascota>("Mascotas");
             Mascota pet = new Mascota { Nombre = nombre, Tipo = tipo, Raza = raza, Sexo = sexo, Peso = peso, Vacunas = vacunas, Id_Cliente = id_cl };
             collectionMascota.InsertOne(pet);
+        }
+
+        public void RemovePet(string id)
+        {
+            collectionMascota = db.GetCollection<Mascota>("Mascotas");
+            FilterDefinition<Mascota> filtro = Builders<Mascota>.Filter.Eq(x => x.Id, id);
+            collectionMascota.DeleteOne(filtro);
         }
 
         public void AddDate(string id_cl, string id_mas, string fecha, string id_vet)
