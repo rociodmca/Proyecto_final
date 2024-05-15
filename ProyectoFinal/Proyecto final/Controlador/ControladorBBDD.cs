@@ -24,5 +24,15 @@ namespace Proyecto_final.Controlador
                 return true;
             } catch { return false; }
         }
+
+        public string ObtenerId(string email, string pass)
+        {
+            try
+            {
+                Usuario user = bbdd.GetUser(email, pass);
+                return user.Id;
+            } catch (Exception ex) { return "1"; }
+            
+        }
     }
 }

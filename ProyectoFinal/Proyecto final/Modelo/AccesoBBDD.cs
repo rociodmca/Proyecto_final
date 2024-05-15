@@ -47,6 +47,14 @@ namespace Proyecto_final.Modelo
             collectionUsuario.InsertOne(user);
         }
 
+        public Usuario GetUser(string email, string pass)
+        {
+            collectionUsuario = db.GetCollection<Usuario>("Usuarios");
+            string passParser = PassParser(pass);
+            FilterDefinition<Usuario> filtro = Builders<Usuario>.Filter.And(Builders<Usuario>.Filter.Eq(x => x.Email, email), Builders<Usuario>.Filter.Eq(x => x.Pass, passParser));
+            return collectionUsuario.Find(filtro).First<Usuario>();
+        }
+
         public void RemoveUser(string id)
         {
             collectionUsuario = db.GetCollection<Usuario>("Usuarios");

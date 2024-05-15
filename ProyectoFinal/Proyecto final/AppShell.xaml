@@ -13,8 +13,8 @@
         <Tab Title="Home" Icon="inicio.png">
             <ShellContent Title="Home" ContentTemplate="{DataTemplate pages:Info}" />
         </Tab>
-        <Tab Title="Registro" Icon="editar.png">
-            <ShellContent Title="Prueba1" ContentTemplate="{DataTemplate pages:RegistroUsuario}"/>
+        <Tab Title="Login" Icon="contrasena.png">
+            <ShellContent Title="Prueba1" ContentTemplate="{DataTemplate pages:Login}"/>
         </Tab>
         <Tab Title="Manual" Icon="manual.png">
             <ShellContent Title="Prueba3" ContentTemplate="{DataTemplate pages:Manual}"/>
@@ -28,6 +28,9 @@
 
     <FlyoutItem Title="Registro" Icon="editar.png">
         <ShellContent Title="Prueba1" ContentTemplate="{DataTemplate pages:RegistroUsuario}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Login" Icon="contrasena.png">
+        <ShellContent Title="Login" ContentTemplate="{DataTemplate pages:Login}"/>
     </FlyoutItem>
 
 </Shell>

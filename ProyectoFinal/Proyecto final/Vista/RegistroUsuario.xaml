@@ -4,7 +4,7 @@
              x:Class="Proyecto_final.Vista.RegistroUsuario"
              Title="RegistroUsuario">
     <Grid ColumnDefinitions="*" RowDefinitions="*" Margin="20">
-        <Frame BorderColor="Aquamarine">
+        <Frame BorderColor="Aquamarine" Grid.Column="0" Grid.Row="0">
             <Grid RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,2*" RowSpacing="10" ColumnSpacing="10" Margin="40">
                 <Label Text="Nombre: " Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Entry x:Name="nombre" Grid.Column="1" Grid.Row="0" VerticalOptions="Center"/>

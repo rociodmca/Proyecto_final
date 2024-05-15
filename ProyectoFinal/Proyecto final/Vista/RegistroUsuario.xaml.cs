@@ -30,6 +30,9 @@ public partial class RegistroUsuario : ContentPage
 
     private void BtnCancelar_Clicked(object sender, EventArgs e)
     {
-        
+        nombre.Text = "";
+        apellidos.Text = "";
+        email.Text = "";
+        password.Text = "";
     }
 }
