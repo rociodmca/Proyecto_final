@@ -1,4 +1,4 @@
-﻿using Proyecto_final.Modelo;
+﻿using Proyecto_final.Model;
 
 namespace Proyecto_final
 {

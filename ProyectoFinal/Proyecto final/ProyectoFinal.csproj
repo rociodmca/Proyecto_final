@@ -90,34 +90,34 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Vista\Ajustes.xaml">
+	  <MauiXaml Update="View\Ajustes.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Vista\CuestionarioCita.xaml">
+	  <MauiXaml Update="View\CuestionarioCita.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Vista\Info.xaml">
+	  <MauiXaml Update="View\Info.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Vista\Login.xaml">
+	  <MauiXaml Update="View\Login.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Vista\Manual.xaml">
+	  <MauiXaml Update="View\Manual.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Vista\PagUsuarioLogeado.xaml">
+	  <MauiXaml Update="View\PagUsuarioLogeado.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Vista\PagVeterinario.xaml">
+	  <MauiXaml Update="View\PagVeterinario.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Vista\PanelAdministracion.xaml">
+	  <MauiXaml Update="View\PanelAdministracion.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Vista\RegistroMascota.xaml">
+	  <MauiXaml Update="View\RegistroMascota.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Vista\RegistroUsuario.xaml">
+	  <MauiXaml Update="View\RegistroUsuario.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

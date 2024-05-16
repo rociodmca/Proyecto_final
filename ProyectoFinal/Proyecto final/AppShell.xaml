@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Proyecto_final"
-    xmlns:pages="clr-namespace:Proyecto_final.Vista"
+    xmlns:pages="clr-namespace:Proyecto_final.View"
     Shell.FlyoutBehavior="Disabled"
     Title="Proyecto_final">
 
@@ -23,7 +23,7 @@
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate pages:Info}"
         Route="MainPage" />
 
     <FlyoutItem Title="Registro" Icon="editar.png">

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto_final.View.PagUsuarioLogeado"
+             Title="PagUsuarioLogeado">
+    <Grid x:Name="phone" RowDefinitions="*,5*,5*,*" ColumnDefinitions="*,*" IsVisible="False" Margin="20" ColumnSpacing="20">
+        <Button Text="DESCONECTAR" Grid.Row="0" Grid.Column="0" Clicked="Button_Clicked"/>
+        <Image Source="inicio.png" Grid.Row="0" Grid.Column="1" VerticalOptions="End"/>
+        <ScrollView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="mascotas">
+            
+        </ScrollView>
+        <ScrollView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <ListView x:Name="lista"/>
+        </ScrollView>
+        <Button Text="CAMBIAR CONTRASEÑA" Grid.Row="3" Grid.Column="0" Clicked="Button_Clicked_2"/>
+        <Button Text="SOLICITAR CITA" Grid.Row="3" Grid.Column="1" Clicked="Button_Clicked_1"/>
+    </Grid>
+</ContentPage>

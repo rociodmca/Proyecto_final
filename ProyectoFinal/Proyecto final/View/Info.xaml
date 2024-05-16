@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto_final.View.Info"
+             Title="Info">
+    <Grid RowDefinitions="*,4*,*" ColumnDefinitions="*,6*,*">
+        <ScrollView Grid.Row="1" Grid.Column="1">
+            <Label x:Name="info"/>
+        </ScrollView>
+    </Grid>
+</ContentPage>
