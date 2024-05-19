@@ -32,7 +32,48 @@ namespace Proyecto_final.ViewModel
                 Usuario user = bbdd.GetUser(email, pass);
                 return user.Id;
             } catch (Exception ex) { return "1"; }
-            
+        }
+
+        public int ObtenerRol(string email, string pass)
+        {
+            try
+            {
+                Usuario user = bbdd.GetUser(email, pass);
+                return user.Rol;
+            }
+            catch (Exception ex) { return ex.GetHashCode(); }
+        }
+
+        public List<Usuario> ObtenerListaUsuarios()
+        {
+            List<Usuario> usuarios;
+            usuarios = bbdd.ListUsuarios(1);
+            return usuarios;
+        }
+
+        public bool BorrarUsuario(string id)
+        {
+            try
+            {
+                bbdd.RemoveUser(id);
+                return true;
+            } catch (Exception ex) { return false; }
+        }
+
+        public bool GuardarMascota(string nombre, string tipo, string raza, string sexo, int peso, string vacunas, string id_cl)
+        {
+            try
+            {
+                bbdd.AddPet(nombre, tipo, raza, sexo, peso, vacunas, id_cl);
+                return true;
+            }catch (Exception ex) { return false; }
+        }
+
+        public List<Mascota> ObtenerListaMascotas(string id)
+        {
+            List<Mascota> mascotas;
+            mascotas = bbdd.GetPets(id);
+            return mascotas;
         }
     }
 }

@@ -20,5 +20,10 @@ namespace Proyecto_final.Model
         public int Peso { get; set; }
         public string Vacunas { get; set; }
         public string Id_Cliente { get; set; }
+
+        public override string ToString()
+        {
+            return Nombre + " " + Tipo + " " + Raza + " " + Sexo;
+        }
     }
 }

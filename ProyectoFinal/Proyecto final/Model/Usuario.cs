@@ -18,5 +18,10 @@ namespace Proyecto_final.Model
         public string Email { get; set; }
         public string Pass { get; set; }
         public int Rol { get; set; }
+
+        public override string ToString()
+        {
+            return Id + " " + Nombre + " " + Email + " " + Rol.ToString();
+        }
     }
 }

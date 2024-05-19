@@ -3,10 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_final.View.RegistroMascota"
              Title="RegistroMascota">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid ColumnDefinitions="*" RowDefinitions="*" Margin="20">
+        <Frame BorderColor="Aquamarine" Grid.Column="0" Grid.Row="0">
+            <Grid RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,2*" RowSpacing="10" ColumnSpacing="10" Margin="40">
+                <Label Text="Nombre: " Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Entry x:Name="nombre" Grid.Column="1" Grid.Row="0" VerticalOptions="Center"/>
+                <Label Text="Tipo: " Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Picker x:Name="tipo" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" SelectedIndexChanged="tipo_SelectedIndexChanged"/>
+                <Label Text="Raza: " Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Picker x:Name="raza" Grid.Column="1" Grid.Row="2" VerticalOptions="Center"/>
+                <Label Text="Sexo: " Grid.Column="0" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Picker x:Name="sexo" Grid.Column="1" Grid.Row="3" VerticalOptions="Center"/>
+                <Label Text="Peso: " Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Entry x:Name="peso" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" Keyboard="Numeric"/>
+                <Grid Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" ColumnDefinitions="*,*" RowDefinitions="*" ColumnSpacing="10">
+                    <Button x:Name="BtnRegistrarse" Text="Guardar mascota" Clicked="BtnRegistrarse_Clicked"  Grid.Column="0" Grid.Row="0"/>
+                    <Button x:Name="BtnCancelar" Text="Cancelar" Clicked="BtnCancelar_Clicked"  Grid.Column="1" Grid.Row="0"/>
+                </Grid>
+            </Grid>
+        </Frame>
+    </Grid>
 </ContentPage>

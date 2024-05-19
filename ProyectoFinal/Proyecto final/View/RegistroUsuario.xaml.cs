@@ -7,7 +7,6 @@ public partial class RegistroUsuario : ContentPage
     ViewModelBBDD contBBDD;
     List<int> roles = new List<int>();
 
-
     public RegistroUsuario()
 	{
         roles = [1, 2, 3];
@@ -18,13 +17,14 @@ public partial class RegistroUsuario : ContentPage
 
     private void BtnRegistrarse_Clicked(object sender, EventArgs e)
     {
-        if ((nombre.Text.Length != 0) && (apellidos.Text.Length != 0) && (email.Text.Length != 0) && (password.Text.Length != 0))
+        if ((nombre.Text.Length != 0) && (apellidos.Text.Length != 0) && (email.Text.Length != 0) && (password.Text.Length != 0) && (rol.SelectedIndex != -1))
         {
             contBBDD.InsertarUsuario(nombre.Text, apellidos.Text, email.Text, password.Text, (rol.SelectedIndex + 1));
             nombre.Text = "";
             apellidos.Text = "";
             email.Text = "";
             password.Text = "";
+            rol.SelectedIndex = -1;
         }
     }
 
@@ -34,5 +34,6 @@ public partial class RegistroUsuario : ContentPage
         apellidos.Text = "";
         email.Text = "";
         password.Text = "";
+        rol.SelectedIndex = -1;
     }
 }

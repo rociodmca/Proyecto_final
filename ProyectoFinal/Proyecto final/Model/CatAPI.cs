@@ -9,7 +9,7 @@ namespace Proyecto_final.Model
 {
     public class CatAPI
     {
-        JsonDocument miJson1;
+        public JsonDocument miJson1;
 
         //Método para listar categorias
         public async Task<bool> ListarRazasAsync()
@@ -28,7 +28,6 @@ namespace Proyecto_final.Model
                 }
             }
         }
-
 
     }
 }

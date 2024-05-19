@@ -20,7 +20,7 @@ namespace Proyecto_final.Model
 
         public AccesoBBDD()
         {
-            cliente = new MongoClient("mongodb://root:example@192.168.1.34:27017/");
+            cliente = new MongoClient("mongodb://root:example@192.168.1.41:27017/");
             //cliente = new MongoClient("mongodb://root:example@localhost:27017/");
             db = cliente.GetDatabase("prueba_app");
         }
@@ -56,12 +56,12 @@ namespace Proyecto_final.Model
             return collectionUsuario.Find(filtro).First<Usuario>();
         }
 
-        /*public List<Usuario> ListUsuarios(int rol)
+        public List<Usuario> ListUsuarios(int rol)
         {
             collectionUsuario = db.GetCollection<Usuario>("Usuarios");
-            FilterDefinition<Usuario> filtro = Builders<Usuario>.Filter.And(Builders<Usuario>.Filter.Eq(x => x.Rol, rol), Builders<Usuario>.Filter.Eq(x => x.Pass, passParser));
-            return collectionUsuario.Find(filtro);
-        }*/
+            FilterDefinition<Usuario> filtro = Builders<Usuario>.Filter.Ne(x => x.Rol, rol);
+            return collectionUsuario.Find(filtro).ToList();
+        }
 
         public void RemoveUser(string id)
         {
@@ -82,6 +82,13 @@ namespace Proyecto_final.Model
             collectionMascota = db.GetCollection<Mascota>("Mascotas");
             FilterDefinition<Mascota> filtro = Builders<Mascota>.Filter.Eq(x => x.Id, id);
             collectionMascota.DeleteOne(filtro);
+        }
+
+        public List<Mascota> GetPets(string id)
+        {
+            collectionMascota = db.GetCollection<Mascota>("Mascotas");
+            FilterDefinition<Mascota> filtro = Builders<Mascota>.Filter.Eq(x => x.Id_Cliente, id);
+            return collectionMascota.Find(filtro).ToList();
         }
 
         public void AddDate(string id_cl, string id_mas, string fecha, string id_vet)

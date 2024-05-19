@@ -8,22 +8,29 @@ namespace Proyecto_final.View;
 
 public partial class Login : ContentPage
 {
-    ViewModelBBDD controladorBBDD;
+    ViewModelBBDD viewModelBBDD;
 
 
     public Login()
 	{
 		InitializeComponent();
-		controladorBBDD = new ViewModelBBDD();
+		viewModelBBDD = new ViewModelBBDD();
 	}
 
     private void BtnLog_Clicked(object sender, EventArgs e)
     {
-        string text = controladorBBDD.ObtenerId(email.Text, password.Text);
+        string text = viewModelBBDD.ObtenerId(email.Text, password.Text);
         ToastDuration duration = ToastDuration.Short;
         double fontSize = 14;
         Toast.Make(text, duration, fontSize).Show();
 
-        Navigation.PushAsync(new PagUsuarioLogeado(text)); 
+        if (viewModelBBDD.ObtenerRol(email.Text, password.Text) != 1)
+        {
+            Navigation.PushAsync(new PagUsuarioLogeado(text));
+        } else
+        {
+            Navigation.PushAsync(new PanelAdministracion());
+        }
+        
     }
 }

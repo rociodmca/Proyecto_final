@@ -2,11 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_final.View.PanelAdministracion"
-             Title="PanelAdministracion">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Panel de administracion">
+    <Grid Margin="100" ColumnDefinitions="*,*,*,*" RowDefinitions="4*,*" ColumnSpacing="20" RowSpacing="20">
+        <ListView x:Name="usuarios" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" ItemSelected="usuarios_ItemSelected"/>
+        <Button Grid.Column="1" Grid.Row="1" Text="BORRAR USUARIO" Clicked="Button_Clicked"/>
+        <Button Grid.Column="2" Grid.Row="1" Text="AGREGAR VETERINARIO" Clicked="Button_Clicked_1"/>
+    </Grid>
 </ContentPage>
