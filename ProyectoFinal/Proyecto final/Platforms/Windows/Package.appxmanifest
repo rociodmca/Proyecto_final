@@ -23,6 +23,7 @@
 
   <Resources>
     <Resource Language="x-generate" />
+	<Resource Language="es-ES"/>
   </Resources>
 
   <Applications>

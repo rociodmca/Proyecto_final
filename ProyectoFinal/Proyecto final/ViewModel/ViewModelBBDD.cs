@@ -51,6 +51,13 @@ namespace Proyecto_final.ViewModel
             return usuarios;
         }
 
+        public List<Usuario> ObtenerListaVeterinarios()
+        {
+            List<Usuario> usuarios;
+            usuarios = bbdd.ListVet(2);
+            return usuarios;
+        }
+
         public bool BorrarUsuario(string id)
         {
             try
@@ -74,6 +81,22 @@ namespace Proyecto_final.ViewModel
             List<Mascota> mascotas;
             mascotas = bbdd.GetPets(id);
             return mascotas;
+        }
+
+        public bool GuardarCita(string id_cl, string id_mas, string fecha, string id_vet)
+        {
+            try
+            {
+                bbdd.AddDate(id_cl, id_mas, fecha, id_vet);
+                return true;
+            } catch { return false; }
+        }
+
+        public List<Cita> ObtenerListaCitas(string id)
+        {
+            List<Cita> citas;
+            citas = bbdd.GetDates(id);
+            return citas;
         }
     }
 }

@@ -1,19 +1,63 @@
+using Proyecto_final.ViewModel;
+
 namespace Proyecto_final.View;
 
 public partial class CuestionarioCita : ContentPage
 {
+    ViewModelBBDD viewModelBBDD;
+    ViewModelUsuario viewModelUsuario;
+    ViewModelMascota viewModelMascota;
+    string id, id_mas, id_vet;
+
 	public CuestionarioCita(string id)
 	{
-		InitializeComponent();
-	}
+		viewModelBBDD = new ViewModelBBDD();
+        viewModelUsuario = new ViewModelUsuario();
+        viewModelUsuario.Usuarios = viewModelBBDD.ObtenerListaVeterinarios();
+        viewModelMascota = new ViewModelMascota();
+        viewModelMascota.Mascotas = viewModelBBDD.ObtenerListaMascotas(id);
+        this.id = id;
+
+        InitializeComponent();
+        mascotas.ItemsSource = viewModelMascota.Mascotas;
+        veterinarios.ItemsSource = viewModelUsuario.Usuarios;
+    }
 
     private void BtnAceptar_Clicked(object sender, EventArgs e)
     {
-
+        if ((mascotas.SelectedIndex != -1) && (veterinarios.SelectedIndex != -1))
+        {
+            foreach (var item in viewModelUsuario.Usuarios)
+            {
+                if (item.Equals(veterinarios.SelectedItem))
+                {
+                    id_vet = item.Id;
+                }
+            }
+            foreach (var item in viewModelMascota.Mascotas)
+            {
+                if (item.Equals(mascotas.SelectedItem))
+                {
+                    id_mas = item.Id;
+                }
+            }
+            bool msg = viewModelBBDD.GuardarCita(id, id_mas, fecha.Date.ToString("d"), id_vet);
+            if (msg)
+            {
+                DisplayAlert("Información", "Cita guardada", "Ok");
+            }else
+            {
+                DisplayAlert("Información", "Ha ocurrido un error al guardar la cita", "Ok");
+            }
+            
+        }
+        DisplayAlert("Información", "No se han seleccionado todas las opciones", "Ok");
+        veterinarios.SelectedIndex = -1;
+        mascotas.SelectedIndex = -1;
     }
 
     private void BtnCancelar_Clicked(object sender, EventArgs e)
     {
-
+        Navigation.PopAsync(true);
     }
 }

@@ -8,7 +8,7 @@
             <Grid RowDefinitions="4*,*" ColumnDefinitions="*,*" RowSpacing="40" ColumnSpacing="40" Margin="40">
                 <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" ColumnDefinitions="*,2*" RowDefinitions="*,*,*" ColumnSpacing="20" RowSpacing="20">
                     <Label Text="Fecha: " Grid.Column="0" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center"/>
-                    <DatePicker x:Name="fecha" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400"/>
+                    <DatePicker x:Name="fecha" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" Format="dd/MM/yyyy"/>
                     <Label Text="Mascota: " Grid.Column="0" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center"/>
                     <Picker x:Name="mascotas" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400"/>
                     <Label Text="Veterinario: " Grid.Column="0" Grid.Row="2" HorizontalOptions="End" VerticalOptions="Center"/>

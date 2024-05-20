@@ -8,10 +8,22 @@ public partial class RegistroUsuario : ContentPage
     List<int> roles = new List<int>();
 
     public RegistroUsuario()
+    {
+        roles = [1, 2, 3];
+        InitializeComponent();
+        rol.ItemsSource = roles;
+        rol.SelectedIndex = 2;
+        rol.IsEnabled = false;
+        contBBDD = new ViewModelBBDD();
+    }
+
+    public RegistroUsuario(int optionalRol)
 	{
         roles = [1, 2, 3];
         InitializeComponent();
         rol.ItemsSource = roles;
+        rol.SelectedIndex = optionalRol;
+        rol.IsEnabled = false;
         contBBDD = new ViewModelBBDD();
 	}
 

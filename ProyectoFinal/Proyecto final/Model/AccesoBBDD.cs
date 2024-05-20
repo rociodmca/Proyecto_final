@@ -20,7 +20,15 @@ namespace Proyecto_final.Model
 
         public AccesoBBDD()
         {
-            cliente = new MongoClient("mongodb://root:example@192.168.1.41:27017/");
+            //cliente = new MongoClient("mongodb://root:example@192.168.1.36:27017/");
+            if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+            {
+                cliente = new MongoClient("mongodb://user:zbppypHgbkILtWBW@ac-0yc0l5i-shard-00-00.ezhboul.mongodb.net:27017,ac-0yc0l5i-shard-00-01.ezhboul.mongodb.net:27017,ac-0yc0l5i-shard-00-02.ezhboul.mongodb.net:27017/?ssl=true&replicaSet=atlas-131chx-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0");
+            }
+            if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
+            {
+                cliente = new MongoClient("mongodb+srv://user:zbppypHgbkILtWBW@cluster0.ezhboul.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+            }
             //cliente = new MongoClient("mongodb://root:example@localhost:27017/");
             db = cliente.GetDatabase("prueba_app");
         }
@@ -63,6 +71,13 @@ namespace Proyecto_final.Model
             return collectionUsuario.Find(filtro).ToList();
         }
 
+        public List<Usuario> ListVet(int rol)
+        {
+            collectionUsuario = db.GetCollection<Usuario>("Usuarios");
+            FilterDefinition<Usuario> filtro = Builders<Usuario>.Filter.Eq(x => x.Rol, rol);
+            return collectionUsuario.Find(filtro).ToList();
+        }
+
         public void RemoveUser(string id)
         {
             collectionUsuario = db.GetCollection<Usuario>("Usuarios");
@@ -96,6 +111,13 @@ namespace Proyecto_final.Model
             collectionCita = db.GetCollection<Cita>("Citas");
             Cita date = new Cita { Id_cliente = id_cl, Id_mascota = id_mas, Fecha = fecha, Id_veterinario = id_vet };
             collectionCita.InsertOne(date);
+        }
+
+        public List<Cita> GetDates(string id)
+        {
+            collectionCita = db.GetCollection<Cita>("Citas");
+            FilterDefinition<Cita> filtro = Builders<Cita>.Filter.Eq(x => x.Id_cliente, id);
+            return collectionCita.Find(filtro).ToList();
         }
 
         public void AddAdjust(string id_user, string tema, string tam_letra, string idioma)

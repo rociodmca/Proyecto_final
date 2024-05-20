@@ -20,12 +20,14 @@ public partial class PagUsuarioLogeado : ContentPage
             phone.IsVisible = true;
             desktop.IsVisible = false;
             mascotas.ItemsSource = viewModelBBDD.ObtenerListaMascotas(id);
+            lista.ItemsSource = viewModelBBDD.ObtenerListaCitas(id);
         }
         if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
         {
             phone.IsVisible = false;
             desktop.IsVisible = true;
             mascotas2.ItemsSource = viewModelBBDD.ObtenerListaMascotas(id);
+            lista2.ItemsSource = viewModelBBDD.ObtenerListaCitas(id);
         }
     }
 

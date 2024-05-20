@@ -28,7 +28,7 @@ public partial class PanelAdministracion : ContentPage
 
     private void Button_Clicked_1(object sender, EventArgs e)
     {
-
+        Navigation.PushAsync(new RegistroUsuario(1));
     }
 
     private void usuarios_ItemSelected(object sender, SelectedItemChangedEventArgs e)
