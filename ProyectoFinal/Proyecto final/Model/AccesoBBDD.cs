@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Proyecto_final.Model
 {
@@ -21,14 +22,7 @@ namespace Proyecto_final.Model
         public AccesoBBDD()
         {
             //cliente = new MongoClient("mongodb://root:example@192.168.1.36:27017/");
-            if (DeviceInfo.Current.Platform == DevicePlatform.Android)
-            {
-                cliente = new MongoClient("mongodb://user:zbppypHgbkILtWBW@ac-0yc0l5i-shard-00-00.ezhboul.mongodb.net:27017,ac-0yc0l5i-shard-00-01.ezhboul.mongodb.net:27017,ac-0yc0l5i-shard-00-02.ezhboul.mongodb.net:27017/?ssl=true&replicaSet=atlas-131chx-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0");
-            }
-            if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
-            {
-                cliente = new MongoClient("mongodb+srv://user:zbppypHgbkILtWBW@cluster0.ezhboul.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
-            }
+            
             //cliente = new MongoClient("mongodb://root:example@localhost:27017/");
             db = cliente.GetDatabase("prueba_app");
         }
@@ -64,6 +58,13 @@ namespace Proyecto_final.Model
             return collectionUsuario.Find(filtro).First<Usuario>();
         }
 
+        public Usuario GetUser(ObjectId id)
+        {
+            collectionUsuario = db.GetCollection<Usuario>("Usuarios");
+            FilterDefinition<Usuario> filtro = Builders<Usuario>.Filter.And(Builders<Usuario>.Filter.Eq(x => x.Id, id.ToString()));
+            return collectionUsuario.Find(filtro).First<Usuario>();
+        }
+
         public List<Usuario> ListUsuarios(int rol)
         {
             collectionUsuario = db.GetCollection<Usuario>("Usuarios");
@@ -78,6 +79,16 @@ namespace Proyecto_final.Model
             return collectionUsuario.Find(filtro).ToList();
         }
 
+        public void UpdateUser(ObjectId id, string newpass)
+        {
+            collectionUsuario = db.GetCollection<Usuario>("Usuarios");
+            var filter = Builders<Usuario>.Filter.Eq(x => x.Id, id.ToString());
+            string pass = PassParser(newpass);
+            var update = Builders<Usuario>.Update.Set(x => x.Pass, pass);
+            // Updates the first document that has a "name" value of "Bagels N Buns"
+            collectionUsuario.UpdateOne(filter, update);
+        }
+
         public void RemoveUser(string id)
         {
             collectionUsuario = db.GetCollection<Usuario>("Usuarios");
@@ -85,7 +96,7 @@ namespace Proyecto_final.Model
             collectionUsuario.DeleteOne(filtro);
         }
 
-        public void AddPet(string nombre, string tipo, string raza, string sexo, int peso, string vacunas, string id_cl)
+        public void AddPet(string nombre, string tipo, string raza, string sexo, int peso, string vacunas, ObjectId id_cl)
         {
             collectionMascota = db.GetCollection<Mascota>("Mascotas");
             Mascota pet = new Mascota { Nombre = nombre, Tipo = tipo, Raza = raza, Sexo = sexo, Peso = peso, Vacunas = vacunas, Id_Cliente = id_cl };
@@ -99,32 +110,116 @@ namespace Proyecto_final.Model
             collectionMascota.DeleteOne(filtro);
         }
 
-        public List<Mascota> GetPets(string id)
+        public List<Mascota> GetPets(ObjectId id)
         {
             collectionMascota = db.GetCollection<Mascota>("Mascotas");
             FilterDefinition<Mascota> filtro = Builders<Mascota>.Filter.Eq(x => x.Id_Cliente, id);
             return collectionMascota.Find(filtro).ToList();
         }
 
-        public void AddDate(string id_cl, string id_mas, string fecha, string id_vet)
+        public List<Mascota> GetPetsWithoutId()
+        {
+            collectionMascota = db.GetCollection<Mascota>("Mascotas");
+            return collectionMascota.AsQueryable<Mascota>().ToList();
+        }
+
+        public void AddDate(ObjectId id_cl, ObjectId id_mas, DateTime fecha, ObjectId id_vet)
         {
             collectionCita = db.GetCollection<Cita>("Citas");
             Cita date = new Cita { Id_cliente = id_cl, Id_mascota = id_mas, Fecha = fecha, Id_veterinario = id_vet };
             collectionCita.InsertOne(date);
         }
 
-        public List<Cita> GetDates(string id)
+        public List<Cita> GetDates(ObjectId id)
         {
             collectionCita = db.GetCollection<Cita>("Citas");
             FilterDefinition<Cita> filtro = Builders<Cita>.Filter.Eq(x => x.Id_cliente, id);
             return collectionCita.Find(filtro).ToList();
         }
 
-        public void AddAdjust(string id_user, string tema, string tam_letra, string idioma)
+        public List<Cita> GetDatesVet(ObjectId id)
+        {
+            collectionCita = db.GetCollection<Cita>("Citas");
+            FilterDefinition<Cita> filtro = Builders<Cita>.Filter.Eq(x => x.Id_veterinario, id);
+            return collectionCita.Find(filtro).ToList();
+        }
+
+        public void AddAdjust(ObjectId id_user, string tema, string tam_letra, string idioma)
         {
             collectionAjuste = db.GetCollection<Ajuste>("Ajustes");
             Ajuste adjust = new Ajuste { Id = id_user, Tema = tema, Tam_letra = tam_letra, Idioma = idioma };
             collectionAjuste.InsertOne(adjust);
+        }
+
+        public Dictionary<string, Object> GetDatesList(string id)
+        {
+            /*collectionCita = db.GetCollection<Cita>("Citas");
+            collectionMascota = db.GetCollection<Mascota>("Mascotas");
+            collectionUsuario = db.GetCollection<Usuario>("Usuarios");
+
+            var result = db.Aggregate().Lookup<Mascota, Cita, dynamic>(collectionCita,mascota => mascota.Id,cita => cita.Id_mascota).Unwind<dynamic>("Citas").Lookup<dynamic, Usuario, dynamic>(collectionUsuario,cita => cita.collectionCita.Id_cliente,usuario => usuario.Id).Unwind<dynamic>("Usuarios");
+            return result.ToList<Object>();*/
+
+            var obj_id = new ObjectId(id);
+
+            var coleccion1 = db.GetCollection<BsonDocument>("Usuarios");
+
+            var match = new BsonDocument
+            {
+                {
+                    "$match",
+                    new BsonDocument
+                    {
+                        {"_id", obj_id}
+                    }
+                }
+            };
+
+            var lookup1 = new BsonDocument
+            {
+                {
+                    "$lookup",
+                    new BsonDocument
+                    {
+                        {"from", "Citas"},
+                        {"localField", "_id"},
+                        {"foreignField", "Id_cliente"},
+                        {"as", "Cita"}
+                    }
+                }
+            };
+
+            var lookup2 = new BsonDocument
+            {
+                {
+                    "$lookup",
+                    new BsonDocument
+                    {
+                        {"from", "Mascotas"},
+                        {"localField", "_id"},
+                        {"foreignField", "Id_Cliente"},
+                        {"as", "Mascota"}
+                    }
+                }
+            };
+
+            var pipeline = new[] { match, lookup1, lookup2 };
+            var result = coleccion1.Aggregate<BsonDocument>(pipeline);
+            Dictionary<string, Object> dicc = new Dictionary<string, Object>();
+            List<Object> listaObjetos = new List<Object>();
+            try
+            {
+                while (result.MoveNext())
+                {
+                    foreach (var item in result.Current)
+                    {
+                        dicc[item.Names.ToString()] = item.Values;
+                    }
+                }
+            } catch (Exception e) { }
+
+            //return listaObjetos;
+            return dicc;
         }
     }
 }

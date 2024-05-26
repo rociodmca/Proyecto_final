@@ -1,3 +1,4 @@
+using MongoDB.Bson;
 using Proyecto_final.ViewModel;
 
 namespace Proyecto_final.View;
@@ -7,11 +8,11 @@ public partial class RegistroMascota : ContentPage
     ViewModelCatAPI viewModelCat;
     ViewModelDogAPI viewModelDog;
     ViewModelBBDD viewModelBBDD;
-    string id;
+    ObjectId id;
     List<string> listaRazasGatos;
     List<string> listaRazasPerros;
 
-	public RegistroMascota(string id)
+	public RegistroMascota(ObjectId id)
 	{
 		viewModelCat = new ViewModelCatAPI();
         viewModelDog = new ViewModelDogAPI();
@@ -45,6 +46,11 @@ public partial class RegistroMascota : ContentPage
 
     private void BtnCancelar_Clicked(object sender, EventArgs e)
     {
+        nombre.Text = "";
+        tipo.SelectedIndex = -1;
+        raza.SelectedIndex = -1;
+        sexo.SelectedIndex = -1;
+        peso.Text = "";
         Navigation.PopAsync();
     }
 

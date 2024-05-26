@@ -2,11 +2,62 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_final.View.PagUsuarioLogeado"
+             xmlns:pages="clr-namespace:Proyecto_final.ViewModel"
              Title="PagUsuarioLogeado">
-    <Grid>
-        <Grid x:Name="phone" RowDefinitions="*,5*,5*,*" ColumnDefinitions="*,*" IsVisible="False" Margin="20" ColumnSpacing="20" RowSpacing="20">
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="cita1">
+            <Grid RowDefinitions="*" ColumnDefinitions="*" IsEnabled="True">
+                <Frame Grid.Row="0" Grid.Column="0" BorderColor="Coral" Margin="20">
+                    <StackLayout>
+                        <Label Text="{Binding Id_cliente}" FontAttributes="Bold" FontSize="20"/>
+                        <Label Text="{Binding Fecha}" FontAttributes="Italic" VerticalOptions="End" />
+                        <Label Text="{Binding Id_mascota}" FontAttributes="Italic" VerticalOptions="End" />
+                        <Label Text="{Binding Id_veterinario}" FontAttributes="Italic" VerticalOptions="End" />
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="cita2">
+            <Grid RowDefinitions="*" ColumnDefinitions="*" IsEnabled="False">
+                <Frame Grid.Row="0" Grid.Column="0" BorderColor="AliceBlue"  Margin="20">
+                    <StackLayout IsEnabled="False">
+                        <Label Text="{Binding Id_cliente}" FontAttributes="Bold" FontSize="20"/>
+                        <Label Text="{Binding Fecha}" FontAttributes="Italic" VerticalOptions="End" />
+                        <Label Text="{Binding Id_mascota}" FontAttributes="Italic" VerticalOptions="End" />
+                        <Label Text="{Binding Id_veterinario}" FontAttributes="Italic" VerticalOptions="End" />
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </DataTemplate>
+
+        <pages:CitaTemplateSelector x:Key="CitasSelector"
+                                    ValidTemplate="{StaticResource cita1}"
+                                    InvalidTemplate="{StaticResource cita2}" />
+
+        <DataTemplate x:Key="mascotas2dt">
+            <ViewCell>
+                <Grid RowDefinitions="*" ColumnDefinitions="*" Padding="10">
+                    <Frame Grid.Row="0" Grid.Column="0" BorderColor="Aquamarine" Margin="20">
+                        <StackLayout>
+                            <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="20"/>
+                            <Label Text="{Binding Tipo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
+                            <Label Text="{Binding Raza}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
+                            <Label Text="{Binding Sexo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
+                            <Label Text="{Binding Peso}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
+                            <Label Text="{Binding Vacunas}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+            </ViewCell>
+        </DataTemplate>
+    </ContentPage.Resources>
+    
+    <Grid ColumnDefinitions="*" RowDefinitions="*">
+        <Grid Grid.Row="0" Grid.Column="0" x:Name="phone" RowDefinitions="Auto,5*,5*,Auto" ColumnDefinitions="*,*" IsVisible="False" Margin="20" ColumnSpacing="20" RowSpacing="20">
             <Button Text="DESCONECTAR" Grid.Row="0" Grid.Column="0" Clicked="Button_Clicked"/>
-            <ImageButton Source="inicio.png" Grid.Row="0" Grid.Column="1" VerticalOptions="End" Clicked="ImageButton_Clicked"/>
+            <ImageButton Source="inicio.png" Grid.Row="0" Grid.Column="1" VerticalOptions="End" Clicked="ImageButton_Clicked" HeightRequest="40" WidthRequest="40" HorizontalOptions="EndAndExpand"/>
             <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BorderColor="Blue" BackgroundColor="Transparent">
                 <ListView x:Name="mascotas" ItemsSource="{Binding Mascota}" ItemSelected="mascotas_ItemSelected" HasUnevenRows="True" ChildRemoved="mascotas_ChildRemoved">
                     <ListView.ItemTemplate>
@@ -30,69 +81,28 @@
                 </ListView>
             </Frame>
             <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Transparent" BorderColor="Blue">
-                <CollectionView ItemsSource="{Binding Citas}" x:Name="lista" >
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid RowDefinitions="*" ColumnDefinitions="*">
-                                <Frame Grid.Row="0" Grid.Column="0" BorderColor="Coral" Margin="20">
-                                    <StackLayout>
-                                        <Label Text="{Binding Id_cliente}" FontAttributes="Bold" FontSize="20"/>
-                                        <Label Text="{Binding Fecha}" FontAttributes="Italic" VerticalOptions="End" />
-                                    </StackLayout>
-                                </Frame>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                <CollectionView ItemsSource="{Binding Citas}" x:Name="lista" ItemTemplate="{StaticResource CitasSelector}" SelectionMode="Single"/>
             </Frame>
             <Button Text="CAMBIAR CONTRASEÑA" Grid.Row="3" Grid.Column="0" Clicked="Button_Clicked_2"/>
             <Button Text="SOLICITAR CITA" Grid.Row="3" Grid.Column="1" Clicked="Button_Clicked_1"/>
         </Grid>
 
-        <Grid x:Name="desktop" RowDefinitions="*,5*,5*,*" ColumnDefinitions="*,*" IsVisible="False" Margin="20" ColumnSpacing="20" RowSpacing="30">
-            <Grid Grid.Row="0" Grid.Column="0" RowDefinitions="*" ColumnDefinitions="*,*">
-                <Button Text="DESCONECTAR" Grid.Row="0" Grid.Column="0" Clicked="Button_Clicked" HorizontalOptions="StartAndExpand" ImageSource="desconectar.png" ContentLayout="RIGHT,30" BackgroundColor="Aquamarine"/>
-                <Button Text="CAMBIAR CONTRASEÑA" Grid.Row="0" Grid.Column="1" Clicked="Button_Clicked_2" HorizontalOptions="StartAndExpand"/>
+        <Grid Grid.Row="0" Grid.Column="0" x:Name="desktop" RowDefinitions="Auto,*,*,Auto" ColumnDefinitions="*,*" IsVisible="False" Margin="20" ColumnSpacing="20" RowSpacing="30">
+            <Grid Grid.Row="0" Grid.Column="0" RowDefinitions="Auto" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="20" RowSpacing="20">
+                <Button Text="DESCONECTAR" Grid.Row="0" Grid.Column="0" Clicked="Button_Clicked" HorizontalOptions="StartAndExpand" ImageSource="desconectar.png" ContentLayout="RIGHT,30" BackgroundColor="Aquamarine" HeightRequest="10"/>
+                <Button Text="CAMBIAR CONTRASEÑA" Grid.Row="0" Grid.Column="2" Clicked="Button_Clicked_2" HorizontalOptions="StartAndExpand"/>
             </Grid>
-            <ImageButton Source="inicio.png" Grid.Row="0" Grid.Column="1" VerticalOptions="End" HorizontalOptions="EndAndExpand" Clicked="ImageButton_Clicked"/>
-            <ScrollView Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
-                <ListView x:Name="mascotas2" ItemsSource="{Binding Mascota}" ItemSelected="mascotas2_ItemSelected">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid RowDefinitions="*" ColumnDefinitions="*" Padding="10">
-                                    <Frame Grid.Row="0" Grid.Column="0" BorderColor="Aquamarine" Margin="20">
-                                        <StackLayout>
-                                            <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="20"/>
-                                            <Label Text="{Binding Tipo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
-                                            <Label Text="{Binding Raza}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
-                                            <Label Text="{Binding Sexo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
-                                            <Label Text="{Binding Peso}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
-                                            <Label Text="{Binding Vacunas}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
-                                        </StackLayout>
-                                    </Frame>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </ScrollView>
-            <ScrollView Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
-                <CollectionView ItemsSource="{Binding Citas}" x:Name="lista2">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid RowDefinitions="*" ColumnDefinitions="*">
-                                <Frame Grid.Row="0" Grid.Column="0" BorderColor="Coral" Margin="20">
-                                    <StackLayout>
-                                        <Label Text="{Binding Id_cliente}" FontAttributes="Bold" FontSize="20"/>
-                                        <Label Text="{Binding Fecha}" FontAttributes="Italic" VerticalOptions="End" />
-                                    </StackLayout>
-                                </Frame>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </ScrollView>
+            <ImageButton Source="inicio.png" Grid.Row="0" Grid.Column="1" VerticalOptions="End" HorizontalOptions="EndAndExpand" Clicked="ImageButton_Clicked" HeightRequest="10" WidthRequest="10"/>
+            <Frame Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" BorderColor="BurlyWood" BackgroundColor="Transparent">
+                <ScrollView >
+                    <ListView x:Name="mascotas2" ItemsSource="{Binding Mascota}" ItemSelected="mascotas2_ItemSelected" ItemTemplate="{StaticResource mascotas2dt}"/>
+                </ScrollView>
+            </Frame>
+            <Frame Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" BorderColor="Indigo">
+                <ScrollView >
+                    <CollectionView ItemsSource="{Binding Citas}" x:Name="lista2" ItemTemplate="{StaticResource CitasSelector}" SelectionMode="Single" SelectionChanged="lista2_SelectionChanged"/>
+                </ScrollView>
+            </Frame>
             <Button Text="SOLICITAR CITA" Grid.Row="3" Grid.Column="1" Clicked="Button_Clicked_1"/>
         </Grid>
     </Grid>

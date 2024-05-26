@@ -38,5 +38,8 @@
     <FlyoutItem Title="Ajustes" Icon="ajustes.png">
         <ShellContent Title="Prueba4" ContentTemplate="{DataTemplate pages:Ajustes}"/>
     </FlyoutItem>
+    <FlyoutItem Title="Manual" Icon="ajustes.png">
+        <ShellContent Title="Prueba5" ContentTemplate="{DataTemplate pages:Manual}"/>
+    </FlyoutItem>
 
 </Shell>

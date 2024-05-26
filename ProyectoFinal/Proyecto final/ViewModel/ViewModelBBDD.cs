@@ -1,4 +1,5 @@
-﻿using Proyecto_final.Model;
+﻿using MongoDB.Bson;
+using Proyecto_final.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,19 @@ namespace Proyecto_final.ViewModel
             try
             {
                 bbdd.AddUser(nombre, ape, email, pass, rol);
+                Thread thread_back = new Thread(() => InsertarAjuste(ape, pass));
+                thread_back.IsBackground = true;
+                thread_back.Start();
                 return true;
             } catch { return false; }
+        }
+
+        public void InsertarAjuste(string ape, string pass)
+        {
+            string id = ObtenerId(ape, pass);
+            Thread.Sleep(100);
+            bbdd.AddAdjust(new ObjectId(id), "claro", "14", "Espanol");
+            Thread.Sleep(100);
         }
 
         public string ObtenerId(string email, string pass)
@@ -44,6 +56,16 @@ namespace Proyecto_final.ViewModel
             catch (Exception ex) { return ex.GetHashCode(); }
         }
 
+        public string ObtenerNombre(ObjectId id)
+        {
+            try
+            {
+                Usuario user = bbdd.GetUser(id);
+                return user.Nombre;
+            }
+            catch (Exception ex) { return ex.Message; }
+        }
+
         public List<Usuario> ObtenerListaUsuarios()
         {
             List<Usuario> usuarios;
@@ -58,6 +80,15 @@ namespace Proyecto_final.ViewModel
             return usuarios;
         }
 
+        public bool ActualizarPass(ObjectId id, string newpass)
+        {
+            try
+            {
+                bbdd.UpdateUser(id, newpass);
+                return true;
+            }catch (Exception ex) { return false; }
+        }
+
         public bool BorrarUsuario(string id)
         {
             try
@@ -67,7 +98,7 @@ namespace Proyecto_final.ViewModel
             } catch (Exception ex) { return false; }
         }
 
-        public bool GuardarMascota(string nombre, string tipo, string raza, string sexo, int peso, string vacunas, string id_cl)
+        public bool GuardarMascota(string nombre, string tipo, string raza, string sexo, int peso, string vacunas, ObjectId id_cl)
         {
             try
             {
@@ -76,14 +107,21 @@ namespace Proyecto_final.ViewModel
             }catch (Exception ex) { return false; }
         }
 
-        public List<Mascota> ObtenerListaMascotas(string id)
+        public List<Mascota> ObtenerListaMascotas(ObjectId id)
         {
             List<Mascota> mascotas;
             mascotas = bbdd.GetPets(id);
             return mascotas;
         }
 
-        public bool GuardarCita(string id_cl, string id_mas, string fecha, string id_vet)
+        public List<Mascota> ObtenerListaMascotasSinId()
+        {
+            List<Mascota> mascotas;
+            mascotas = bbdd.GetPetsWithoutId();
+            return mascotas;
+        }
+
+        public bool GuardarCita(ObjectId id_cl, ObjectId id_mas, DateTime fecha, ObjectId id_vet)
         {
             try
             {
@@ -92,11 +130,23 @@ namespace Proyecto_final.ViewModel
             } catch { return false; }
         }
 
-        public List<Cita> ObtenerListaCitas(string id)
+        public List<Cita> ObtenerListaCitas(ObjectId id)
         {
             List<Cita> citas;
             citas = bbdd.GetDates(id);
             return citas;
+        }
+
+        public List<Cita> ObtenerListaCitasVeterinario(ObjectId id)
+        {
+            List<Cita> citas;
+            citas = bbdd.GetDatesVet(id);
+            return citas;
+        }
+
+        public Dictionary<string, Object> ObtenerCitasP(string id)
+        {
+            return bbdd.GetDatesList(id);
         }
     }
 }

@@ -3,9 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_final.View.PanelAdministracion"
              Title="Panel de administracion">
-    <Grid Margin="100" ColumnDefinitions="*,*,*,*" RowDefinitions="4*,*" ColumnSpacing="20" RowSpacing="20">
-        <ListView x:Name="usuarios" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" ItemSelected="usuarios_ItemSelected"/>
-        <Button Grid.Column="1" Grid.Row="1" Text="BORRAR USUARIO" Clicked="Button_Clicked"/>
-        <Button Grid.Column="2" Grid.Row="1" Text="AGREGAR VETERINARIO" Clicked="Button_Clicked_1"/>
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="usuarios1">
+            <ViewCell>
+                <Grid RowDefinitions="*" ColumnDefinitions="*">
+                    <Frame Grid.Row="0" Grid.Column="0" BorderColor="Aquamarine" Margin="10">
+                        <StackLayout>
+                            <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="20"/>
+                            <Label Text="{Binding Email}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
+                            <Label Text="{Binding Rol}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+            </ViewCell>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <Grid ColumnDefinitions="*" RowDefinitions="*">
+        <Grid x:Name="phone" Grid.Row="0" Grid.Column="0" IsVisible="False" Margin="100" ColumnDefinitions="*,2*,2*,*" RowDefinitions="4*,Auto" ColumnSpacing="20" RowSpacing="40" VerticalOptions="Center">
+            <Frame Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" BorderColor="DarkSeaGreen" HeightRequest="400">
+                <ListView x:Name="usuarios1" ItemsSource="{Binding Usuarios}" ItemSelected="usuarios1_ItemSelected"  ItemTemplate="{StaticResource usuarios1}" IsPullToRefreshEnabled="True" RefreshControlColor="Blue" Refreshing="usuarios_Refreshing" HasUnevenRows="True"/>
+            </Frame>
+            <Button Grid.Column="1" Grid.Row="1" Text="BORRAR USUARIO" Clicked="Button_Clicked"/>
+            <Button Grid.Column="2" Grid.Row="1" Text="AGREGAR VETERINARIO" Clicked="Button_Clicked_1"/>
+        </Grid>
+        <Grid x:Name="desktop" Grid.Row="0" Grid.Column="0" IsVisible="False" Margin="100" ColumnDefinitions="*,2*,2*,*" RowDefinitions="6*,Auto" ColumnSpacing="20" RowSpacing="20">
+            <Frame Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" BorderColor="DarkSeaGreen">
+                <ListView x:Name="usuarios2" ItemsSource="{Binding Usuarios}" ItemSelected="usuarios2_ItemSelected"  ItemTemplate="{StaticResource usuarios1}" />
+            </Frame>
+            <Button Grid.Column="1" Grid.Row="1" Text="BORRAR USUARIO" Clicked="Button_Clicked_2"/>
+            <Button Grid.Column="2" Grid.Row="1" Text="AGREGAR VETERINARIO" Clicked="Button_Clicked_3"/>
+        </Grid>
     </Grid>
 </ContentPage>

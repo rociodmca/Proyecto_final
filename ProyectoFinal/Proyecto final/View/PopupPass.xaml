@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto_final.View.PopupPass"
+             Color="Transparent"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+
+    <Grid ColumnDefinitions="Auto" RowDefinitions="Auto">
+        <Frame Grid.Column="0" Grid.Row="0" BorderColor="Black">
+            <Grid ColumnDefinitions="Auto" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="10">
+                <Entry Grid.Column="0" Grid.Row="0" IsPassword="True" x:Name="passw" WidthRequest="200"/>
+                <Button Grid.Column="0" Grid.Row="1" Text="Aceptar" Clicked="Button_Clicked"/>
+            </Grid>
+        </Frame>
+    </Grid>
+</toolkit:Popup>

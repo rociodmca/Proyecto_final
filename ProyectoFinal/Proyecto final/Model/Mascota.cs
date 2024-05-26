@@ -19,7 +19,7 @@ namespace Proyecto_final.Model
         public string Sexo { get; set; }
         public int Peso { get; set; }
         public string Vacunas { get; set; }
-        public string Id_Cliente { get; set; }
+        public ObjectId Id_Cliente { get; set; }
 
         public override string ToString()
         {

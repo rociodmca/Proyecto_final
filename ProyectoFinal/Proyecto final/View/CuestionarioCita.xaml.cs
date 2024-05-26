@@ -1,3 +1,4 @@
+using MongoDB.Bson;
 using Proyecto_final.ViewModel;
 
 namespace Proyecto_final.View;
@@ -7,9 +8,9 @@ public partial class CuestionarioCita : ContentPage
     ViewModelBBDD viewModelBBDD;
     ViewModelUsuario viewModelUsuario;
     ViewModelMascota viewModelMascota;
-    string id, id_mas, id_vet;
+    ObjectId id, id_mas, id_vet;
 
-	public CuestionarioCita(string id)
+	public CuestionarioCita(ObjectId id)
 	{
 		viewModelBBDD = new ViewModelBBDD();
         viewModelUsuario = new ViewModelUsuario();
@@ -31,17 +32,17 @@ public partial class CuestionarioCita : ContentPage
             {
                 if (item.Equals(veterinarios.SelectedItem))
                 {
-                    id_vet = item.Id;
+                    id_vet = new ObjectId(item.Id);
                 }
             }
             foreach (var item in viewModelMascota.Mascotas)
             {
                 if (item.Equals(mascotas.SelectedItem))
                 {
-                    id_mas = item.Id;
+                    id_mas = new ObjectId(item.Id);
                 }
             }
-            bool msg = viewModelBBDD.GuardarCita(id, id_mas, fecha.Date.ToString("d"), id_vet);
+            bool msg = viewModelBBDD.GuardarCita(id, id_mas, fecha.Date, id_vet);
             if (msg)
             {
                 DisplayAlert("Información", "Cita guardada", "Ok");
@@ -49,15 +50,17 @@ public partial class CuestionarioCita : ContentPage
             {
                 DisplayAlert("Información", "Ha ocurrido un error al guardar la cita", "Ok");
             }
-            
+        } else
+        {
+            DisplayAlert("Información", "No se han seleccionado todas las opciones", "Ok");
         }
-        DisplayAlert("Información", "No se han seleccionado todas las opciones", "Ok");
         veterinarios.SelectedIndex = -1;
         mascotas.SelectedIndex = -1;
+        Navigation.PopAsync();
     }
 
     private void BtnCancelar_Clicked(object sender, EventArgs e)
     {
-        Navigation.PopAsync(true);
+        Navigation.PopAsync();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
+using Proyecto_final.View;
 
 namespace Proyecto_final
 {
@@ -12,7 +13,8 @@ namespace Proyecto_final
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            }).UseMauiCommunityToolkit();
+            });
+            builder.UseMauiCommunityToolkit();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

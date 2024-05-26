@@ -13,7 +13,7 @@ namespace Proyecto_final.ViewModel
 
         public ViewModelMascota()
         {
-            Mascotas = new List<Mascota>();
+            Mascotas = [];
         }
     }
 }
