@@ -4,18 +4,18 @@
              x:Class="Proyecto_final.View.CuestionarioCita"
              Title="CuestionarioCita">
     <Grid ColumnDefinitions="*" RowDefinitions="*" Margin="20">
-        <Frame BorderColor="BlueViolet"  Grid.Column="0" Grid.Row="0" Margin="40">
+        <Frame BorderColor="{DynamicResource frame_border}"  Grid.Column="0" Grid.Row="0" Margin="40">
             <Grid RowDefinitions="4*,*" ColumnDefinitions="*,*" RowSpacing="40" ColumnSpacing="40" Margin="40">
                 <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" ColumnDefinitions="*,2*" RowDefinitions="*,*,*" ColumnSpacing="20" RowSpacing="20">
-                    <Label Text="Fecha: " Grid.Column="0" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center"/>
-                    <DatePicker x:Name="fecha" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" Format="dd/MM/yyyy"/>
-                    <Label Text="Mascota: " Grid.Column="0" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center"/>
-                    <Picker x:Name="mascotas" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400"/>
-                    <Label Text="Veterinario: " Grid.Column="0" Grid.Row="2" HorizontalOptions="End" VerticalOptions="Center"/>
-                    <Picker x:Name="veterinarios" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400"/>
+                    <Label Text="Fecha: " Grid.Column="0" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                    <DatePicker x:Name="fecha" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" Format="dd/MM/yyyy" TextColor="{DynamicResource letra}"/>
+                    <Label Text="Mascota: " Grid.Column="0" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                    <Picker x:Name="mascotas" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" TextColor="{DynamicResource letra}"/>
+                    <Label Text="Veterinario: " Grid.Column="0" Grid.Row="2" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                    <Picker x:Name="veterinarios" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" TextColor="{DynamicResource letra}"/>
                 </Grid>
-               <Button x:Name="BtnAceptar" Text="Aceptar" Clicked="BtnAceptar_Clicked"  Grid.Column="0" Grid.Row="1" BackgroundColor="DarkBlue"/>
-               <Button x:Name="BtnCancelar" Text="Cancelar" Clicked="BtnCancelar_Clicked"  Grid.Column="1" Grid.Row="1" BackgroundColor="DarkBlue"/>
+                <Button x:Name="BtnAceptar" Text="Aceptar" Clicked="BtnAceptar_Clicked"  Grid.Column="0" Grid.Row="1" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}"/>
+                <Button x:Name="BtnCancelar" Text="Cancelar" Clicked="BtnCancelar_Clicked"  Grid.Column="1" Grid.Row="1" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}"/>
             </Grid>
         </Frame>
     </Grid>

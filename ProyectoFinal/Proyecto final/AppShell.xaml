@@ -5,8 +5,30 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Proyecto_final"
     xmlns:pages="clr-namespace:Proyecto_final.View"
+    x:Name="shellEstructuraNavegacion"
     Shell.FlyoutBehavior="Disabled"
-    Title="Proyecto_final">
+    Shell.BackgroundColor="Transparent"
+    BackgroundColor="#E3513D">
+
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Fill">
+            <Label Text="Hola" FontFamily="sansfierro-textura" FontSize="42" TextColor="{DynamicResource letra}"/>
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <Shell.FlyoutBackground>
+        <LinearGradientBrush EndPoint="1,0">
+            <GradientStop Color="{DynamicResource start}" Offset="0.1"/>
+            <GradientStop Color="{DynamicResource end}" Offset="1.0" />
+        </LinearGradientBrush>
+    </Shell.FlyoutBackground>
+
+    <Shell.Resources>
+        <Style Class="FlyoutItemLabelStyle" TargetType="Label">
+            <Setter Property="FontFamily">saudagar</Setter>
+            <Setter Property="FontSize">20</Setter>
+        </Style>
+    </Shell.Resources>
 
     <!-- Phone -->
     <TabBar x:Name="PhoneTabs" Title="Prueba">
@@ -19,15 +41,13 @@
         <Tab Title="Manual" Icon="manual.png">
             <ShellContent Title="Prueba3" ContentTemplate="{DataTemplate pages:Manual}"/>
         </Tab>
-        <Tab Title="Ajustes" Icon="ajustes.png">
-            <ShellContent Title="Prueba4" ContentTemplate="{DataTemplate pages:Ajustes}"/>
-        </Tab>
     </TabBar>
 
     <ShellContent
-        Title="Home"
+        Title="Bienvenid@"
         ContentTemplate="{DataTemplate pages:Info}"
-        Route="MainPage" />
+        Route="MainPage" 
+        Icon="huella2.png"/>
 
     <FlyoutItem Title="Registro" Icon="editar.png">
         <ShellContent Title="Prueba1" ContentTemplate="{DataTemplate pages:RegistroUsuario}"/>
@@ -35,11 +55,12 @@
     <FlyoutItem Title="Login" Icon="contrasena.png">
         <ShellContent Title="Login" ContentTemplate="{DataTemplate pages:Login}"/>
     </FlyoutItem>
-    <FlyoutItem Title="Ajustes" Icon="ajustes.png">
-        <ShellContent Title="Prueba4" ContentTemplate="{DataTemplate pages:Ajustes}"/>
-    </FlyoutItem>
     <FlyoutItem Title="Manual" Icon="ajustes.png">
         <ShellContent Title="Prueba5" ContentTemplate="{DataTemplate pages:Manual}"/>
     </FlyoutItem>
+
+    <Shell.FlyoutHeader>
+        <Image Source="huella2.png" WidthRequest="200" HeightRequest="200"/>
+    </Shell.FlyoutHeader>
 
 </Shell>

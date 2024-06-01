@@ -43,7 +43,7 @@ namespace Proyecto_final.ViewModel
             {
                 Usuario user = bbdd.GetUser(email, pass);
                 return user.Id;
-            } catch (Exception ex) { return "1"; }
+            } catch (Exception) { return "1"; }
         }
 
         public int ObtenerRol(string email, string pass)
@@ -86,7 +86,7 @@ namespace Proyecto_final.ViewModel
             {
                 bbdd.UpdateUser(id, newpass);
                 return true;
-            }catch (Exception ex) { return false; }
+            }catch (Exception) { return false; }
         }
 
         public bool BorrarUsuario(string id)
@@ -94,17 +94,18 @@ namespace Proyecto_final.ViewModel
             try
             {
                 bbdd.RemoveUser(id);
+                bbdd.RemoveAdjust(new ObjectId(id));
                 return true;
-            } catch (Exception ex) { return false; }
+            } catch (Exception) { return false; }
         }
 
-        public bool GuardarMascota(string nombre, string tipo, string raza, string sexo, int peso, string vacunas, ObjectId id_cl)
+        public bool GuardarMascota(string nombre, string tipo, string raza, string sexo, int peso, string vacunas, Uri imagen, ObjectId id_cl)
         {
             try
             {
-                bbdd.AddPet(nombre, tipo, raza, sexo, peso, vacunas, id_cl);
+                bbdd.AddPet(nombre, tipo, raza, sexo, peso, vacunas, imagen, id_cl);
                 return true;
-            }catch (Exception ex) { return false; }
+            }catch (Exception) { return false; }
         }
 
         public List<Mascota> ObtenerListaMascotas(ObjectId id)
@@ -119,6 +120,16 @@ namespace Proyecto_final.ViewModel
             List<Mascota> mascotas;
             mascotas = bbdd.GetPetsWithoutId();
             return mascotas;
+        }
+
+        public string ObtenerNombreMascota(ObjectId id)
+        {
+            try
+            {
+                Mascota mascota = bbdd.GetPet(id);
+                return mascota.Nombre;
+            }
+            catch (Exception ex) { return ex.Message; }
         }
 
         public bool GuardarCita(ObjectId id_cl, ObjectId id_mas, DateTime fecha, ObjectId id_vet)
@@ -147,6 +158,20 @@ namespace Proyecto_final.ViewModel
         public Dictionary<string, Object> ObtenerCitasP(string id)
         {
             return bbdd.GetDatesList(id);
+        }
+
+        public Ajuste ObtenerAjuste(ObjectId id)
+        {
+            return bbdd.GetAdjust(id);
+        }
+
+        public bool ActualizarAjuste(ObjectId id, string tema, string tam_letra, string idioma)
+        {
+            try
+            {
+                bbdd.UpdateAdjust(id, tema, tam_letra, idioma);
+                return true;
+            } catch (Exception) { return false; }
         }
     }
 }

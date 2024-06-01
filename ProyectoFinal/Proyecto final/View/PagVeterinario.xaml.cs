@@ -48,12 +48,12 @@ public partial class PagVeterinario : ContentPage
         citas.IsVisible = true;
     }
 
-    private void mascotas_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    private void Mascotas_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
         //viewModelMascota.Mascotas = viewModelBBDD.ObtenerListaMascotas();
     }
 
-    private void citas_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    private void Citas_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
 
     }

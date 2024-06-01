@@ -62,7 +62,7 @@
 		<MauiIcon Include="Resources\AppIcon\footprint.png" Color="Black" />		
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Resize="True" Color="White" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Resize="False" Color="White" />
 		
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -79,18 +79,30 @@
 	  <None Remove="Resources\AppIcon\footprint.png" />
 	  <None Remove="Resources\AppIcon\huella.png" />
 	  <None Remove="Resources\AppIcon\huella.svg" />
+	  <None Remove="Resources\Images\huella2.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.0" />
+		<PackageReference Include="DiceBear.Bogus" Version="2023.7.2.1451" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.40" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.40" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="MongoDB.Driver" Version="2.25.0" />
+		<PackageReference Include="Plugin.Maui.Calendar" Version="1.1.7" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="Resources\Idiomas\Espanol.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Temas\TemaAltoContraste.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Temas\TemaClaro.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Temas\TemaOscuro.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Ajustes.xaml">
@@ -126,6 +138,12 @@
 	  <MauiXaml Update="View\RegistroUsuario.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Update="Resources\Images\huella2.png">
+	    <Color>Black</Color>
+	  </MauiImage>
 	</ItemGroup>
 
 </Project>

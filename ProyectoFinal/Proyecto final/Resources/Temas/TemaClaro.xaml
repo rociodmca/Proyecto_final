@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto_final.Resources.Temas.TemaClaro">
+
+    <!--Color de la letra-->
+    <Color x:Key="letra">Black</Color>
+    
+    <Color x:Key="btn_bgd">#BC3DE3</Color>
+    <Color x:Key="btn_txt">White</Color>
+    <Color x:Key="btn_border">Black</Color>
+
+    <Color x:Key="frame_border">#E33D61</Color>
+
+    <Color x:Key="arrows_bgd">#FBE8FB</Color>
+    <Color x:Key="arrows_border">Black</Color>
+
+    <Color x:Key="bgd">#FBF1E8</Color>
+    
+    <Color x:Key="start">#E3889C</Color>
+    <Color x:Key="end">#E36C3D</Color>
+
+    <Color x:Key="start_claro">#FBE8FB</Color>
+    <Color x:Key="end_claro">#FBF1E8</Color>
+
+</ResourceDictionary>

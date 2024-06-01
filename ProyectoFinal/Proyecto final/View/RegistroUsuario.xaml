@@ -4,21 +4,21 @@
              x:Class="Proyecto_final.View.RegistroUsuario"
              Title="RegistroUsuario">
     <Grid ColumnDefinitions="*" RowDefinitions="*" Margin="20">
-        <Frame BorderColor="Aquamarine" Grid.Column="0" Grid.Row="0">
+        <Frame BorderColor="{DynamicResource frame_border}" Grid.Column="0" Grid.Row="0">
             <Grid RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,2*" RowSpacing="10" ColumnSpacing="10" Margin="40">
-                <Label Text="Nombre: " Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Entry x:Name="nombre" Grid.Column="1" Grid.Row="0" VerticalOptions="Center"/>
-                <Label Text="Apellidos: " Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Entry x:Name="apellidos" Grid.Column="1" Grid.Row="1" VerticalOptions="Center"/>
-                <Label Text="Email: " Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Entry x:Name="email" Grid.Column="1" Grid.Row="2" VerticalOptions="Center"/>
-                <Label Text="Contraseña: " Grid.Column="0" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Entry x:Name="password" Grid.Column="1" Grid.Row="3" VerticalOptions="Center"/>
-                <Label Text="Rol: " Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Picker x:Name="rol" Grid.Column="1" Grid.Row="4" VerticalOptions="Center"/>
+                <Label Text="Nombre: " Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                <Entry x:Name="nombre" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                <Label Text="Apellidos: " Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                <Entry x:Name="apellidos" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                <Label Text="Email: " Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                <Entry x:Name="email" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                <Label Text="Contraseña: " Grid.Column="0" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                <Entry x:Name="password" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                <Label Text="Rol: " Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                <Picker x:Name="rol" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
                 <Grid Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" ColumnDefinitions="*,*" RowDefinitions="*" ColumnSpacing="10">
-                    <Button x:Name="BtnRegistrarse" Text="Registrarse" Clicked="BtnRegistrarse_Clicked" Grid.Column="0" Grid.Row="0"/>
-                    <Button x:Name="BtnCancelar" Text="Cancelar" Clicked="BtnCancelar_Clicked" Grid.Column="1" Grid.Row="0"/>
+                    <Button x:Name="BtnRegistrarse" Text="Registrarse" Clicked="BtnRegistrarse_Clicked" Grid.Column="0" Grid.Row="0" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}"/>
+                    <Button x:Name="BtnCancelar" Text="Cancelar" Clicked="BtnCancelar_Clicked" Grid.Column="1" Grid.Row="0" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}"/>
                 </Grid>
             </Grid>
         </Frame>

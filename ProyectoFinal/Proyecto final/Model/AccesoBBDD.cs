@@ -85,7 +85,6 @@ namespace Proyecto_final.Model
             var filter = Builders<Usuario>.Filter.Eq(x => x.Id, id.ToString());
             string pass = PassParser(newpass);
             var update = Builders<Usuario>.Update.Set(x => x.Pass, pass);
-            // Updates the first document that has a "name" value of "Bagels N Buns"
             collectionUsuario.UpdateOne(filter, update);
         }
 
@@ -96,11 +95,18 @@ namespace Proyecto_final.Model
             collectionUsuario.DeleteOne(filtro);
         }
 
-        public void AddPet(string nombre, string tipo, string raza, string sexo, int peso, string vacunas, ObjectId id_cl)
+        public void AddPet(string nombre, string tipo, string raza, string sexo, int peso, string vacunas, Uri imagen, ObjectId id_cl)
         {
             collectionMascota = db.GetCollection<Mascota>("Mascotas");
-            Mascota pet = new Mascota { Nombre = nombre, Tipo = tipo, Raza = raza, Sexo = sexo, Peso = peso, Vacunas = vacunas, Id_Cliente = id_cl };
+            Mascota pet = new Mascota { Nombre = nombre, Tipo = tipo, Raza = raza, Sexo = sexo, Peso = peso, Vacunas = vacunas, Imagen = imagen, Id_Cliente = id_cl };
             collectionMascota.InsertOne(pet);
+        }
+
+        public Mascota GetPet(ObjectId id)
+        {
+            collectionMascota = db.GetCollection<Mascota>("Mascotas");
+            FilterDefinition<Mascota> filtro = Builders<Mascota>.Filter.Eq(x => x.Id, id.ToString());
+            return collectionMascota.Find(filtro).First<Mascota>();
         }
 
         public void RemovePet(string id)
@@ -149,6 +155,28 @@ namespace Proyecto_final.Model
             collectionAjuste = db.GetCollection<Ajuste>("Ajustes");
             Ajuste adjust = new Ajuste { Id = id_user, Tema = tema, Tam_letra = tam_letra, Idioma = idioma };
             collectionAjuste.InsertOne(adjust);
+        }
+
+        public Ajuste GetAdjust(ObjectId id)
+        {
+            collectionAjuste = db.GetCollection<Ajuste>("Ajustes");
+            FilterDefinition<Ajuste> filtro = Builders<Ajuste>.Filter.Eq(x => x.Id, id);
+            return collectionAjuste.Find(filtro).First<Ajuste>();
+        }
+
+        public void RemoveAdjust(ObjectId id)
+        {
+            collectionAjuste = db.GetCollection<Ajuste>("Ajustes");
+            FilterDefinition<Ajuste> filtro = Builders<Ajuste>.Filter.Eq(x => x.Id, id);
+            collectionAjuste.DeleteOne(filtro);
+        }
+
+        public void UpdateAdjust(ObjectId id, string tema, string tam_letra, string idioma)
+        {
+            collectionAjuste = db.GetCollection<Ajuste>("Ajustes");
+            var filter = Builders<Ajuste>.Filter.Eq(x => x.Id, id);
+            var update = Builders<Ajuste>.Update.Set(x => x.Tema, tema).Set(x => x.Tam_letra, tam_letra).Set(x => x.Idioma, idioma);
+            collectionAjuste.UpdateOne(filter, update);
         }
 
         public Dictionary<string, Object> GetDatesList(string id)

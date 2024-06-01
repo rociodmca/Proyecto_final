@@ -28,7 +28,18 @@ public partial class RegistroMascota : ContentPage
     {
         if ((nombre.Text != "") && (tipo.SelectedIndex != -1) && (raza.SelectedIndex != -1) && (sexo.SelectedIndex != -1) && (peso.Text != ""))
         {
-            if(viewModelBBDD.GuardarMascota(nombre.Text, tipo.SelectedItem.ToString(), raza.SelectedItem.ToString(), sexo.SelectedItem.ToString(), int.Parse(peso.Text), "", id))
+            Uri? imagen = null;
+            if (tipo.SelectedItem.ToString() == "Gato")
+            {
+                string reference = viewModelCat.DiccionarioRefImagenes()[raza.SelectedItem.ToString()];
+                imagen = new Uri("https://cdn2.thecatapi.com/images/" + reference + ".jpg");
+            }
+            if (tipo.SelectedItem.ToString() == "Perro")
+            {
+                string reference = viewModelDog.DiccionarioRefImagenes()[raza.SelectedItem.ToString()];
+                imagen = new Uri("https://cdn2.thedogapi.com/images/" + reference + ".jpg");
+            }
+            if (viewModelBBDD.GuardarMascota(nombre.Text, tipo.SelectedItem.ToString(), raza.SelectedItem.ToString(), sexo.SelectedItem.ToString(), int.Parse(peso.Text), "", imagen, id))
             {
                 DisplayAlert("Info", "Mascota guardada", "ok");
                 nombre.Text = "";
@@ -54,7 +65,7 @@ public partial class RegistroMascota : ContentPage
         Navigation.PopAsync();
     }
 
-    private async void tipo_SelectedIndexChanged(object sender, EventArgs e)
+    private async void Tipo_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (tipo.SelectedIndex == 0)
         {

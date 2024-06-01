@@ -3,25 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_final.View.PagVeterinario"
              x:Name="pagVet">
-    <Frame BorderColor="Chartreuse" Margin="40">
+    <Frame BorderColor="{DynamicResource frame_border}" Margin="40">
         <Grid Margin="40" ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,*" ColumnSpacing="20" RowSpacing="20">
-            <Button Grid.Row="0" Grid.Column="0" Text="ACCESO A FICHAS DE MASCOTAS" BackgroundColor="Coral" Clicked="Button_Clicked"/>
-            <Button Grid.Row="0" Grid.Column="2" Text="ACCESO A CITAS PROGRAMADAS" BackgroundColor="Coral" Clicked="Button_Clicked_1"/>
-            <Frame BorderColor="DarkMagenta" Margin="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+            <Button Grid.Row="0" Grid.Column="0" Text="ACCESO A FICHAS DE MASCOTAS" BackgroundColor="{DynamicResource btn_bgd}" Clicked="Button_Clicked" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}"/>
+            <Button Grid.Row="0" Grid.Column="2" Text="ACCESO A CITAS PROGRAMADAS" BackgroundColor="{DynamicResource btn_bgd}" Clicked="Button_Clicked_1" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}"/>
+            <Frame BorderColor="{DynamicResource frame_border}" Margin="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
                 <Grid ColumnDefinitions="*" RowDefinitions="*">
-                    <ListView x:Name="mascotas" IsVisible="False" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Mascotas}" ItemSelected="mascotas_ItemSelected" HasUnevenRows="True">
+                    <ListView x:Name="mascotas" IsVisible="False" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Mascotas}" ItemSelected="Mascotas_ItemSelected" HasUnevenRows="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <Grid RowDefinitions="*" ColumnDefinitions="*" Padding="10">
-                                        <Frame Grid.Row="0" Grid.Column="0" BorderColor="Aquamarine" Margin="10">
+                                        <Frame Grid.Row="0" Grid.Column="0" BorderColor="{DynamicResource frame_border}" Margin="10">
                                             <StackLayout>
-                                                <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="20"/>
-                                                <Label Text="{Binding Tipo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
-                                                <Label Text="{Binding Raza}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
-                                                <Label Text="{Binding Sexo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
-                                                <Label Text="{Binding Peso}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
-                                                <Label Text="{Binding Vacunas}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
+                                                <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="20" TextColor="{DynamicResource letra}"/>
+                                                <Label Text="{Binding Tipo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}"/>
+                                                <Label Text="{Binding Raza}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}"/>
+                                                <Label Text="{Binding Sexo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}"/>
+                                                <Label Text="{Binding Peso}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}"/>
+                                                <Label Text="{Binding Vacunas}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}"/>
                                             </StackLayout>
                                         </Frame>
                                     </Grid>
@@ -29,16 +29,16 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <ListView x:Name="citas" IsVisible="False" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Citas}" ItemSelected="citas_ItemSelected"  HasUnevenRows="True">
+                    <ListView x:Name="citas" IsVisible="False" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Citas}" ItemSelected="Citas_ItemSelected"  HasUnevenRows="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <Grid RowDefinitions="*" ColumnDefinitions="*" Padding="10">
-                                        <Frame Grid.Row="0" Grid.Column="0" BorderColor="Aquamarine" Margin="10">
+                                        <Frame Grid.Row="0" Grid.Column="0" BorderColor="{DynamicResource frame_border}" Margin="10">
                                             <StackLayout>
-                                                <Label Text="{Binding Id_Mascota}" FontAttributes="Bold" FontSize="20"/>
-                                                <Label Text="{Binding Fecha}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
-                                                <Label Text="{Binding Id_Cliente}" FontAttributes="Italic" VerticalOptions="End" FontSize="18"/>
+                                                <Label Text="{Binding Id_Mascota}" FontAttributes="Bold" FontSize="20" TextColor="{DynamicResource letra}"/>
+                                                <Label Text="{Binding Fecha}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}"/>
+                                                <Label Text="{Binding Id_Cliente}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}"/>
                                             </StackLayout>
                                         </Frame>
                                     </Grid>

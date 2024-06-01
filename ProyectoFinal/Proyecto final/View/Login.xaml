@@ -3,15 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_final.View.Login"
              Title="Login">
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="1,0">
+            <GradientStop Color="{DynamicResource end_claro}" Offset="0.1"/>
+            <GradientStop Color="{DynamicResource start_claro}" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
     <Grid ColumnDefinitions="*" RowDefinitions="*" ColumnSpacing="10" RowSpacing="10" Margin="40" x:Name="phone">
-        <Frame BorderColor="Aquamarine" Grid.Column="0" Grid.Row="0">
+        <Frame BorderColor="{DynamicResource frame_border}" Grid.Column="0" Grid.Row="0" >
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="{DynamicResource end_claro}" Offset="1.0"/>
+                    <GradientStop Color="{DynamicResource start_claro}" Offset="0.1" />
+                </LinearGradientBrush>
+            </Frame.Background>
             <Grid RowDefinitions="*,*,*,*,*,*" ColumnDefinitions="*" Margin="10">
                 <Image Source="inicio.png" Grid.Column="0" Grid.Row="0"/>
                 <!--<Label Text="Email: " Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>-->
-                <Entry x:Name="email" Grid.Column="0" Grid.Row="2" VerticalOptions="Center" Placeholder="Email" HorizontalTextAlignment="Center"/>
+                <Entry x:Name="email" Grid.Column="0" Grid.Row="2" VerticalOptions="Center" Placeholder="Email" HorizontalTextAlignment="Center" TextColor="{DynamicResource letra}"/>
                 <!--<Label Text="Contraseña: " Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"/>-->
-                <Entry x:Name="password" Grid.Column="0" Grid.Row="3" VerticalOptions="Center" Placeholder="Contraseña" IsPassword="True" HorizontalTextAlignment="Center"/>
-                <Button x:Name="BtnLog" Text="Sign In" Clicked="BtnLog_Clicked"  Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"/>
+                <Entry x:Name="password" Grid.Column="0" Grid.Row="3" VerticalOptions="Center" Placeholder="Contraseña" IsPassword="True" HorizontalTextAlignment="Center" TextColor="{DynamicResource letra}"/>
+                <Button x:Name="BtnLog" Text="Sign In" Clicked="BtnLog_Clicked"  Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}"/>
             </Grid>
         </Frame>
     </Grid>

@@ -3,24 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_final.View.RegistroMascota"
              Title="RegistroMascota">
-    <Grid ColumnDefinitions="*" RowDefinitions="*" Margin="20">
-        <Frame BorderColor="Aquamarine" Grid.Column="0" Grid.Row="0">
-            <Grid RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,2*" RowSpacing="10" ColumnSpacing="10" Margin="40">
-                <Label Text="Nombre: " Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Entry x:Name="nombre" Grid.Column="1" Grid.Row="0" VerticalOptions="Center"/>
-                <Label Text="Tipo: " Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Picker x:Name="tipo" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" SelectedIndexChanged="tipo_SelectedIndexChanged"/>
-                <Label Text="Raza: " Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Picker x:Name="raza" Grid.Column="1" Grid.Row="2" VerticalOptions="Center"/>
-                <Label Text="Sexo: " Grid.Column="0" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Picker x:Name="sexo" Grid.Column="1" Grid.Row="3" VerticalOptions="Center"/>
-                <Label Text="Peso: " Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Entry x:Name="peso" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" Keyboard="Numeric"/>
-                <Grid Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" ColumnDefinitions="*,*" RowDefinitions="*" ColumnSpacing="10">
-                    <Button x:Name="BtnRegistrarse" Text="Guardar mascota" Clicked="BtnRegistrarse_Clicked"  Grid.Column="0" Grid.Row="0"/>
-                    <Button x:Name="BtnCancelar" Text="Cancelar" Clicked="BtnCancelar_Clicked"  Grid.Column="1" Grid.Row="0"/>
+
+    <ContentPage.Background>
+        <RadialGradientBrush Center="0.5,0.5">
+            <GradientStop Color="{DynamicResource start_claro}" Offset="0.1"/>
+            <GradientStop Color="{DynamicResource end_claro}" Offset="1.0" />
+        </RadialGradientBrush>
+    </ContentPage.Background>
+
+    <Grid ColumnDefinitions="*" RowDefinitions="*" Margin="40" Padding="40">
+        <Frame BorderColor="{DynamicResource frame_border}" Grid.Column="0" Grid.Row="0">
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="{DynamicResource end_claro}" Offset="1.0"/>
+                    <GradientStop Color="{DynamicResource start_claro}" Offset="0.1" />
+                </LinearGradientBrush>
+            </Frame.Background>
+            <ScrollView>
+                <Grid RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,2*" RowSpacing="20" ColumnSpacing="20" Margin="20">
+                    <Label Text="Nombre: " Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                    <Entry x:Name="nombre" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}"/>
+                    <Label Text="Tipo: " Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" />
+                    <Picker x:Name="tipo" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" SelectedIndexChanged="Tipo_SelectedIndexChanged" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}"/>
+                    <Label Text="Raza: " Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                    <Picker x:Name="raza" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}"/>
+                    <Label Text="Sexo: " Grid.Column="0" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                    <Picker x:Name="sexo" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}"/>
+                    <Label Text="Peso: " Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}"/>
+                    <Entry x:Name="peso" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" Keyboard="Numeric" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}"/>
+                    <Grid Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" ColumnDefinitions="*,*" RowDefinitions="*" ColumnSpacing="10">
+                        <Button x:Name="BtnRegistrarse" Text="Guardar mascota" Clicked="BtnRegistrarse_Clicked"  Grid.Column="0" Grid.Row="0" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" HorizontalOptions="Center" BorderColor="{DynamicResource btn_border}"/>
+                        <Button x:Name="BtnCancelar" Text="Cancelar" Clicked="BtnCancelar_Clicked"  Grid.Column="1" Grid.Row="0" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" HorizontalOptions="Center" BorderColor="{DynamicResource btn_border}"/>
+                    </Grid>
                 </Grid>
-            </Grid>
+            </ScrollView>
         </Frame>
     </Grid>
 </ContentPage>

@@ -1,4 +1,5 @@
 using MongoDB.Bson;
+using Proyecto_final.Model;
 using Proyecto_final.ViewModel;
 
 namespace Proyecto_final.View;
@@ -6,10 +7,12 @@ namespace Proyecto_final.View;
 public partial class Manual : ContentPage
 {
 	ViewModelBBDD viewModelBBDD;
+    DiceBearAPI diceBearAPI;
 
 	public Manual()
 	{
 		viewModelBBDD = new ViewModelBBDD();
+        diceBearAPI = new DiceBearAPI();
 
 		InitializeComponent();
         prueba.Text = "Hola";
@@ -25,5 +28,6 @@ public partial class Manual : ContentPage
             
         }
         prueba.Text += viewModelBBDD.ObtenerCitasP("6651c6307b6821391798f66f").Count.ToString();
+        pruebaimg.Source = diceBearAPI.OnGenerateAvatar("Pepe");
     }
 }
