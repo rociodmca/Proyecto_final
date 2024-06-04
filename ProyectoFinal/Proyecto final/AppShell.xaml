@@ -7,8 +7,7 @@
     xmlns:pages="clr-namespace:Proyecto_final.View"
     x:Name="shellEstructuraNavegacion"
     Shell.FlyoutBehavior="Disabled"
-    Shell.BackgroundColor="Transparent"
-    BackgroundColor="#E3513D">
+    Shell.NavBarIsVisible="False">
 
     <Shell.TitleView>
         <HorizontalStackLayout VerticalOptions="Fill">
@@ -25,8 +24,13 @@
 
     <Shell.Resources>
         <Style Class="FlyoutItemLabelStyle" TargetType="Label">
-            <Setter Property="FontFamily">saudagar</Setter>
-            <Setter Property="FontSize">20</Setter>
+            <Setter Property="FontFamily">espressonal</Setter>
+            <Setter Property="FontSize">30</Setter>
+        </Style>
+        <Style Class="FlyoutItemImageStyle" TargetType="Image">
+            <Setter Property="HeightRequest">30</Setter>
+            <Setter Property="WidthRequest">30</Setter>
+            <Setter Property="VerticalOptions">Center</Setter>
         </Style>
     </Shell.Resources>
 
@@ -53,7 +57,7 @@
         <ShellContent Title="Prueba1" ContentTemplate="{DataTemplate pages:RegistroUsuario}"/>
     </FlyoutItem>
     <FlyoutItem Title="Login" Icon="contrasena.png">
-        <ShellContent Title="Login" ContentTemplate="{DataTemplate pages:Login}"/>
+        <ShellContent Title="Login" x:Name="loginDesktop"/>
     </FlyoutItem>
     <FlyoutItem Title="Manual" Icon="ajustes.png">
         <ShellContent Title="Prueba5" ContentTemplate="{DataTemplate pages:Manual}"/>

@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Input;
 using Proyecto_final.Resources.Temas;
+using Proyecto_final.Resources.Idiomas;
 
 
 namespace Proyecto_final.View;
@@ -18,6 +19,7 @@ namespace Proyecto_final.View;
 public partial class PagUsuarioLogeado : ContentPage
 {
     ObjectId id;
+    AppShell apps;
     ViewModelBBDD viewModelBBDD;
     ViewModelMascota viewModelMascota;
     ViewModelCita viewModelCita;
@@ -25,9 +27,12 @@ public partial class PagUsuarioLogeado : ContentPage
     string nombre;
     List<DateTime> citas;
     ViewModelEvento viewModelEvento;
+    bool flag = true;
 
-    public PagUsuarioLogeado(ObjectId id)
+    public PagUsuarioLogeado(ObjectId id, AppShell apps)
     {
+        this.id = id;
+        this.apps = apps;
         viewModelBBDD = new ViewModelBBDD();
         viewModelMascota = new ViewModelMascota();
         viewModelCita = new ViewModelCita();
@@ -37,147 +42,117 @@ public partial class PagUsuarioLogeado : ContentPage
 
         viewModelMascota.Mascotas = viewModelBBDD.ObtenerListaMascotas(id);
         viewModelCita.Citas = viewModelBBDD.ObtenerListaCitas(id);
-        /*foreach (var cita in viewModelCita.Citas)
-        {
-            citas.Add(cita.Fecha);
-        }*/
-
         nombre = viewModelBBDD.ObtenerNombre(id);
 
         InitializeComponent();
-        //this.Appearing += MainPage_Appearing;
-        avatar1.Source = diceBearAPI.OnGenerateAvatar(nombre);
-        avatar2.Source = diceBearAPI.OnGenerateAvatar(nombre);
-        this.id = id;
+        
+        Appearing += MainPage_Appearing;
+
         mascotas.IsVisible = false;
         mascotas2.IsVisible = false;
-        //lista.IsVisible = false;
-        //lista2.IsVisible = false;
-        calendario.Culture = new System.Globalization.CultureInfo("es-ES");
-        calendario2.Culture = new System.Globalization.CultureInfo("es-ES");
-        /*phone.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto});
-        phone.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
-        phone.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.8, GridUnitType.Star) });
-        phone.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });*/
 
-        CargarPag();
-
-    }
-
-    public async void CargarPag()
-    {
-        Thread thread1 = new Thread(new ThreadStart(Ejecutar1));
-        thread1.IsBackground = true;
-        thread1.Start();
-    }
-
-    public void Ejecutar1()
-    {
-        Thread thread3 = new Thread(new ThreadStart(Ejecutar3));
-        thread3.Start();
-    }
-
-    public void Ejecutar2()
-    {
-        viewModelCita.Citas = viewModelBBDD.ObtenerListaCitas(id);
-    }
-
-    public void Ejecutar3()
-    {
-        bool flag = true;
-        while (flag)
-        {
-            if (viewModelMascota.Mascotas.Count > 0 && viewModelCita.Citas.Count > 0)
-            {
-                if (DeviceInfo.Current.Platform == DevicePlatform.Android)
-                {
-                    phone.IsVisible = true;
-                    desktop.IsVisible = false;
-                    mascotas.ItemsSource = viewModelMascota.Mascotas;
-                    //lista.ItemsSource = viewModelCita.Citas;
-                    mascotas.IsVisible = true;
-                    //lista.IsVisible = true;
-                    viewModelEvento.eventos = new EventCollection();
-                    foreach (var cita in viewModelCita.Citas)
-                    {
-                        string nombre = viewModelBBDD.ObtenerNombre(cita.Id_veterinario);
-                        string mascota = viewModelBBDD.ObtenerNombreMascota(cita.Id_mascota);
-                        if (!viewModelEvento.eventos.ContainsKey(cita.Fecha))
-                        {
-                            viewModelEvento.eventos.Add(cita.Fecha, new List<EventModel>
-                            {
-                                new EventModel { Name = $"Veterinario: {nombre}", Message = $"Mascota: {mascota}" }
-                            });
-                        }
-                        else if (viewModelEvento.eventos.ContainsKey(cita.Fecha))
-                        {
-                            ICollection<EventModel> eventos = (ICollection<EventModel>)viewModelEvento.eventos[cita.Fecha];
-                            eventos.Add(new EventModel { Name = $"Veterinario: {nombre}", Message = $"Mascota: {mascota}" });
-                        }
-                    }
-                    calendario2.Events = viewModelEvento.eventos;
-
-                    flag = false;
-                }
-                if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
-                {
-                    phone.IsVisible = false;
-                    desktop.IsVisible = true;
-                    mascotas2.ItemsSource = viewModelMascota.Mascotas;
-                    //lista2.ItemsSource = viewModelCita.Citas;
-                    mascotas2.IsVisible = true;
-                    //lista2.IsVisible = true;
-                    //calendario.SelectedDates = citas;
-                    viewModelEvento.eventos = new EventCollection();
-                    foreach (var cita in viewModelCita.Citas)
-                    {
-                        string nombre = viewModelBBDD.ObtenerNombre(cita.Id_veterinario);
-                        string mascota = viewModelBBDD.ObtenerNombreMascota(cita.Id_mascota);
-                        if (!viewModelEvento.eventos.ContainsKey(cita.Fecha))
-                        {
-                            viewModelEvento.eventos.Add(cita.Fecha, new List<EventModel>
-                            {
-                                new EventModel { Name = $"Veterinario: {nombre}", Message = $"Mascota: {mascota}" }
-                            });
-                        }else if (viewModelEvento.eventos.ContainsKey(cita.Fecha))
-                        {
-                            ICollection<EventModel> eventos = (ICollection<EventModel>)viewModelEvento.eventos[cita.Fecha];
-                            eventos.Add( new EventModel { Name = $"Veterinario: {nombre}", Message = $"Mascota: {mascota}" } );
-                        }
-                    }
-                    calendario.Events = viewModelEvento.eventos;
-                    flag = false;
-                }
-            }
-        }
-    }
-
-    public void VisibilizarTabla()
-    {
+        string idioma = viewModelBBDD.ObtenerAjuste(id).Idioma;
         if (DeviceInfo.Current.Platform == DevicePlatform.Android)
         {
-            phone.IsVisible = true;
-            desktop.IsVisible = false;
-            mascotas.ItemsSource = viewModelBBDD.ObtenerListaMascotas(id);
-            //lista.ItemsSource = viewModelBBDD.ObtenerListaCitas(id);
+            if (idioma == "Espanol")
+            {
+                calendario2.Culture = new System.Globalization.CultureInfo("es-ES");
+            }
+            if (idioma == "Ingles")
+            {
+                calendario2.Culture = new System.Globalization.CultureInfo("en-GB");
+            }
         }
         if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
         {
-            mascotas2.ItemsSource = viewModelBBDD.ObtenerListaMascotas(id);
-            //lista2.ItemsSource = viewModelBBDD.ObtenerListaCitas(id);
-            phone.IsVisible = false;
-            desktop.IsVisible = true;
+            if (idioma == "Espanol")
+            {
+                calendario.Culture = new System.Globalization.CultureInfo("es-ES");
+            }
+            if (idioma == "Ingles")
+            {
+                calendario.Culture = new System.Globalization.CultureInfo("en-GB");
+            }
         }
+
+        if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+        {
+            avatar1.Source = diceBearAPI.OnGenerateAvatar(nombre);
+        }
+        if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
+        {
+            avatar2.Source = diceBearAPI.OnGenerateAvatar(nombre);
+        }
+        //CargarPag();
+    }
+
+    public void CargarPag()
+    {
+        if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+        {
+            mascotas.ItemsSource = viewModelBBDD.ObtenerListaMascotas(id);
+        }
+        if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                //mascotas2.ItemsSource = null;
+                mascotas2.ItemsSource = viewModelBBDD.ObtenerListaMascotas(id);
+                mascotas2.IsVisible = true;
+            });
+        }
+        Thread.Sleep(10);
+        Thread thread1 = new Thread(new ThreadStart(Ejecutar3));
+        thread1.Start();
+    }
+
+    public async Task VisualizarTabla()
+    {
+        await Task.Delay(20);
+        if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                cargando.IsRunning = false;
+                cargando.IsVisible = false;
+                phone.IsVisible = true;
+                desktop.IsVisible = false;
+                mascotas.ItemsSource = viewModelMascota.Mascotas;
+                mascotas.IsVisible = true;
+                calendario2.Events = viewModelEvento.eventos;
+                calendario2.IsVisible = true;
+            });
+        }
+        if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                cargando.IsRunning = false;
+                cargando.IsVisible = false;
+                phone.IsVisible = false;
+                desktop.IsVisible = true;
+                calendario.Events = viewModelEvento.RellenarEventos(id);
+                calendario.IsVisible = true;
+            });
+        }
+    }
+
+    public async void Ejecutar3()
+    {
+        Thread.Sleep(10);
+        await VisualizarTabla();
     }
 
     private void MainPage_Appearing(object sender, EventArgs e)
     {
-        RefreshPage();
-    }
-
-    private void RefreshPage()
-    {
-        Ejecutar3();
+        CargarPag();
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            cargando.IsRunning = true;
+            cargando.IsVisible = true;
+            phone.IsVisible = false;
+            desktop.IsVisible = false;
+        });
     }
 
     private void Button_Clicked(object sender, EventArgs e)
@@ -186,6 +161,8 @@ public partial class PagUsuarioLogeado : ContentPage
         miListaDiccionarios = Application.Current.Resources.MergedDictionaries;
         miListaDiccionarios.Clear();
         miListaDiccionarios.Add(new TemaClaro());
+        miListaDiccionarios.Add(new Espanol());
+        apps.FlyoutBehavior = FlyoutBehavior.Flyout;
         Navigation.PopAsync();
     }
 
@@ -196,8 +173,8 @@ public partial class PagUsuarioLogeado : ContentPage
 
     private void Button_Clicked_2(object sender, EventArgs e)
     {
-        /*var pop = new PopupPass(id);
-        this.ShowPopup(pop);*/
+        var pop = new PopupPass(id);
+        this.ShowPopup(pop);
     }
 
     private async void ImageButton_Clicked(object sender, EventArgs e)
@@ -205,7 +182,8 @@ public partial class PagUsuarioLogeado : ContentPage
         bool msg = await DisplayAlert("Guardar mascota", "¿Quieres guardar una mascota?", "Aceptar", "Cancelar");
         if (msg)
         {
-            await Navigation.PushAsync(new RegistroMascota(id));
+            //await Navigation.PushAsync(new RegistroMascota(id));
+            await Navigation.PushAsync(new Ajustes(id));
         }
     }
 
@@ -243,25 +221,30 @@ public partial class PagUsuarioLogeado : ContentPage
 
     }
 
-    private void MenuFlyoutItem_Clicked(object sender, EventArgs e)
+    private async void MenuFlyoutItem_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new Ajustes(id));
+        await Task.Delay(10);
+        await Navigation.PushAsync(new Ajustes(id));
     }
 
-    private void mascotas_Focused(object sender, FocusEventArgs e)
+    protected override bool OnBackButtonPressed()
     {
-        DisplayAlert("info", "funciona", "Ok");
-        phone.RowDefinitions[0].Height = GridLength.Auto;
-        phone.RowDefinitions[1].Height = new GridLength(0.8, GridUnitType.Star);
-        phone.RowDefinitions[2].Height = new GridLength(0.2, GridUnitType.Star);
-        phone.RowDefinitions[3].Height = GridLength.Auto;
-    }
+        Dispatcher.Dispatch(async () =>
+        {
+            var recurso1 = (string)Application.Current.Resources["salir1"];
+            var recurso2 = (string)Application.Current.Resources["salir2"];
+            var recurso3 = (string)Application.Current.Resources["salir3"];
+            var recurso4 = (string)Application.Current.Resources["salir4"];
+            var leave = await DisplayAlert(recurso1, recurso2, recurso3, recurso4);
 
-    private void calen_Focused(object sender, FocusEventArgs e)
-    {
-        phone.RowDefinitions[0].Height = GridLength.Auto;
-        phone.RowDefinitions[1].Height = new GridLength(0.2, GridUnitType.Star);
-        phone.RowDefinitions[2].Height = new GridLength(0.8, GridUnitType.Star);
-        phone.RowDefinitions[3].Height = GridLength.Auto;
+            if (leave)
+            {
+                //await Navigation.PushAsync(new MainPage());
+                await Navigation.PopAsync();
+                apps.FlyoutBehavior = FlyoutBehavior.Flyout;
+            }
+        });
+
+        return true;
     }
 }

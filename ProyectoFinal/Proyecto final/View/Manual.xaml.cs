@@ -15,19 +15,6 @@ public partial class Manual : ContentPage
         diceBearAPI = new DiceBearAPI();
 
 		InitializeComponent();
-        prueba.Text = "Hola";
-        foreach (KeyValuePair<string, Object> item in viewModelBBDD.ObtenerCitasP("6651c6307b6821391798f66f"))
-        {
-            if (item.Key == "Mascota")
-            {
-                //foreach (BsonElement item1 in item.Value)
-                //{
-                    prueba.Text += item.Value + "\n";
-                //}
-            }
-            
-        }
-        prueba.Text += viewModelBBDD.ObtenerCitasP("6651c6307b6821391798f66f").Count.ToString();
         pruebaimg.Source = diceBearAPI.OnGenerateAvatar("Pepe");
     }
 }

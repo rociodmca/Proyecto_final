@@ -43,7 +43,7 @@
 		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
 		<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
 		<GenerateTestArtifacts>True</GenerateTestArtifacts>
-		<AppInstallerUri>C:\Users</AppInstallerUri>
+		<AppInstallerUri>C:\Users\rocio\Desktop</AppInstallerUri>
 		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
 	</PropertyGroup>
 
@@ -79,6 +79,9 @@
 	  <None Remove="Resources\AppIcon\footprint.png" />
 	  <None Remove="Resources\AppIcon\huella.png" />
 	  <None Remove="Resources\AppIcon\huella.svg" />
+	  <None Remove="Resources\Fonts\Baby Doll.otf" />
+	  <None Remove="Resources\Fonts\Baby-Doll.ttf" />
+	  <None Remove="Resources\Fonts\Espressonal.otf" />
 	  <None Remove="Resources\Images\huella2.png" />
 	</ItemGroup>
 
@@ -94,6 +97,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Resources\Idiomas\Espanol.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Idiomas\Ingles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Temas\TemaAltoContraste.xaml">

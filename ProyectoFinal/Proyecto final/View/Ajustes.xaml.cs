@@ -1,4 +1,5 @@
 using MongoDB.Bson;
+using Proyecto_final.Resources.Idiomas;
 using Proyecto_final.Resources.Temas;
 using Proyecto_final.ViewModel;
 
@@ -11,12 +12,35 @@ public partial class Ajustes : ContentPage
     List<string> idiomasList = new List<string>();
     ObjectId id;
     int idTema;
+    
 
     public Ajustes(ObjectId id)
     {
         viewModelBBDD = new ViewModelBBDD();
         viewModelAjuste = new ViewModelAjuste();
         viewModelAjuste.ajuste = viewModelBBDD.ObtenerAjuste(id);
+        /*miListaDiccionarios = Application.Current.Resources.MergedDictionaries;
+        miListaDiccionarios.Clear();*/
+        /*if (viewModelAjuste.ajuste.Tema == "claro")
+        {
+            miListaDiccionarios.Add(new TemaClaro());
+        }
+        if (viewModelAjuste.ajuste.Tema == "oscuro")
+        {
+            miListaDiccionarios.Add(new TemaOscuro());
+        }
+        if (viewModelAjuste.ajuste.Tema == "contraste")
+        {
+            miListaDiccionarios.Add(new TemaAltoContraste());
+        }*/
+        /*if (viewModelAjuste.ajuste.Idioma == "Espanol")
+        {
+            miListaDiccionarios.Add(new Espanol());
+        }
+        if (viewModelAjuste.ajuste.Idioma == "Ingles")
+        {
+            miListaDiccionarios.Add(new Ingles());
+        }*/
         idiomasList = ["Inglés", "Español"];
         this.id = id;
         InitializeComponent();
@@ -69,24 +93,54 @@ public partial class Ajustes : ContentPage
                 if (miRadioButton.Value.ToString() == "0")
                 {
                     miListaDiccionarios.Add(new TemaClaro());
+                    if (idiomas.SelectedIndex == 1)
+                    {
+                        miListaDiccionarios.Add(new Espanol());
+                    }
+                    if (idiomas.SelectedIndex == 0)
+                    {
+                        miListaDiccionarios.Add(new Ingles());
+                    }
                     idTema = 0;
                 }
-                if (miRadioButton.Value.ToString() == "1")
+                else
                 {
-                    miListaDiccionarios.Add(new TemaOscuro());
-                    idTema = 1;
-                }
-                if (miRadioButton.Value.ToString() == "2")
-                {
-                    miListaDiccionarios.Add(new TemaAltoContraste());
-                    idTema = 2;
-                }
+                    if (miRadioButton.Value.ToString() == "1")
+                    {
+                        miListaDiccionarios.Add(new TemaOscuro());
+                        if (idiomas.SelectedIndex == 1)
+                        {
+                            miListaDiccionarios.Add(new Espanol());
+                        }
+                        if (idiomas.SelectedIndex == 0)
+                        {
+                            miListaDiccionarios.Add(new Ingles());
+                        }
+                        idTema = 1;
+                    }
+                    else
+                    {
+                        if (miRadioButton.Value.ToString() == "2")
+                        {
+                            miListaDiccionarios.Add(new TemaAltoContraste());
+                            if (idiomas.SelectedIndex == 1)
+                            {
+                                miListaDiccionarios.Add(new Espanol());
+                            }
+                            if (idiomas.SelectedIndex == 0)
+                            {
+                                miListaDiccionarios.Add(new Ingles());
+                            }
+                            idTema = 2;
+                        }
+                    }   
+                } 
             }
             catch (Exception) { }
         }
     }
 
-    private void guardar_Clicked(object sender, EventArgs e)
+    private async void guardar_Clicked(object sender, EventArgs e)
     {
         string tema_ = "", idioma_ = "";
         if (idTema == 0)
@@ -111,8 +165,11 @@ public partial class Ajustes : ContentPage
         }
         if (viewModelBBDD.ActualizarAjuste(id, tema_, tam_letra.Value.ToString(), idioma_))
         {
-            DisplayAlert("Info", "Ajuste guardado", "Ok");
-            Navigation.PopAsync();
+            var recurso1 = (string)Application.Current.Resources["ajustes1"];
+            var recurso2 = (string)Application.Current.Resources["ajustes2"];
+            var recurso3 = (string)Application.Current.Resources["ajustes3"];
+            await DisplayAlert(recurso1, recurso2, recurso3);
+            await Navigation.PopAsync();
         }
     }
 
@@ -127,5 +184,56 @@ public partial class Ajustes : ContentPage
         op2.FontSize = tam_letra.Value;
         op3.FontSize = tam_letra.Value;
         idiomas.FontSize = tam_letra.Value;
+    }
+
+    private void idiomas_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        ICollection<ResourceDictionary> miListaDiccionarios;
+        miListaDiccionarios = Application.Current.Resources.MergedDictionaries;
+        miListaDiccionarios.Clear();
+        if (idiomas.SelectedIndex == 1)
+        {
+            miListaDiccionarios.Add(new Espanol());
+            if (idTema == 0)
+            {
+                miListaDiccionarios.Add(new TemaClaro());
+            }
+            else
+            {
+                if (idTema == 1)
+                {
+                    miListaDiccionarios.Add(new TemaOscuro());
+                }
+                else
+                {
+                    if (idTema == 2)
+                    {
+                        miListaDiccionarios.Add(new TemaAltoContraste());
+                    }
+                }
+            }
+        }
+        if (idiomas.SelectedIndex == 0)
+        {
+            miListaDiccionarios.Add(new Ingles());
+            if (idTema == 0)
+            {
+                miListaDiccionarios.Add(new TemaClaro());
+            }
+            else
+            {
+                if (idTema == 1)
+                {
+                    miListaDiccionarios.Add(new TemaOscuro());
+                }
+                else
+                {
+                    if (idTema == 2)
+                    {
+                        miListaDiccionarios.Add(new TemaAltoContraste());
+                    }
+                }
+            }
+        }
     }
 }

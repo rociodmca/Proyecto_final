@@ -3,4 +3,59 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_final.Resources.Idiomas.Espanol">
 
+    <x:String x:Key="ajustes1">INFORMACIÓN</x:String>
+    <x:String x:Key="ajustes2">Ajustes guardados correctamente</x:String>
+    <x:String x:Key="ajustes3">Ok</x:String>
+    <x:String x:Key="tema">Tema</x:String>
+    <x:String x:Key="tema_claro">Tema claro</x:String>
+    <x:String x:Key="tema_oscuro">Tema oscuro</x:String>
+    <x:String x:Key="alto_contraste">Tema alto contraste</x:String>
+    <x:String x:Key="tam_letra">Tamaño de letra</x:String>
+    <x:String x:Key="idioma">Idioma</x:String>
+    <x:String x:Key="guardar_cambios">GUARDAR CAMBIOS</x:String>
+    <x:String x:Key="fecha">Fecha: </x:String>
+    <x:String x:Key="mascota">Mascota: </x:String>
+    <x:String x:Key="veterinario">Veterinario: </x:String>
+    <x:String x:Key="aceptar">ACEPTAR</x:String>
+    <x:String x:Key="cancelar">CANCELAR</x:String>
+    <x:Array x:Key="miArray" Type="{x:Type x:String}">
+        <x:String>Tema claro</x:String>
+        <x:String>Tema oscuro</x:String>
+        <x:String>Tema alto contraste</x:String>
+    </x:Array>
+    <x:String x:Key="info1">¡Bienvenid@ a VetCare, tu compañero digital para el cuidado integral de tu mascota!&#x0a;&#x0a;</x:String>
+    <x:String x:Key="info2">En VetCare, entendemos que tus mascotas son parte de tu familia. Por eso, hemos diseñado una aplicación completa y fácil de usar que te ayudará a gestionar todos los aspectos del bienestar de tus amigos peludos. Con VetCare, puedes:&#x0a;
+    Gestionar Historial Médico: Guarda y accede a los registros médicos de tu mascota, incluyendo vacunaciones, tratamientos, y citas en el veterinario, todo en un solo lugar.&#x0a;
+    Citas Veterinarias: Agenda y gestiona citas con tu veterinario de confianza de manera rápida y sencilla.&#x0a;
+    Emergencias: Encuentra rápidamente los contactos y las direcciones de clínicas veterinarias cercanas en caso de emergencia.&#x0a;
+    Nuestra misión es hacer que el cuidado de tu mascota sea más eficiente y accesible, permitiéndote dedicar más tiempo a disfrutar de los momentos especiales con tu compañero de cuatro patas. Explora VetCare y descubre cómo podemos ayudarte a brindar la mejor atención a tu mascota, en cualquier momento y en cualquier lugar.
+    </x:String>
+    <x:String x:Key="salir1">DESCONEXIÓN</x:String>
+    <x:String x:Key="salir2">¿Está seguro que desea cerrar sesión?</x:String>
+    <x:String x:Key="salir3">Sí</x:String>
+    <x:String x:Key="salir4">No</x:String>
+    <x:String x:Key="email">Correo electrónico</x:String>
+    <x:String x:Key="passw">Contraseña</x:String>
+    <x:String x:Key="singin">INICIAR SESIÓN</x:String>
+    <x:String x:Key="manual">Manual</x:String>
+    <x:String x:Key="desconectar">CERRAR SESIÓN</x:String>
+    <x:String x:Key="agregar_mascota">Agregar mascota</x:String>
+    <x:String x:Key="ajustes">Ajustes</x:String>
+    <x:String x:Key="cambiar_pass">CAMBIAR CONTRASEÑA</x:String>
+    <x:String x:Key="solicitar_cita">SOLICITAR CITA</x:String>
+    <x:String x:Key="acceso_mascotas">ACCESO A FICHAS DE MASCOTAS</x:String>
+    <x:String x:Key="acceso_citas">ACCESO A CITAS PROGRAMADAS</x:String>
+    <x:String x:Key="borrar_usuario">BORRAR USUARIO</x:String>
+    <x:String x:Key="agregar_veterinario">AGREGAR VETERINARIO</x:String>
+    <x:String x:Key="nueva_pass">Introduce la nueva contraseña</x:String>
+    <x:String x:Key="nombre">Nombre:</x:String>
+    <x:String x:Key="tipo">Tipo:</x:String>
+    <x:String x:Key="raza">Raza:</x:String>
+    <x:String x:Key="sexo">Sexo:</x:String>
+    <x:String x:Key="peso">Peso:</x:String>
+    <x:String x:Key="guardar_mascota">GUARDAR MASCOTA</x:String>
+    <x:String x:Key="apellidos">Apellidos:</x:String>
+    <x:String x:Key="rol">Rol:</x:String>
+    <x:String x:Key="registrarse">REGISTRARSE</x:String>
+
 </ResourceDictionary>

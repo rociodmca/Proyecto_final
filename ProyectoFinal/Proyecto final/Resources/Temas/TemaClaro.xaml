@@ -16,9 +16,9 @@
     <Color x:Key="arrows_border">Black</Color>
 
     <Color x:Key="bgd">#FBF1E8</Color>
-    
-    <Color x:Key="start">#E3889C</Color>
-    <Color x:Key="end">#E36C3D</Color>
+
+    <Color x:Key="start">#FFBFCD</Color>
+    <Color x:Key="end">#FFA581</Color>
 
     <Color x:Key="start_claro">#FBE8FB</Color>
     <Color x:Key="end_claro">#FBF1E8</Color>

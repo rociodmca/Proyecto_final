@@ -4,13 +4,15 @@ namespace Proyecto_final.View;
 
 public partial class PanelAdministracion : ContentPage
 {
+    AppShell apps;
     ViewModelBBDD viewModelBBDD;
     ViewModelUsuario viewModelUsuario;
     string id;
 
-	public PanelAdministracion()
+	public PanelAdministracion(AppShell apps)
 	{
-		viewModelBBDD = new ViewModelBBDD();
+		this.apps = apps;
+        viewModelBBDD = new ViewModelBBDD();
         viewModelUsuario = new ViewModelUsuario();
 
         InitializeComponent();

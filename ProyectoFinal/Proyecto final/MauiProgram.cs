@@ -20,6 +20,8 @@ namespace Proyecto_final
                 fonts.AddFont("SansFierro.ttf", "sansfierro");
                 fonts.AddFont("SansFierro-Texture.ttf", "sansfierro-textura");
                 fonts.AddFont("Saudagar.ttf", "saudagar");
+                fonts.AddFont("Espressonal.otf", "espressonal");
+                fonts.AddFont("Baby-Doll.otf", "baby-doll");
             });
             builder.UseMauiCommunityToolkit();
             builder.Services.AddSingleton<DiceBear>();

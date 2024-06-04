@@ -45,14 +45,14 @@ public partial class CuestionarioCita : ContentPage
             bool msg = viewModelBBDD.GuardarCita(id, id_mas, fecha.Date, id_vet);
             if (msg)
             {
-                DisplayAlert("Información", "Cita guardada", "Ok");
+                //DisplayAlert("Información", "Cita guardada", "Ok");
             }else
             {
-                DisplayAlert("Información", "Ha ocurrido un error al guardar la cita", "Ok");
+                //DisplayAlert("Información", "Ha ocurrido un error al guardar la cita", "Ok");
             }
         } else
         {
-            DisplayAlert("Información", "No se han seleccionado todas las opciones", "Ok");
+            //DisplayAlert("Información", "No se han seleccionado todas las opciones", "Ok");
         }
         veterinarios.SelectedIndex = -1;
         mascotas.SelectedIndex = -1;

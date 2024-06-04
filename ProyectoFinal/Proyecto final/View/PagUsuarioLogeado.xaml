@@ -18,10 +18,10 @@
             <Grid RowDefinitions="*" ColumnDefinitions="*" IsEnabled="True">
                 <Frame Grid.Row="0" Grid.Column="0" BorderColor="{DynamicResource frame_border}" Margin="20">
                     <StackLayout>
-                        <Label Text="{Binding Id_cliente}" FontAttributes="Bold" FontSize="20" TextColor="{DynamicResource letra}"/>
-                        <Label Text="{Binding Fecha}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}"/>
-                        <Label Text="{Binding Id_mascota}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}"/>
-                        <Label Text="{Binding Id_veterinario}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}"/>
+                        <Label Text="{Binding Id_cliente}" FontAttributes="Bold" FontSize="20" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label Text="{Binding Fecha}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label Text="{Binding Id_mascota}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label Text="{Binding Id_veterinario}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
                     </StackLayout>
                 </Frame>
             </Grid>
@@ -31,10 +31,10 @@
             <Grid RowDefinitions="*" ColumnDefinitions="*" IsEnabled="False">
                 <Frame Grid.Row="0" Grid.Column="0" BorderColor="{DynamicResource frame_border}"  Margin="20">
                     <StackLayout IsEnabled="False">
-                        <Label Text="{Binding Id_cliente}" FontAttributes="Bold" FontSize="20" TextColor="{DynamicResource letra}"/>
-                        <Label Text="{Binding Fecha}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}"/>
-                        <Label Text="{Binding Id_mascota}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}"/>
-                        <Label Text="{Binding Id_veterinario}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}"/>
+                        <Label Text="{Binding Id_cliente}" FontAttributes="Bold" FontSize="20" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label Text="{Binding Fecha}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label Text="{Binding Id_mascota}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label Text="{Binding Id_veterinario}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
                     </StackLayout>
                 </Frame>
             </Grid>
@@ -71,12 +71,12 @@
                                 </Border>
                             </StackLayout>
                             <StackLayout HorizontalOptions="End" VerticalOptions="Center">
-                                <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="20" TextColor="{DynamicResource letra}"/>
-                                <Label Text="{Binding Tipo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}"/>
-                                <Label Text="{Binding Raza}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}"/>
-                                <Label Text="{Binding Sexo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}"/>
-                                <Label Text="{Binding Peso}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}"/>
-                                <Label Text="{Binding Vacunas}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}"/>
+                                <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="20" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                <Label Text="{Binding Tipo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                <Label Text="{Binding Raza}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                <Label Text="{Binding Sexo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                <Label Text="{Binding Peso}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                <Label Text="{Binding Vacunas}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
                             </StackLayout>
                         </HorizontalStackLayout>
                     </Frame>
@@ -86,18 +86,19 @@
     </ContentPage.Resources>
     
     <Grid ColumnDefinitions="*" RowDefinitions="*">
+        <ActivityIndicator Grid.Row="0" Grid.Column="0" x:Name="cargando" HeightRequest="100" WidthRequest="100" Color="{DynamicResource letra}"/>
         <Grid Grid.Row="0" Grid.Column="0" x:Name="phone" ColumnDefinitions="*,*" RowDefinitions="Auto,*,2*,Auto" IsVisible="False" Margin="5" ColumnSpacing="20" RowSpacing="5">
-            <Button Text="DESCONECTAR" Grid.Row="0" Grid.Column="0" Clicked="Button_Clicked" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}"/>
+            <Button Text="{DynamicResource desconectar}" Grid.Row="0" Grid.Column="0" Clicked="Button_Clicked" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
             <!--<ImageButton x:Name="avatar1" Grid.Row="0" Grid.Column="1" VerticalOptions="End" Clicked="ImageButton_Clicked" HeightRequest="60" WidthRequest="60" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"/>-->
             <Image x:Name="avatar1" Grid.Row="0" Grid.Column="1" VerticalOptions="End" HorizontalOptions="EndAndExpand" HeightRequest="50" WidthRequest="50" BackgroundColor="Transparent">
                 <FlyoutBase.ContextFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Text="Agregar mascota" Clicked="ImageButton_Clicked"/>
-                        <MenuFlyoutItem Text="Ajustes" Clicked="MenuFlyoutItem_Clicked"/>
+                        <MenuFlyoutItem Text="{DynamicResource agregar_mascota}" Clicked="ImageButton_Clicked"/>
+                        <MenuFlyoutItem Text="{DynamicResource ajustes}" Clicked="MenuFlyoutItem_Clicked"/>
                     </MenuFlyout>
                 </FlyoutBase.ContextFlyout>
             </Image>
-            <Frame x:Name="mascotasF"  Focused="mascotas_Focused" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BorderColor="{DynamicResource frame_border}" BackgroundColor="Transparent" Padding="5">
+            <Frame x:Name="mascotasF" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BorderColor="{DynamicResource frame_border}" BackgroundColor="Transparent" Padding="5">
                 <ListView x:Name="mascotas" ItemsSource="{Binding Mascota}" ItemSelected="mascotas_ItemSelected" HasUnevenRows="True" ChildRemoved="mascotas_ChildRemoved">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -106,11 +107,11 @@
                                     <Frame Grid.Row="0" Grid.Column="0" BorderColor="{DynamicResource frame_border}" Margin="10" Padding="10">
                                         <HorizontalStackLayout >
                                             <StackLayout HorizontalOptions="Start">
-                                                <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="18" TextColor="{DynamicResource letra}"/>
-                                                <Label Text="{Binding Tipo}" FontAttributes="Italic" VerticalOptions="End" FontSize="16" TextColor="{DynamicResource letra}"/>
-                                                <Label Text="{Binding Raza}" FontAttributes="Italic" VerticalOptions="End" FontSize="16" TextColor="{DynamicResource letra}"/>
-                                                <Label Text="{Binding Sexo}" FontAttributes="Italic" VerticalOptions="End" FontSize="16" TextColor="{DynamicResource letra}"/>
-                                                <Label Text="{Binding Peso}" FontAttributes="Italic" VerticalOptions="End" FontSize="16" TextColor="{DynamicResource letra}"/>
+                                                <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                <Label Text="{Binding Tipo}" FontAttributes="Italic" VerticalOptions="End" FontSize="16" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                <Label Text="{Binding Raza}" FontAttributes="Italic" VerticalOptions="End" FontSize="16" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                <Label Text="{Binding Sexo}" FontAttributes="Italic" VerticalOptions="End" FontSize="16" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                <Label Text="{Binding Peso}" FontAttributes="Italic" VerticalOptions="End" FontSize="16" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
                                                 <!--<Label Text="{Binding Vacunas}" FontAttributes="Italic" VerticalOptions="End" FontSize="16" TextColor="{DynamicResource letra}"/>-->
                                             </StackLayout>
                                             <Image HeightRequest="60" HorizontalOptions="EndAndExpand">
@@ -132,31 +133,31 @@
                     <controls:Calendar.EventTemplate>
                         <DataTemplate>
                             <StackLayout Padding="15,0,0,0">
-                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" TextColor="{DynamicResource letra}"/>
-                                <Label Text="{Binding Message}" FontSize="Small" LineBreakMode="WordWrap" TextColor="{DynamicResource letra}"/>
+                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                <Label Text="{Binding Message}" FontSize="Small" LineBreakMode="WordWrap" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
                             </StackLayout>
                         </DataTemplate>
                     </controls:Calendar.EventTemplate>
                 </controls:Calendar>
             </Frame>
-            <Button Text="CAMBIAR CONTRASEÑA" Grid.Row="3" Grid.Column="0" Clicked="Button_Clicked_2" BackgroundColor="{DynamicResource btn_bgd}" BorderColor="{DynamicResource btn_border}"/>
-            <Button Text="SOLICITAR CITA" Grid.Row="3" Grid.Column="1" Clicked="Button_Clicked_1" BackgroundColor="{DynamicResource btn_bgd}" BorderColor="{DynamicResource btn_border}"/>
+            <Button Text="{DynamicResource cambiar_pass}" Grid.Row="3" Grid.Column="0" Clicked="Button_Clicked_2" BackgroundColor="{DynamicResource btn_bgd}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+            <Button Text="{DynamicResource solicitar_cita}" Grid.Row="3" Grid.Column="1" Clicked="Button_Clicked_1" BackgroundColor="{DynamicResource btn_bgd}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
         </Grid>
 
-        <Grid Grid.Row="0" Grid.Column="0" x:Name="desktop" RowDefinitions="Auto,*,*,Auto" ColumnDefinitions="*,*" IsVisible="False" Margin="20" ColumnSpacing="20" RowSpacing="30">
+        <Grid Grid.Row="0" Grid.Column="0" x:Name="desktop" RowDefinitions="Auto,*,*,Auto" ColumnDefinitions="*,*" IsVisible="False" Margin="20" ColumnSpacing="20" RowSpacing="10">
             <Grid Grid.Row="0" Grid.Column="0" RowDefinitions="Auto" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="20" RowSpacing="20">
-                <Button Text="DESCONECTAR" Grid.Row="0" Grid.Column="0" Clicked="Button_Clicked" HorizontalOptions="StartAndExpand" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}"/>
-                <Button Text="CAMBIAR CONTRASEÑA" Grid.Row="0" Grid.Column="2" Clicked="Button_Clicked_2" HorizontalOptions="StartAndExpand" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}"/>
+                <Button Text="{DynamicResource desconectar}" Grid.Row="0" Grid.Column="0" Clicked="Button_Clicked" HorizontalOptions="StartAndExpand" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                <Button Text="{DynamicResource cambiar_pass}" Grid.Row="0" Grid.Column="2" Clicked="Button_Clicked_2" HorizontalOptions="StartAndExpand" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
             </Grid>
-            <!--<ImageButton x:Name="avatar2"  Grid.Row="0" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="EndAndExpand" Clicked="ImageButton_Clicked" HeightRequest="100" WidthRequest="100" BackgroundColor="Transparent"/>-->
-            <Image x:Name="avatar2" Grid.Row="0" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="100" WidthRequest="100" BackgroundColor="Transparent">
+            <ImageButton x:Name="avatar2"  Grid.Row="0" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="EndAndExpand" Clicked="ImageButton_Clicked" HeightRequest="100" WidthRequest="100" BackgroundColor="Transparent"/>
+            <!--<Image x:Name="avatar2" Grid.Row="0" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="100" WidthRequest="100" BackgroundColor="Transparent">
                 <FlyoutBase.ContextFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Text="Agregar mascota" Clicked="ImageButton_Clicked"/>
-                        <MenuFlyoutItem Text="Ajustes" Clicked="MenuFlyoutItem_Clicked"/>
+                        <MenuFlyoutItem Text="{DynamicResource agregar_mascota}" Clicked="ImageButton_Clicked"/>
+                        <MenuFlyoutItem Text="{DynamicResource ajustes}" Clicked="MenuFlyoutItem_Clicked"/>
                     </MenuFlyout>
                 </FlyoutBase.ContextFlyout>
-            </Image>
+            </Image>-->
             <Frame Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" BorderColor="{DynamicResource frame_border}" BackgroundColor="Transparent">
                 <Frame.Background>
                     <LinearGradientBrush EndPoint="1,0">
@@ -165,7 +166,7 @@
                     </LinearGradientBrush>
                 </Frame.Background>
                 <ScrollView >
-                    <ListView x:Name="mascotas2" ItemsSource="{Binding Mascota}" ItemSelected="mascotas2_ItemSelected" ItemTemplate="{StaticResource mascotas2dt}"/>
+                    <ListView x:Name="mascotas2" IsVisible="False" ItemsSource="{Binding Mascota}" ItemSelected="mascotas2_ItemSelected" ItemTemplate="{StaticResource mascotas2dt}"/>
                 </ScrollView>
             </Frame>
             <Frame Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" BorderColor="{DynamicResource frame_border}">
@@ -178,18 +179,20 @@
                 <!--<ScrollView >
                     <CollectionView ItemsSource="{Binding Citas}" x:Name="lista2" ItemTemplate="{StaticResource CitasSelector}" SelectionMode="Single" SelectionChanged="lista2_SelectionChanged"/>
                 </ScrollView>-->
-                <controls:Calendar x:Name="calendario" SelectedDates="{Binding Fechas}" VerticalOptions="Fill" HorizontalOptions="Fill" SelectedDayBackgroundColor="CornflowerBlue" EventsScrollViewVisible="True" Events="{Binding Eventos}" DaysTitleColor="{DynamicResource letra}" OtherMonthDayColor="{DynamicResource letra}" DaysTitleWeekendColor="{DynamicResource letra}" TodayTextColor="{DynamicResource letra}" MonthLabelColor="{DynamicResource letra}" DeselectedDayTextColor="{DynamicResource letra}" YearLabelColor="{DynamicResource letra}" ArrowsColor="{DynamicResource letra}" ArrowsBackgroundColor="{DynamicResource arrows_bgd}" ArrowsBorderColor="{DynamicResource arrows_border}"> 
-                    <controls:Calendar.EventTemplate>
-                        <DataTemplate>
-                            <StackLayout Padding="15,0,0,0">
-                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" TextColor="{DynamicResource letra}"/>
-                                <Label Text="{Binding Message}" FontSize="Small" LineBreakMode="WordWrap" TextColor="{DynamicResource letra}"/>
-                            </StackLayout>
-                        </DataTemplate>
-                    </controls:Calendar.EventTemplate>
-                </controls:Calendar>
+                <ScrollView>
+                    <controls:Calendar x:Name="calendario" IsVisible="False" SelectedDates="{Binding Fechas}" VerticalOptions="Fill" HorizontalOptions="Fill" SelectedDayBackgroundColor="CornflowerBlue" EventsScrollViewVisible="True" Events="{Binding Eventos}" DaysTitleColor="{DynamicResource letra}" OtherMonthDayColor="{DynamicResource letra}" DaysTitleWeekendColor="{DynamicResource letra}" TodayTextColor="{DynamicResource letra}" MonthLabelColor="{DynamicResource letra}" DeselectedDayTextColor="{DynamicResource letra}" YearLabelColor="{DynamicResource letra}" ArrowsColor="{DynamicResource letra}" ArrowsBackgroundColor="{DynamicResource arrows_bgd}" ArrowsBorderColor="{DynamicResource arrows_border}" ArrowsFontFamily="espressonal">
+                        <controls:Calendar.EventTemplate>
+                            <DataTemplate>
+                                <StackLayout Padding="15,0,0,0">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                    <Label Text="{Binding Message}" FontSize="Small" LineBreakMode="WordWrap" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </controls:Calendar.EventTemplate>
+                    </controls:Calendar>
+                </ScrollView>
             </Frame>
-            <Button Text="SOLICITAR CITA" Grid.Row="3" Grid.Column="1" Clicked="Button_Clicked_1" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}"/>
+            <Button Text="{DynamicResource solicitar_cita}" Grid.Row="3" Grid.Column="1" Clicked="Button_Clicked_1" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
         </Grid>
     </Grid>
 </ContentPage>

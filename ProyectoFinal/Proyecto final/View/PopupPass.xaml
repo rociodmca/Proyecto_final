@@ -5,12 +5,12 @@
              Color="Transparent"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
 
-    <Grid ColumnDefinitions="Auto" RowDefinitions="Auto">
+    <Grid ColumnDefinitions="Auto" RowDefinitions="Auto" HeightRequest="180">
         <Frame Grid.Column="0" Grid.Row="0" BorderColor="{DynamicResource frame_border}">
             <Grid ColumnDefinitions="Auto" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="10">
-                <Label Text="Introduce la nueva contraseña" TextColor="{DynamicResource letra}"/>
-                <Entry Grid.Column="0" Grid.Row="0" IsPassword="True" x:Name="passw" WidthRequest="200"/>
-                <Button Grid.Column="0" Grid.Row="1" Text="Aceptar" Clicked="Button_Clicked" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}"/>
+                <Label Grid.Column="0" Grid.Row="0" Text="{DynamicResource nueva_pass}" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                <Entry Grid.Column="0" Grid.Row="1" IsPassword="True" x:Name="passw" WidthRequest="200" Placeholder="{DynamicResource passw}" FontFamily="espressonal" BackgroundColor="{DynamicResource bgd}"/>
+                <Button Grid.Column="0" Grid.Row="2" Text="{DynamicResource aceptar}" Clicked="Button_Clicked" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" FontFamily="espressonal"/>
             </Grid>
         </Frame>
     </Grid>

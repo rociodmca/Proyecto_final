@@ -1,4 +1,5 @@
 ﻿
+using Proyecto_final.Resources.Idiomas;
 using Proyecto_final.Resources.Temas;
 
 namespace Proyecto_final
@@ -7,13 +8,9 @@ namespace Proyecto_final
     {
         public AppShell()
         {
-            ICollection<ResourceDictionary> miListaDiccionarios;
-            miListaDiccionarios = Application.Current.Resources.MergedDictionaries;
-            miListaDiccionarios.Clear();
-            miListaDiccionarios.Add(new TemaClaro());
-            App.Current.UserAppTheme = AppTheme.Light;
-
             InitializeComponent();
+            loginDesktop.Content = new View.Login(this);
+            
             if (DeviceInfo.Current.Platform == DevicePlatform.Android)
             {
                 PhoneTabs.IsVisible = true;
