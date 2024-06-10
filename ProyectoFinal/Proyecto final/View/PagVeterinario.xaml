@@ -12,58 +12,138 @@
         </RadialGradientBrush>
     </ContentPage.Background>
 
-    <Frame BorderColor="{DynamicResource frame_border}" Margin="20">
-        <Frame.Background>
-            <LinearGradientBrush EndPoint="1,0">
-                <GradientStop Color="{DynamicResource start_claro}" Offset="0.1"/>
-                <GradientStop Color="{DynamicResource end_claro}" Offset="1.0" />
-            </LinearGradientBrush>
-        </Frame.Background>
-        <Grid Margin="10" ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,*" ColumnSpacing="20" RowSpacing="20">
-            <Button Grid.Row="0" Grid.Column="0" Text="{DynamicResource acceso_mascotas}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="Button_Clicked" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
-            <Button Grid.Row="0" Grid.Column="2" Text="{DynamicResource acceso_citas}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="Button_Clicked_1" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
-            <Frame BorderColor="{DynamicResource frame_border}" Margin="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                <Frame.Background>
-                    <LinearGradientBrush EndPoint="1,0">
-                        <GradientStop Color="{DynamicResource end_claro}" Offset="0.1"/>
-                        <GradientStop Color="{DynamicResource start_claro}" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Frame.Background>
-                <Grid ColumnDefinitions="*" RowDefinitions="*">
-                    <ListView x:Name="mascotas" IsVisible="False" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Mascotas}" ItemSelected="Mascotas_ItemSelected" HasUnevenRows="True">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid RowDefinitions="*" ColumnDefinitions="*" Padding="10">
-                                        <Frame Grid.Row="0" Grid.Column="0" BorderColor="{DynamicResource frame_border}" Margin="10">
-                                            <Frame.Background>
-                                                <LinearGradientBrush EndPoint="1,0">
-                                                    <GradientStop Color="{DynamicResource start_claro}" Offset="0.1"/>
-                                                    <GradientStop Color="{DynamicResource end_claro}" Offset="1.0" />
-                                                </LinearGradientBrush>
-                                            </Frame.Background>
-                                            <HorizontalStackLayout Spacing="40">
-                                                <Image HeightRequest="200">
-                                                    <Image.Source>
-                                                        <UriImageSource Uri="{Binding Imagen}"/>
-                                                    </Image.Source>
-                                                </Image>
-                                                <StackLayout>
-                                                    <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="20" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                                                    <Label Text="{Binding Tipo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                                                    <Label Text="{Binding Raza}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                                                    <Label Text="{Binding Sexo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                                                    <Label Text="{Binding Peso}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                                                    <Label Text="{Binding Vacunas}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                                                </StackLayout>
-                                            </HorizontalStackLayout>
-                                        </Frame>
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <!--<ListView x:Name="citas" IsVisible="False" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Citas}" ItemSelected="Citas_ItemSelected"  HasUnevenRows="True">
+    <Grid ColumnDefinitions="*" RowDefinitions="*">
+        <Frame Grid.Column="0" Grid.Row="0" BorderColor="{DynamicResource frame_border}" x:Name="phone" Padding="4">
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="{DynamicResource start_claro}" Offset="0.1"/>
+                    <GradientStop Color="{DynamicResource end_claro}" Offset="1.0" />
+                </LinearGradientBrush>
+            </Frame.Background>
+            <Grid ColumnDefinitions="*" RowDefinitions="Auto,Auto,Auto,Auto,*" ColumnSpacing="10" RowSpacing="10" >
+                <Button Grid.Row="0" Grid.Column="0" Text="{DynamicResource acceso_mascotas}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="Button_Clicked_4"  TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                <Button Grid.Row="1" Grid.Column="0" Text="{DynamicResource acceso_ajustes}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="Button_Clicked_5"  TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                <Button Grid.Row="2" Grid.Column="0" x:Name="btn_borrar1" IsVisible="False" Text="{DynamicResource borrar_mascota}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="btn_borrar1_Clicked"  TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                <Button Grid.Row="3" Grid.Column="0" Text="{DynamicResource acceso_citas}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="Button_Clicked_6"  TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                <Frame BorderColor="{DynamicResource frame_border}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop Color="{DynamicResource end_claro}" Offset="0.1"/>
+                            <GradientStop Color="{DynamicResource start_claro}" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <Grid ColumnDefinitions="*" RowDefinitions="*" Padding="0">
+                        <ListView x:Name="mascotas1" IsVisible="False" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Mascotas}" ItemSelected="Mascotas_ItemSelected" HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid RowDefinitions="*" ColumnDefinitions="*" Padding="2">
+                                            <Frame Grid.Row="0" Grid.Column="0" BorderColor="{DynamicResource frame_border}">
+                                                <Frame.Background>
+                                                    <LinearGradientBrush EndPoint="1,0">
+                                                        <GradientStop Color="{DynamicResource start_claro}" Offset="0.1"/>
+                                                        <GradientStop Color="{DynamicResource end_claro}" Offset="1.0" />
+                                                    </LinearGradientBrush>
+                                                </Frame.Background>
+                                                <HorizontalStackLayout Spacing="10">
+                                                    <Image HeightRequest="60">
+                                                        <Image.Source>
+                                                            <UriImageSource Uri="{Binding Imagen}"/>
+                                                        </Image.Source>
+                                                    </Image>
+                                                    <StackLayout>
+                                                        <Label Text="{Binding Nombre}" FontAttributes="Bold" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                        <Label Text="{Binding Tipo}" FontAttributes="Italic" VerticalOptions="End" FontSize="16" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                        <Label Text="{Binding Raza}" FontAttributes="Italic" VerticalOptions="End" FontSize="16" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                        <Label Text="{Binding Sexo}" FontAttributes="Italic" VerticalOptions="End" FontSize="16" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                        <Label Text="{Binding Peso}" FontAttributes="Italic" VerticalOptions="End" FontSize="16" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                        <!--<Label Text="{Binding Vacunas}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>-->
+                                                    </StackLayout>
+                                                </HorizontalStackLayout>
+                                            </Frame>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Frame x:Name="citas1" IsVisible="False" Grid.Row="0" Grid.Column="0" Padding="0">
+                            <Frame.Background>
+                                <LinearGradientBrush EndPoint="1,0">
+                                    <GradientStop Color="{DynamicResource start_claro}" Offset="0.1"/>
+                                    <GradientStop Color="{DynamicResource end_claro}" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </Frame.Background>
+                            <ScrollView >
+                                <controls:Calendar x:Name="calendario1" SelectedDates="{Binding Fechas}" VerticalOptions="Fill" HorizontalOptions="Fill" SelectedDayBackgroundColor="CornflowerBlue" EventsScrollViewVisible="True" Events="{Binding Eventos}" DaysTitleColor="{DynamicResource letra}" OtherMonthDayColor="{DynamicResource letra}" DaysTitleWeekendColor="{DynamicResource letra}" TodayTextColor="{DynamicResource letra}" MonthLabelColor="{DynamicResource letra}" DeselectedDayTextColor="{DynamicResource letra}" YearLabelColor="{DynamicResource letra}" ArrowsColor="{DynamicResource letra}" ArrowsBackgroundColor="{DynamicResource arrows_bgd}" ArrowsBorderColor="{DynamicResource arrows_border}">
+                                    <controls:Calendar.EventTemplate>
+                                        <DataTemplate>
+                                            <StackLayout Padding="15,0,0,0">
+                                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                <Label Text="{Binding Message}" FontSize="Small" LineBreakMode="WordWrap" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </controls:Calendar.EventTemplate>
+                                </controls:Calendar>
+                            </ScrollView>
+                        </Frame>
+                    </Grid>
+                </Frame>
+            </Grid>
+        </Frame>
+        <Frame Grid.Column="0" Grid.Row="0" BorderColor="{DynamicResource frame_border}" Margin="20" x:Name="desktop">
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="{DynamicResource start_claro}" Offset="0.1"/>
+                    <GradientStop Color="{DynamicResource end_claro}" Offset="1.0" />
+                </LinearGradientBrush>
+            </Frame.Background>
+            <Grid Margin="10" ColumnDefinitions="Auto,Auto,*,Auto,Auto" RowDefinitions="Auto,*" ColumnSpacing="20" RowSpacing="20">
+                <Button Grid.Row="0" Grid.Column="0" Text="{DynamicResource acceso_mascotas}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="Button_Clicked" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                <Button Grid.Row="0" Grid.Column="1" Text="{DynamicResource acceso_ajustes}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="Button_Clicked_2"  TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                <Button Grid.Row="0" Grid.Column="3" x:Name="btn_borrar2" IsVisible="False" Text="{DynamicResource borrar_mascota}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="Button_Clicked_3"  TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                <Button Grid.Row="0" Grid.Column="4" Text="{DynamicResource acceso_citas}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="Button_Clicked_1" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                <Frame BorderColor="{DynamicResource frame_border}" Margin="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop Color="{DynamicResource end_claro}" Offset="0.1"/>
+                            <GradientStop Color="{DynamicResource start_claro}" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <Grid ColumnDefinitions="*" RowDefinitions="*">
+                        <ListView x:Name="mascotas2" IsVisible="False" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Mascotas}" ItemSelected="Mascotas_ItemSelected" HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid RowDefinitions="*" ColumnDefinitions="*" Padding="10">
+                                            <Frame Grid.Row="0" Grid.Column="0" BorderColor="{DynamicResource frame_border}" Margin="10">
+                                                <Frame.Background>
+                                                    <LinearGradientBrush EndPoint="1,0">
+                                                        <GradientStop Color="{DynamicResource start_claro}" Offset="0.1"/>
+                                                        <GradientStop Color="{DynamicResource end_claro}" Offset="1.0" />
+                                                    </LinearGradientBrush>
+                                                </Frame.Background>
+                                                <HorizontalStackLayout Spacing="40">
+                                                    <Image HeightRequest="200">
+                                                        <Image.Source>
+                                                            <UriImageSource Uri="{Binding Imagen}"/>
+                                                        </Image.Source>
+                                                    </Image>
+                                                    <StackLayout>
+                                                        <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="20" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                        <Label Text="{Binding Tipo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                        <Label Text="{Binding Raza}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                        <Label Text="{Binding Sexo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                        <Label Text="{Binding Peso}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                        <Label Text="{Binding Vacunas}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                    </StackLayout>
+                                                </HorizontalStackLayout>
+                                            </Frame>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <!--<ListView x:Name="citas" IsVisible="False" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Citas}" ItemSelected="Citas_ItemSelected"  HasUnevenRows="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -80,28 +160,29 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>-->
-                    <Frame x:Name="citas" IsVisible="False" Grid.Row="0" Grid.Column="0">
-                        <Frame.Background>
-                            <LinearGradientBrush EndPoint="1,0">
-                                <GradientStop Color="{DynamicResource start_claro}" Offset="0.1"/>
-                                <GradientStop Color="{DynamicResource end_claro}" Offset="1.0" />
-                            </LinearGradientBrush>
-                        </Frame.Background>
-                        <ScrollView >
-                            <controls:Calendar x:Name="calendario" SelectedDates="{Binding Fechas}" VerticalOptions="Fill" HorizontalOptions="Fill" SelectedDayBackgroundColor="CornflowerBlue" EventsScrollViewVisible="True" Events="{Binding Eventos}" DaysTitleColor="{DynamicResource letra}" OtherMonthDayColor="{DynamicResource letra}" DaysTitleWeekendColor="{DynamicResource letra}" TodayTextColor="{DynamicResource letra}" MonthLabelColor="{DynamicResource letra}" DeselectedDayTextColor="{DynamicResource letra}" YearLabelColor="{DynamicResource letra}" ArrowsColor="{DynamicResource letra}" ArrowsBackgroundColor="{DynamicResource arrows_bgd}" ArrowsBorderColor="{DynamicResource arrows_border}">
-                                <controls:Calendar.EventTemplate>
-                                    <DataTemplate>
-                                        <StackLayout Padding="15,0,0,0">
-                                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                                            <Label Text="{Binding Message}" FontSize="Small" LineBreakMode="WordWrap" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                                        </StackLayout>
-                                    </DataTemplate>
-                                </controls:Calendar.EventTemplate>
-                            </controls:Calendar>
-                        </ScrollView>
-                    </Frame>
-                </Grid>
-            </Frame>
-        </Grid>
-    </Frame>
+                        <Frame x:Name="citas2" IsVisible="False" Grid.Row="0" Grid.Column="0">
+                            <Frame.Background>
+                                <LinearGradientBrush EndPoint="1,0">
+                                    <GradientStop Color="{DynamicResource start_claro}" Offset="0.1"/>
+                                    <GradientStop Color="{DynamicResource end_claro}" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </Frame.Background>
+                            <ScrollView >
+                                <controls:Calendar x:Name="calendario2" SelectedDates="{Binding Fechas}" VerticalOptions="Fill" HorizontalOptions="Fill" SelectedDayBackgroundColor="CornflowerBlue" EventsScrollViewVisible="True" Events="{Binding Eventos}" DaysTitleColor="{DynamicResource letra}" OtherMonthDayColor="{DynamicResource letra}" DaysTitleWeekendColor="{DynamicResource letra}" TodayTextColor="{DynamicResource letra}" MonthLabelColor="{DynamicResource letra}" DeselectedDayTextColor="{DynamicResource letra}" YearLabelColor="{DynamicResource letra}" ArrowsColor="{DynamicResource letra}" ArrowsBackgroundColor="{DynamicResource arrows_bgd}" ArrowsBorderColor="{DynamicResource arrows_border}">
+                                    <controls:Calendar.EventTemplate>
+                                        <DataTemplate>
+                                            <StackLayout Padding="15,0,0,0">
+                                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                                <Label Text="{Binding Message}" FontSize="Small" LineBreakMode="WordWrap" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </controls:Calendar.EventTemplate>
+                                </controls:Calendar>
+                            </ScrollView>
+                        </Frame>
+                    </Grid>
+                </Frame>
+            </Grid>
+        </Frame>
+    </Grid>
 </ContentPage>

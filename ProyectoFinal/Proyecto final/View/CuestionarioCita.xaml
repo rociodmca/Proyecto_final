@@ -3,6 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_final.View.CuestionarioCita"
              Title="CuestionarioCita">
+
+    <ContentPage.Background>
+        <RadialGradientBrush Center="0.5,0.5">
+            <GradientStop Color="{DynamicResource start_claro}" Offset="0.1"/>
+            <GradientStop Color="{DynamicResource end_claro}" Offset="1.0" />
+        </RadialGradientBrush>
+    </ContentPage.Background>
+
     <Grid ColumnDefinitions="*" RowDefinitions="*" Margin="20">
         <Frame BorderColor="{DynamicResource frame_border}"  Grid.Column="0" Grid.Row="0" Margin="40">
             <Frame.Background>
@@ -11,13 +19,13 @@
                     <GradientStop Color="{DynamicResource start_claro}" Offset="0.1" />
                 </LinearGradientBrush>
             </Frame.Background>
-            <Grid RowDefinitions="4*,*" ColumnDefinitions="*,*" RowSpacing="40" ColumnSpacing="40" Margin="40">
+            <Grid RowDefinitions="*,Auto" ColumnDefinitions="*,*" RowSpacing="40" ColumnSpacing="40" Margin="40">
                 <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" ColumnDefinitions="*,2*" RowDefinitions="*,*,*" ColumnSpacing="20" RowSpacing="20">
-                    <Label Text="{DynamicResource fecha}" BackgroundColor="Grey" FontSize="40" Grid.Column="0" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta fecha" FontFamily="espressonal"/>
+                    <Label x:Name="fechalbl" Text="{DynamicResource fecha}" Grid.Column="0" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta fecha" FontFamily="espressonal"/>
                     <DatePicker x:Name="fecha" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" Format="dd/MM/yyyy" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Selector de fechas" FontFamily="espressonal" BackgroundColor="{DynamicResource bgd}"/>
-                    <Label Text="{DynamicResource mascota}" Grid.Column="0" FontSize="40" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta mascota" FontFamily="espressonal"/>
+                    <Label x:Name="mascotaslbl" Text="{DynamicResource mascota}" Grid.Column="0" FontSize="40" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta mascota" FontFamily="espressonal"/>
                     <Picker x:Name="mascotas" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" TextColor="{DynamicResource letra}" ItemDisplayBinding="{Binding Nombre}" ToolTipProperties.Text="Selector de mascota" FontFamily="espressonal" BackgroundColor="{DynamicResource bgd}"/>
-                    <Label Text="{DynamicResource veterinario}" Grid.Column="0" Grid.Row="2" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta veterinario" FontFamily="espressonal"/>
+                    <Label x:Name="veterinarioslbl" Text="{DynamicResource veterinario}" Grid.Column="0" Grid.Row="2" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta veterinario" FontFamily="espressonal"/>
                     <Picker x:Name="veterinarios" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" TextColor="{DynamicResource letra}" ItemDisplayBinding="{Binding Nombre}" ToolTipProperties.Text="Selector de veterinarios" FontFamily="espressonal" BackgroundColor="{DynamicResource bgd}"/>
                 </Grid>
                 <Button x:Name="BtnAceptar" Text="{DynamicResource aceptar}" Clicked="BtnAceptar_Clicked"  Grid.Column="0" Grid.Row="1" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>

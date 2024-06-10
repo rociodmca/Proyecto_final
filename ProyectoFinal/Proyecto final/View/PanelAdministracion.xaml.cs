@@ -86,4 +86,25 @@ public partial class PanelAdministracion : ContentPage
     {
         Navigation.PushAsync(new RegistroUsuario(1));
     }
+
+    protected override bool OnBackButtonPressed()
+    {
+        Dispatcher.Dispatch(async () =>
+        {
+            var recurso1 = (string)Application.Current.Resources["salir1"];
+            var recurso2 = (string)Application.Current.Resources["salir2"];
+            var recurso3 = (string)Application.Current.Resources["salir3"];
+            var recurso4 = (string)Application.Current.Resources["salir4"];
+            var leave = await DisplayAlert(recurso1, recurso2, recurso3, recurso4);
+
+            if (leave)
+            {
+                //await Navigation.PushAsync(new MainPage());
+                await Navigation.PopAsync();
+                apps.FlyoutBehavior = FlyoutBehavior.Flyout;
+            }
+        });
+
+        return true;
+    }
 }

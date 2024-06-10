@@ -18,8 +18,17 @@ public partial class CuestionarioCita : ContentPage
         viewModelMascota = new ViewModelMascota();
         viewModelMascota.Mascotas = viewModelBBDD.ObtenerListaMascotas(id);
         this.id = id;
+        double size = double.Parse(viewModelBBDD.ObtenerAjuste(id).Tam_letra);
 
         InitializeComponent();
+        fechalbl.FontSize = size;
+        fecha.FontSize = size;
+        mascotaslbl.FontSize = size;
+        mascotas.FontSize = size;
+        veterinarioslbl.FontSize = size;
+        veterinarios.FontSize = size;
+        BtnAceptar.FontSize = size;
+        BtnCancelar.FontSize = size;
         mascotas.ItemsSource = viewModelMascota.Mascotas;
         veterinarios.ItemsSource = viewModelUsuario.Usuarios;
     }

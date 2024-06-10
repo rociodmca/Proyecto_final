@@ -22,10 +22,10 @@
                 <Grid RowDefinitions="*,*,*,*,*,*" ColumnDefinitions="*" Margin="10">
                     <Image Source="inicio.png" Grid.Column="0" Grid.Row="0"/>
                     <!--<Label Text="Email: " Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>-->
-                    <Entry x:Name="email1" Grid.Column="0" Grid.Row="2" VerticalOptions="Center" Placeholder="{DynamicResource email}" HorizontalTextAlignment="Center" TextColor="{DynamicResource letra}" FontFamily="saudagar"/>
+                    <Entry x:Name="email1" Grid.Column="0" Grid.Row="2" VerticalOptions="Center" Placeholder="{DynamicResource email}" HorizontalTextAlignment="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
                     <!--<Label Text="Contraseña: " Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"/>-->
-                    <Entry x:Name="password1" Grid.Column="0" Grid.Row="3" VerticalOptions="Center" Placeholder="{DynamicResource passw}" IsPassword="True" HorizontalTextAlignment="Center" TextColor="{DynamicResource letra}" FontFamily="saudagar"/>
-                    <Button x:Name="BtnLog1" Text="{DynamicResource singin}" Clicked="BtnLog_Clicked"  Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="saudagar"/>
+                    <Entry x:Name="password1" Grid.Column="0" Grid.Row="3" VerticalOptions="Center" Placeholder="{DynamicResource passw}" IsPassword="True" HorizontalTextAlignment="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                    <Button x:Name="BtnLog1" Text="{DynamicResource singin}" Clicked="BtnLog_Clicked"  Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
                 </Grid>
             </Frame>
         </Grid>
@@ -40,11 +40,11 @@
                 <ScrollView>
                     <Grid RowDefinitions="Auto,*,Auto,Auto,Auto,Auto,*,Auto,Auto" ColumnDefinitions="*" Margin="10" RowSpacing="20">
                         <Image Source="inicio.png" Grid.Column="0" Grid.Row="0" WidthRequest="100" />
-                        <Label x:Name="lbl_email2" Text="{DynamicResource email}" Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="espressonal"/>
-                        <Entry x:Name="email2" Grid.Column="0" Grid.Row="3" VerticalOptions="Center" Placeholder="{DynamicResource email}" HorizontalTextAlignment="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
-                        <Label x:Name="lbl_pass2" Text="{DynamicResource passw}" Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="espressonal"/>
-                        <Entry x:Name="password2" Grid.Column="0" Grid.Row="5" VerticalOptions="Center" Placeholder="{DynamicResource passw}" IsPassword="True" HorizontalTextAlignment="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
-                        <Button x:Name="BtnLog2" Text="{DynamicResource singin}" Clicked="BtnLog2_Clicked"  Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                        <Label x:Name="lbl_email2" FontSize="26" Text="{DynamicResource email}" Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="espressonal"/>
+                        <Entry x:Name="email2" FontSize="26" Grid.Column="0" Grid.Row="3" VerticalOptions="Center" Placeholder="{DynamicResource email}" HorizontalTextAlignment="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
+                        <Label x:Name="lbl_pass2" FontSize="26" Text="{DynamicResource passw}" Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="espressonal"/>
+                        <Entry x:Name="password2" FontSize="26" Grid.Column="0" Grid.Row="5" VerticalOptions="Center" Placeholder="{DynamicResource passw}" IsPassword="True" HorizontalTextAlignment="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
+                        <Button x:Name="BtnLog2" FontSize="26" Text="{DynamicResource singin}" Clicked="BtnLog2_Clicked"  Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
                         <Slider x:Name="size" Grid.Column="0" Grid.Row="8" Minimum="10" Maximum="40" ValueChanged="size_ValueChanged"/>
                     </Grid>
                 </ScrollView>

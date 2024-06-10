@@ -39,7 +39,7 @@ namespace Proyecto_final.ViewModel
                 {
                     foreach (JsonProperty propiedad in elemento.EnumerateObject())
                     {
-                        if (propiedad.Name == "name")
+                        if (propiedad.Name == "name" && propiedad.Value.ToString() != "European Burmese" && propiedad.Value.ToString() != "Malayan")
                         {
                             list.Add(propiedad.Value.ToString());
                         }

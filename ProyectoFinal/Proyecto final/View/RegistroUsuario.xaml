@@ -3,24 +3,66 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_final.View.RegistroUsuario"
              Title="RegistroUsuario">
+
+    <ContentPage.Background>
+        <RadialGradientBrush Center="0.5,0.5">
+            <GradientStop Color="{DynamicResource start_claro}" Offset="0.1"/>
+            <GradientStop Color="{DynamicResource end_claro}" Offset="1.0" />
+        </RadialGradientBrush>
+    </ContentPage.Background>
+
     <Grid ColumnDefinitions="*" RowDefinitions="*" Margin="20">
-        <Frame BorderColor="{DynamicResource frame_border}" Grid.Column="0" Grid.Row="0">
-            <Grid RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,2*" RowSpacing="10" ColumnSpacing="10" Margin="40">
-                <Label Text="{DynamicResource nombre}" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                <Entry x:Name="nombre" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
-                <Label Text="{DynamicResource apellidos}" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                <Entry x:Name="apellidos" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
-                <Label Text="{DynamicResource email}" Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                <Entry x:Name="email" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
-                <Label Text="{DynamicResource passw}" Grid.Column="0" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                <Entry x:Name="password" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
-                <Label Text="{DynamicResource rol}" Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                <Picker x:Name="rol" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
-                <Grid Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" ColumnDefinitions="*,*" RowDefinitions="*" ColumnSpacing="10">
-                    <Button x:Name="BtnRegistrarse" Text="{DynamicResource registrarse}" Clicked="BtnRegistrarse_Clicked" Grid.Column="0" Grid.Row="0" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" FontFamily="espressonal"/>
-                    <Button x:Name="BtnCancelar" Text="{DynamicResource cancelar}" Clicked="BtnCancelar_Clicked" Grid.Column="1" Grid.Row="0" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" FontFamily="espressonal"/>
+        <Grid Grid.Row="0" Grid.Column="0" ColumnDefinitions="*" RowDefinitions="*" x:Name="desktop">
+            <Frame BorderColor="{DynamicResource frame_border}" Grid.Column="0" Grid.Row="0">
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="{DynamicResource end_claro}" Offset="1.0"/>
+                        <GradientStop Color="{DynamicResource start_claro}" Offset="0.1" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <Grid RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,2*" RowSpacing="10" ColumnSpacing="10" Margin="40">
+                    <Label x:Name="nombrelbl" Text="{DynamicResource nombre}" FontSize="26"  Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                    <Entry x:Name="nombre" FontSize="26" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
+                    <Label x:Name="apellidoslbl" Text="{DynamicResource apellidos}" FontSize="26" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                    <Entry x:Name="apellidos" FontSize="26" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
+                    <Label x:Name="emaillbl" Text="{DynamicResource email}" FontSize="26" Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                    <Entry x:Name="email" FontSize="26" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
+                    <Label x:Name="passwordlbl" Text="{DynamicResource passw}" FontSize="26" Grid.Column="0" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                    <Entry x:Name="password" FontSize="26" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
+                    <Label x:Name="rollbl" Text="{DynamicResource rol}" FontSize="26" Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                    <Picker x:Name="rol" FontSize="26" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
+                    <Grid Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" ColumnDefinitions="*,*" RowDefinitions="*" ColumnSpacing="10">
+                        <Button x:Name="BtnRegistrarse" Text="{DynamicResource registrarse}" FontSize="26" Clicked="BtnRegistrarse_Clicked" Grid.Column="0" Grid.Row="0" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" FontFamily="espressonal" BorderColor="{DynamicResource frame_border}"/>
+                        <Button x:Name="BtnCancelar" Text="{DynamicResource cancelar}" FontSize="26" Clicked="BtnCancelar_Clicked" Grid.Column="1" Grid.Row="0" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" FontFamily="espressonal" BorderColor="{DynamicResource frame_border}"/>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </Frame>
+            </Frame>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="0" ColumnDefinitions="*" RowDefinitions="*" x:Name="phone" Padding="0">
+            <Frame BorderColor="{DynamicResource frame_border}" Grid.Column="0" Grid.Row="0">
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="{DynamicResource end_claro}" Offset="1.0"/>
+                        <GradientStop Color="{DynamicResource start_claro}" Offset="0.1" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <Grid RowDefinitions="*,*,*,*,*,*,Auto" ColumnDefinitions="*,2*" RowSpacing="2" ColumnSpacing="2" Padding="0">
+                    <Label x:Name="nombrelbl2" Text="{DynamicResource nombre}" FontSize="16"  Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                    <Entry x:Name="nombre2" FontSize="16" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
+                    <Label x:Name="apellidoslbl2" Text="{DynamicResource apellidos}" FontSize="16" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                    <Entry x:Name="apellidos2" FontSize="16" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
+                    <Label x:Name="emaillbl2" Text="{DynamicResource email}" FontSize="16" Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                    <Entry x:Name="email2" FontSize="16" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
+                    <Label x:Name="passwordlbl2" Text="{DynamicResource passw}" FontSize="16" Grid.Column="0" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                    <Entry x:Name="password2" FontSize="16" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
+                    <Label x:Name="rollbl2" Text="{DynamicResource rol}" FontSize="16" Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                    <Picker x:Name="rol2" FontSize="16" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
+                    <Grid Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" ColumnDefinitions="*,*" RowDefinitions="*" ColumnSpacing="10">
+                        <Button x:Name="BtnRegistrarse2" Text="{DynamicResource registrarse}" FontSize="16" Clicked="BtnRegistrarse2_Clicked"  Grid.Column="0" Grid.Row="0" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" FontFamily="espressonal" BorderColor="{DynamicResource frame_border}"/>
+                        <Button x:Name="BtnCancelar2" Text="{DynamicResource cancelar}" FontSize="16" Clicked="BtnCancelar2_Clicked"  Grid.Column="1" Grid.Row="0" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" FontFamily="espressonal" BorderColor="{DynamicResource frame_border}"/>
+                    </Grid>
+                </Grid>
+            </Frame>
+        </Grid>
     </Grid>
 </ContentPage>

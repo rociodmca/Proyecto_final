@@ -18,8 +18,22 @@ public partial class RegistroMascota : ContentPage
         viewModelDog = new ViewModelDogAPI();
         viewModelBBDD = new ViewModelBBDD();
         this.id = id;
+        double size = double.Parse(viewModelBBDD.ObtenerAjuste(id).Tam_letra);
 
         InitializeComponent();
+        nombre2lbl.FontSize = size;
+        nombre2.FontSize = size;
+        tipo2lbl.FontSize = size;
+        tipo2.FontSize = size;
+        raza2lbl.FontSize = size;
+        raza2.FontSize = size;
+        sexo2lbl.FontSize = size;
+        sexo2.FontSize = size;
+        peso2lbl.FontSize = size;
+        peso2.FontSize = size;
+        BtnRegistrarse2.FontSize = size;
+        BtnCancelar2.FontSize = size;
+        
         if (DeviceInfo.Current.Platform == DevicePlatform.Android)
         {
             phone.IsVisible = true;

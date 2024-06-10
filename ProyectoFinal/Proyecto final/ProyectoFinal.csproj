@@ -114,6 +114,9 @@
 	  <MauiXaml Update="View\Ajustes.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\Calendario.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\CuestionarioCita.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

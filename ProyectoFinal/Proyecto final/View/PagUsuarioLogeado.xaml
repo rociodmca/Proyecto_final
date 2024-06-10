@@ -87,17 +87,9 @@
     
     <Grid ColumnDefinitions="*" RowDefinitions="*">
         <ActivityIndicator Grid.Row="0" Grid.Column="0" x:Name="cargando" HeightRequest="100" WidthRequest="100" Color="{DynamicResource letra}"/>
-        <Grid Grid.Row="0" Grid.Column="0" x:Name="phone" ColumnDefinitions="*,*" RowDefinitions="Auto,*,2*,Auto" IsVisible="False" Margin="5" ColumnSpacing="20" RowSpacing="5">
+        <Grid Grid.Row="0" Grid.Column="0" x:Name="phone" ColumnDefinitions="*,*" RowDefinitions="Auto,*,Auto" IsVisible="False" Margin="5" ColumnSpacing="20" RowSpacing="5">
             <Button Text="{DynamicResource desconectar}" Grid.Row="0" Grid.Column="0" Clicked="Button_Clicked" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
-            <!--<ImageButton x:Name="avatar1" Grid.Row="0" Grid.Column="1" VerticalOptions="End" Clicked="ImageButton_Clicked" HeightRequest="60" WidthRequest="60" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"/>-->
-            <Image x:Name="avatar1" Grid.Row="0" Grid.Column="1" VerticalOptions="End" HorizontalOptions="EndAndExpand" HeightRequest="50" WidthRequest="50" BackgroundColor="Transparent">
-                <FlyoutBase.ContextFlyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem Text="{DynamicResource agregar_mascota}" Clicked="ImageButton_Clicked"/>
-                        <MenuFlyoutItem Text="{DynamicResource ajustes}" Clicked="MenuFlyoutItem_Clicked"/>
-                    </MenuFlyout>
-                </FlyoutBase.ContextFlyout>
-            </Image>
+            <ImageButton x:Name="avatar1" Grid.Row="0" Grid.Column="1" VerticalOptions="End" Clicked="ImageButton_Clicked" HeightRequest="60" WidthRequest="60" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"/>
             <Frame x:Name="mascotasF" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BorderColor="{DynamicResource frame_border}" BackgroundColor="Transparent" Padding="5">
                 <ListView x:Name="mascotas" ItemsSource="{Binding Mascota}" ItemSelected="mascotas_ItemSelected" HasUnevenRows="True" ChildRemoved="mascotas_ChildRemoved">
                     <ListView.ItemTemplate>
@@ -105,6 +97,12 @@
                             <ViewCell>
                                 <Grid RowDefinitions="*" ColumnDefinitions="*">
                                     <Frame Grid.Row="0" Grid.Column="0" BorderColor="{DynamicResource frame_border}" Margin="10" Padding="10">
+                                        <Frame.Background>
+                                            <LinearGradientBrush EndPoint="1,0">
+                                                <GradientStop Color="{DynamicResource end_claro}" Offset="1.0"/>
+                                                <GradientStop Color="{DynamicResource start_claro}" Offset="0.1" />
+                                            </LinearGradientBrush>
+                                        </Frame.Background>
                                         <HorizontalStackLayout >
                                             <StackLayout HorizontalOptions="Start">
                                                 <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
@@ -127,37 +125,23 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Frame>
-            <Frame x:Name="calenF" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Transparent" BorderColor="{DynamicResource frame_border}" Padding="5">
-                <!--<CollectionView ItemsSource="{Binding Citas}" x:Name="lista" ItemTemplate="{StaticResource CitasSelector}" SelectionMode="Single"/>-->
-                <controls:Calendar x:Name="calendario2" SelectedDates="{Binding Fechas}" VerticalOptions="Fill" HorizontalOptions="Fill" SelectedDayBackgroundColor="CornflowerBlue" EventsScrollViewVisible="True" Events="{Binding Eventos}" CalendarLayout="Week" SwipeToChangeMonthEnabled="True" HeaderSectionVisible="True" >
-                    <controls:Calendar.EventTemplate>
-                        <DataTemplate>
-                            <StackLayout Padding="15,0,0,0">
-                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                                <Label Text="{Binding Message}" FontSize="Small" LineBreakMode="WordWrap" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                            </StackLayout>
-                        </DataTemplate>
-                    </controls:Calendar.EventTemplate>
-                </controls:Calendar>
-            </Frame>
             <Button Text="{DynamicResource cambiar_pass}" Grid.Row="3" Grid.Column="0" Clicked="Button_Clicked_2" BackgroundColor="{DynamicResource btn_bgd}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
             <Button Text="{DynamicResource solicitar_cita}" Grid.Row="3" Grid.Column="1" Clicked="Button_Clicked_1" BackgroundColor="{DynamicResource btn_bgd}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
         </Grid>
-
         <Grid Grid.Row="0" Grid.Column="0" x:Name="desktop" RowDefinitions="Auto,*,*,Auto" ColumnDefinitions="*,*" IsVisible="False" Margin="20" ColumnSpacing="20" RowSpacing="10">
             <Grid Grid.Row="0" Grid.Column="0" RowDefinitions="Auto" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="20" RowSpacing="20">
-                <Button Text="{DynamicResource desconectar}" Grid.Row="0" Grid.Column="0" Clicked="Button_Clicked" HorizontalOptions="StartAndExpand" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                <Button Text="{DynamicResource desconectar}" Grid.Row="0" Grid.Column="0" Clicked="Button_Clicked_3"  HorizontalOptions="StartAndExpand" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
                 <Button Text="{DynamicResource cambiar_pass}" Grid.Row="0" Grid.Column="2" Clicked="Button_Clicked_2" HorizontalOptions="StartAndExpand" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
             </Grid>
-            <ImageButton x:Name="avatar2"  Grid.Row="0" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="EndAndExpand" Clicked="ImageButton_Clicked" HeightRequest="100" WidthRequest="100" BackgroundColor="Transparent"/>
-            <!--<Image x:Name="avatar2" Grid.Row="0" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="100" WidthRequest="100" BackgroundColor="Transparent">
+            <!--<ImageButton x:Name="avatar2"  Grid.Row="0" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="EndAndExpand" Clicked="ImageButton_Clicked" HeightRequest="100" WidthRequest="100" BackgroundColor="Transparent"/>-->
+            <Image x:Name="avatar2" Grid.Row="0" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="100" WidthRequest="100" BackgroundColor="Transparent">
                 <FlyoutBase.ContextFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem Text="{DynamicResource agregar_mascota}" Clicked="ImageButton_Clicked"/>
                         <MenuFlyoutItem Text="{DynamicResource ajustes}" Clicked="MenuFlyoutItem_Clicked"/>
                     </MenuFlyout>
                 </FlyoutBase.ContextFlyout>
-            </Image>-->
+            </Image>
             <Frame Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" BorderColor="{DynamicResource frame_border}" BackgroundColor="Transparent">
                 <Frame.Background>
                     <LinearGradientBrush EndPoint="1,0">

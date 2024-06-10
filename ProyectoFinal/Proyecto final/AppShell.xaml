@@ -6,8 +6,9 @@
     xmlns:local="clr-namespace:Proyecto_final"
     xmlns:pages="clr-namespace:Proyecto_final.View"
     x:Name="shellEstructuraNavegacion"
-    Shell.FlyoutBehavior="Disabled"
-    Shell.NavBarIsVisible="False">
+    Shell.FlyoutBehavior="Flyout"
+    Shell.NavBarIsVisible="False"
+    FlyoutBackground="{DynamicResource start}">
 
     <Shell.TitleView>
         <HorizontalStackLayout VerticalOptions="Fill">
@@ -15,17 +16,18 @@
         </HorizontalStackLayout>
     </Shell.TitleView>
 
-    <Shell.FlyoutBackground>
+    <!--<Shell.FlyoutBackground>
         <LinearGradientBrush EndPoint="1,0">
             <GradientStop Color="{DynamicResource start}" Offset="0.1"/>
             <GradientStop Color="{DynamicResource end}" Offset="1.0" />
         </LinearGradientBrush>
-    </Shell.FlyoutBackground>
+    </Shell.FlyoutBackground>-->
 
     <Shell.Resources>
         <Style Class="FlyoutItemLabelStyle" TargetType="Label">
             <Setter Property="FontFamily">espressonal</Setter>
             <Setter Property="FontSize">30</Setter>
+            <Setter Property="TextColor" Value="{DynamicResource letra}"></Setter>
         </Style>
         <Style Class="FlyoutItemImageStyle" TargetType="Image">
             <Setter Property="HeightRequest">30</Setter>
@@ -35,32 +37,47 @@
     </Shell.Resources>
 
     <!-- Phone -->
-    <TabBar x:Name="PhoneTabs" Title="Prueba">
-        <Tab Title="Home" Icon="inicio.png">
+    <TabBar x:Name="PhoneTabs" Title="nolog">
+        <Tab Title="{DynamicResource flyoutitem4}" Icon="inicio.png" Route="info">
             <ShellContent Title="Home" ContentTemplate="{DataTemplate pages:Info}" />
         </Tab>
-        <Tab Title="Login" Icon="contrasena.png">
-            <ShellContent Title="Prueba1" ContentTemplate="{DataTemplate pages:Login}"/>
+        <Tab Title="{DynamicResource flyoutitem2}" Icon="contrasena.png" Route="login">
+            <ShellContent Title="Login" x:Name="loginPhone"/>
         </Tab>
-        <Tab Title="Manual" Icon="manual.png">
-            <ShellContent Title="Prueba3" ContentTemplate="{DataTemplate pages:Manual}"/>
+        <Tab Title="{DynamicResource flyoutitem1}" Icon="editar.png" Route="registro">
+            <ShellContent Title="Login" x:Name="registerPhone" ContentTemplate="{DataTemplate pages:RegistroUsuario}"/>
+        </Tab>
+        <Tab Title="{DynamicResource flyoutitem3}" Icon="manual.png" Route="manual">
+            <ShellContent ContentTemplate="{DataTemplate pages:Manual}"/>
+        </Tab>
+    </TabBar>
+
+    <TabBar x:Name="PhoneTabs2" Title="log">
+        <Tab Title="{DynamicResource flyoutitem6}" Icon="calendario.png" Route="calendario">
+            <ShellContent x:Name="calendarPhone"/>
+        </Tab>
+        <Tab Title="Home" Icon="inicio.png" Route="home">
+            <ShellContent x:Name="homePhone"/>
+        </Tab>
+        <Tab Title="{DynamicResource flyoutitem5}" Icon="ajustes.png" Route="ajustes">
+            <ShellContent x:Name="settingsPhone"/>
         </Tab>
     </TabBar>
 
     <ShellContent
-        Title="Bienvenid@"
+        Title="{DynamicResource bienvenida}"
         ContentTemplate="{DataTemplate pages:Info}"
         Route="MainPage" 
         Icon="huella2.png"/>
 
-    <FlyoutItem Title="Registro" Icon="editar.png">
-        <ShellContent Title="Prueba1" ContentTemplate="{DataTemplate pages:RegistroUsuario}"/>
+    <FlyoutItem Title="{DynamicResource flyoutitem1}" Icon="editar2.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:RegistroUsuario}"/>
     </FlyoutItem>
-    <FlyoutItem Title="Login" Icon="contrasena.png">
-        <ShellContent Title="Login" x:Name="loginDesktop"/>
+    <FlyoutItem Title="{DynamicResource flyoutitem2}" Icon="contrasena2.png">
+        <ShellContent x:Name="loginDesktop"/>
     </FlyoutItem>
-    <FlyoutItem Title="Manual" Icon="ajustes.png">
-        <ShellContent Title="Prueba5" ContentTemplate="{DataTemplate pages:Manual}"/>
+    <FlyoutItem Title="{DynamicResource flyoutitem3}" Icon="manual2.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:Manual}"/>
     </FlyoutItem>
 
     <Shell.FlyoutHeader>

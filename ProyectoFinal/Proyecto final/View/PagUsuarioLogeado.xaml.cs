@@ -46,23 +46,12 @@ public partial class PagUsuarioLogeado : ContentPage
 
         InitializeComponent();
         
-        Appearing += MainPage_Appearing;
+        
 
         mascotas.IsVisible = false;
         mascotas2.IsVisible = false;
 
         string idioma = viewModelBBDD.ObtenerAjuste(id).Idioma;
-        if (DeviceInfo.Current.Platform == DevicePlatform.Android)
-        {
-            if (idioma == "Espanol")
-            {
-                calendario2.Culture = new System.Globalization.CultureInfo("es-ES");
-            }
-            if (idioma == "Ingles")
-            {
-                calendario2.Culture = new System.Globalization.CultureInfo("en-GB");
-            }
-        }
         if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
         {
             if (idioma == "Espanol")
@@ -83,6 +72,7 @@ public partial class PagUsuarioLogeado : ContentPage
         {
             avatar2.Source = diceBearAPI.OnGenerateAvatar(nombre);
         }
+        Appearing += MainPage_Appearing;
         //CargarPag();
     }
 
@@ -119,8 +109,6 @@ public partial class PagUsuarioLogeado : ContentPage
                 desktop.IsVisible = false;
                 mascotas.ItemsSource = viewModelMascota.Mascotas;
                 mascotas.IsVisible = true;
-                calendario2.Events = viewModelEvento.eventos;
-                calendario2.IsVisible = true;
             });
         }
         if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
@@ -162,8 +150,7 @@ public partial class PagUsuarioLogeado : ContentPage
         miListaDiccionarios.Clear();
         miListaDiccionarios.Add(new TemaClaro());
         miListaDiccionarios.Add(new Espanol());
-        apps.FlyoutBehavior = FlyoutBehavior.Flyout;
-        Navigation.PopAsync();
+        Shell.Current.GoToAsync("//info");
     }
 
     private void Button_Clicked_1(object sender, EventArgs e)
@@ -182,8 +169,8 @@ public partial class PagUsuarioLogeado : ContentPage
         bool msg = await DisplayAlert("Guardar mascota", "¿Quieres guardar una mascota?", "Aceptar", "Cancelar");
         if (msg)
         {
-            //await Navigation.PushAsync(new RegistroMascota(id));
-            await Navigation.PushAsync(new Ajustes(id));
+            await Navigation.PushAsync(new RegistroMascota(id));
+            //await Navigation.PushAsync(new Ajustes(id));
         }
     }
 
@@ -224,7 +211,7 @@ public partial class PagUsuarioLogeado : ContentPage
     private async void MenuFlyoutItem_Clicked(object sender, EventArgs e)
     {
         await Task.Delay(10);
-        await Navigation.PushAsync(new Ajustes(id));
+        await Navigation.PushAsync(new Ajustes(id, apps));
     }
 
     protected override bool OnBackButtonPressed()
@@ -246,5 +233,16 @@ public partial class PagUsuarioLogeado : ContentPage
         });
 
         return true;
+    }
+
+    private void Button_Clicked_3(object sender, EventArgs e)
+    {
+        ICollection<ResourceDictionary> miListaDiccionarios;
+        miListaDiccionarios = Application.Current.Resources.MergedDictionaries;
+        miListaDiccionarios.Clear();
+        miListaDiccionarios.Add(new TemaClaro());
+        miListaDiccionarios.Add(new Espanol());
+        apps.FlyoutBehavior = FlyoutBehavior.Flyout;
+        Navigation.PopAsync();
     }
 }

@@ -3,6 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_final.Resources.Idiomas.Ingles">
 
+    <x:String x:Key="bienvenida">Welcome</x:String>
+    <x:String x:Key="flyoutitem1">Register</x:String>
+    <x:String x:Key="flyoutitem2">Access</x:String>
+    <x:String x:Key="flyoutitem3">Manual</x:String>
+    <x:String x:Key="flyoutitem4">Info</x:String>
+    <x:String x:Key="flyoutitem5">Settings</x:String>
+    <x:String x:Key="flyoutitem6">Calendar</x:String>
+    <x:String x:Key="flyoutitem7">Home</x:String>
     <x:String x:Key="ajustes1">INFORMATION</x:String>
     <x:String x:Key="ajustes2">Settings saved successfully</x:String>
     <x:String x:Key="ajustes3">Ok</x:String>
@@ -23,12 +31,13 @@
         <x:String>Dark</x:String>
         <x:String>High contrast</x:String>
     </x:Array>
+    <x:String x:Key="tam_letra_info">Font size</x:String>
     <x:String x:Key="info1">Welcome to VetCare, your digital companion for the comprehensive care of your pet!&#x0a;&#x0a;</x:String>
     <x:String x:Key="info2">At VetCare, we understand that your pets are part of your family. That's why we've designed a comprehensive and easy-to-use app that will help you manage all aspects of your furry friends' well-being. With VetCare, you can:&#x0a;
-    Gestionar Historial Médico: Guarda y accede a los registros médicos de tu mascota, incluyendo vacunaciones, tratamientos, y citas en el veterinario, todo en un solo lugar.&#x0a;
-    Citas Veterinarias: Agenda y gestiona citas con tu veterinario de confianza de manera rápida y sencilla.&#x0a;
-    Emergencias: Encuentra rápidamente los contactos y las direcciones de clínicas veterinarias cercanas en caso de emergencia.&#x0a;
-    Nuestra misión es hacer que el cuidado de tu mascota sea más eficiente y accesible, permitiéndote dedicar más tiempo a disfrutar de los momentos especiales con tu compañero de cuatro patas. Explora VetCare y descubre cómo podemos ayudarte a brindar la mejor atención a tu mascota, en cualquier momento y en cualquier lugar.
+    Manage Medical History: Save and access your pet's medical records, including vaccinations, treatments, and vet appointments, all in one place.&#x0a;
+    Veterinary Appointments: Schedule and manage appointments with your trusted veterinarian quickly and easily.&#x0a;
+    Emergencies: Quickly find contacts and addresses of nearby veterinary clinics in case of emergency.&#x0a;
+    Our mission is to make pet care more efficient and accessible, allowing you to spend more time enjoying special moments with your four-legged companion. Explore VetCare and find out how we can help you provide the best care for your pet, anytime, anywhere.
     </x:String>
     <x:String x:Key="salir1">SIGN OFF</x:String>
     <x:String x:Key="salir2">Are you sure you want to leave?</x:String>

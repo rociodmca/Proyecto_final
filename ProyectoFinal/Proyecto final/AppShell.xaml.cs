@@ -10,16 +10,20 @@ namespace Proyecto_final
         {
             InitializeComponent();
             loginDesktop.Content = new View.Login(this);
-            
+            loginPhone.Content = new View.Login(this);
+                 
             if (DeviceInfo.Current.Platform == DevicePlatform.Android)
             {
                 PhoneTabs.IsVisible = true;
                 FlyoutBehavior = FlyoutBehavior.Disabled;
                 SetNavBarIsVisible(this, false);
+                //SetTabBarIsVisible(this, true);
+                GoToAsync("///info");
             }
             if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
             {
                 PhoneTabs.IsVisible = false;
+                PhoneTabs2.IsVisible = false;
                 FlyoutBehavior = FlyoutBehavior.Flyout;
             }
         }

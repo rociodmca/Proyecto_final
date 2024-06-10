@@ -50,15 +50,15 @@
                 </Frame.Background>
                 <ScrollView>
                     <Grid RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,3*" RowSpacing="20" ColumnSpacing="20" Margin="20">
-                        <Label Text="{DynamicResource nombre}" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label x:Name="nombre2lbl" Text="{DynamicResource nombre}" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
                         <Entry x:Name="nombre2" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
-                        <Label Text="{DynamicResource tipo}" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label x:Name="tipo2lbl" Text="{DynamicResource tipo}" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
                         <Picker x:Name="tipo2" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" SelectedIndexChanged="Tipo2_SelectedIndexChanged"  TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
-                        <Label Text="{DynamicResource raza}" Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label x:Name="raza2lbl" Text="{DynamicResource raza}" Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
                         <Picker x:Name="raza2" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
-                        <Label Text="{DynamicResource sexo}" Grid.Column="0" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label x:Name="sexo2lbl" Text="{DynamicResource sexo}" Grid.Column="0" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
                         <Picker x:Name="sexo2" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
-                        <Label Text="{DynamicResource peso}" Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label x:Name="peso2lbl" Text="{DynamicResource peso}" Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
                         <Entry x:Name="peso2" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" Keyboard="Numeric" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
                         <Grid Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" ColumnDefinitions="*,*" RowDefinitions="*" ColumnSpacing="10">
                             <Button x:Name="BtnRegistrarse2" Text="{DynamicResource guardar_mascota}" Clicked="BtnRegistrarse2_Clicked"  Grid.Column="0" Grid.Row="0" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" HorizontalOptions="Center" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>

@@ -10,26 +10,49 @@
             <GradientStop Color="{DynamicResource end_claro}" Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>
-    
-    <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="*,Auto,*">
-        <Frame Grid.Row="1" Grid.Column="1" BorderColor="{DynamicResource frame_border}">
-            <Frame.Background>
-                <LinearGradientBrush EndPoint="1,0">
-                    <GradientStop Color="{DynamicResource start_claro}" Offset="1.0"/>
-                    <GradientStop Color="{DynamicResource end_claro}" Offset="0.1" />
-                </LinearGradientBrush>
-            </Frame.Background>
-            <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="20" RowSpacing="20">
-                <Label Grid.Row="1" Grid.Column="0" x:Name="tema" Text="{DynamicResource tema}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta tema" FontFamily="espressonal"/>
-                <RadioButton Grid.Column="1" Grid.Row="0" x:Name="op1" Content="{DynamicResource tema_claro}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" GroupName="Temas" CheckedChanged="RadioButton_CheckedChanged"  Value="0" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Opción para elegir el tema original" SemanticProperties.Description="Opción para elegir el tema original" FontFamily="espressonal"/>
-                <RadioButton Grid.Column="1" Grid.Row="1" x:Name="op2" Content="{DynamicResource tema_oscuro}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" GroupName="Temas" CheckedChanged="RadioButton_CheckedChanged" Value="1" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Opción para elegir el tema oscuro" SemanticProperties.Description="Opción para elegir el tema oscuro" FontFamily="espressonal"/>
-                <RadioButton Grid.Column="1" Grid.Row="2" x:Name="op3" Content="{DynamicResource alto_contraste}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" GroupName="Temas" CheckedChanged="RadioButton_CheckedChanged" Value="2" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Opción para elegir el tema de alto contraste" SemanticProperties.Description="Opción para elegir el tema de alto contraste" FontFamily="espressonal"/>
-                <Label Grid.Row="3" Grid.Column="0" x:Name="tam_letra_lbl" Text="{DynamicResource tam_letra}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta tamaño de letra" FontFamily="espressonal"/>
-                <Slider Grid.Row="3" Grid.Column="1" x:Name="tam_letra" Minimum="10" Maximum="40" Value="11" WidthRequest="300" ValueChanged="tam_letra_ValueChanged" ToolTipProperties.Text="Slider para modificar el tamaño de la tera"/>
-                <Label Grid.Row="4" Grid.Column="0" x:Name="idiomals_lbl" Text="{DynamicResource idioma}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta idioma" FontFamily="espressonal"/>
-                <Picker Grid.Row="4" Grid.Column="1" x:Name="idiomas" TextColor="{DynamicResource letra}" SelectedIndexChanged="idiomas_SelectedIndexChanged" ToolTipProperties.Text="Selector de idioma" FontFamily="espressonal"/>
-                <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Text="{DynamicResource guardar_cambios}" x:Name="guardar" Clicked="guardar_Clicked"  ToolTipProperties.Text="Botón guardar cambios" SemanticProperties.Description="Botón guardar cambios" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
-            </Grid>
-        </Frame>
+
+    <Grid ColumnDefinitions="*" RowDefinitions="*">
+        <Grid Grid.Row="0" Grid.Column="0" ColumnDefinitions="*,Auto,*" RowDefinitions="*,Auto,*" x:Name="desktop">
+            <Frame Grid.Row="1" Grid.Column="1" BorderColor="{DynamicResource frame_border}">
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="{DynamicResource start_claro}" Offset="1.0"/>
+                        <GradientStop Color="{DynamicResource end_claro}" Offset="0.1" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="20" RowSpacing="20">
+                    <Label Grid.Row="1" Grid.Column="0" x:Name="tema" Text="{DynamicResource tema}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta tema" FontFamily="espressonal"/>
+                    <RadioButton Grid.Column="1" Grid.Row="0" x:Name="op1" Content="{DynamicResource tema_claro}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" GroupName="Temas" CheckedChanged="RadioButton_CheckedChanged"  Value="0" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Opción para elegir el tema original" SemanticProperties.Description="Opción para elegir el tema original" FontFamily="espressonal"/>
+                    <RadioButton Grid.Column="1" Grid.Row="1" x:Name="op2" Content="{DynamicResource tema_oscuro}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" GroupName="Temas" CheckedChanged="RadioButton_CheckedChanged" Value="1" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Opción para elegir el tema oscuro" SemanticProperties.Description="Opción para elegir el tema oscuro" FontFamily="espressonal"/>
+                    <RadioButton Grid.Column="1" Grid.Row="2" x:Name="op3" Content="{DynamicResource alto_contraste}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" GroupName="Temas" CheckedChanged="RadioButton_CheckedChanged" Value="2" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Opción para elegir el tema de alto contraste" SemanticProperties.Description="Opción para elegir el tema de alto contraste" FontFamily="espressonal"/>
+                    <Label Grid.Row="3" Grid.Column="0" x:Name="tam_letra_lbl" Text="{DynamicResource tam_letra}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta tamaño de letra" FontFamily="espressonal"/>
+                    <Slider Grid.Row="3" Grid.Column="1" x:Name="tam_letra" Minimum="10" Maximum="40" Value="11" WidthRequest="300" ValueChanged="tam_letra_ValueChanged" ToolTipProperties.Text="Slider para modificar el tamaño de la tera"/>
+                    <Label Grid.Row="4" Grid.Column="0" x:Name="idiomals_lbl" Text="{DynamicResource idioma}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta idioma" FontFamily="espressonal"/>
+                    <Picker Grid.Row="4" Grid.Column="1" x:Name="idiomas" TextColor="{DynamicResource letra}" SelectedIndexChanged="idiomas_SelectedIndexChanged" ToolTipProperties.Text="Selector de idioma" FontFamily="espressonal"/>
+                    <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Text="{DynamicResource guardar_cambios}" x:Name="guardar" Clicked="guardar_Clicked"  ToolTipProperties.Text="Botón guardar cambios" SemanticProperties.Description="Botón guardar cambios" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                </Grid>
+            </Frame>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="0" ColumnDefinitions="*,Auto,*" RowDefinitions="*,Auto,*" x:Name="phone" >
+            <Frame Grid.Row="1" Grid.Column="1" BorderColor="{DynamicResource frame_border}">
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="{DynamicResource start_claro}" Offset="1.0"/>
+                        <GradientStop Color="{DynamicResource end_claro}" Offset="0.1" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="20" RowSpacing="20">
+                    <Label Grid.Row="1" Grid.Column="0" x:Name="tema2" Text="{DynamicResource tema}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta tema" FontFamily="espressonal"/>
+                    <RadioButton Grid.Column="1" Grid.Row="0" x:Name="op12" Content="{DynamicResource tema_claro}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" GroupName="Temas2" CheckedChanged="op12_CheckedChanged"  Value="3" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Opción para elegir el tema original" SemanticProperties.Description="Opción para elegir el tema original" FontFamily="espressonal"/>
+                    <RadioButton Grid.Column="1" Grid.Row="1" x:Name="op22" Content="{DynamicResource tema_oscuro}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" GroupName="Temas2" CheckedChanged="op12_CheckedChanged"  Value="4" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Opción para elegir el tema oscuro" SemanticProperties.Description="Opción para elegir el tema oscuro" FontFamily="espressonal"/>
+                    <RadioButton Grid.Column="1" Grid.Row="2" x:Name="op32" Content="{DynamicResource alto_contraste}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" GroupName="Temas2" CheckedChanged="op12_CheckedChanged"  Value="5" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Opción para elegir el tema de alto contraste" SemanticProperties.Description="Opción para elegir el tema de alto contraste" FontFamily="espressonal"/>
+                    <Label Grid.Row="3" Grid.Column="0" x:Name="tam_letra_lbl2" Text="{DynamicResource tam_letra}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta tamaño de letra" FontFamily="espressonal"/>
+                    <Slider Grid.Row="3" Grid.Column="1" x:Name="tam_letra2" Minimum="10" Maximum="40" Value="11" WidthRequest="100" ValueChanged="tam_letra2_ValueChanged"  ToolTipProperties.Text="Slider para modificar el tamaño de la tera"/>
+                    <Label Grid.Row="4" Grid.Column="0" x:Name="idiomals_lbl2" Text="{DynamicResource idioma}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta idioma" FontFamily="espressonal"/>
+                    <Picker Grid.Row="4" Grid.Column="1" x:Name="idiomas2" TextColor="{DynamicResource letra}" SelectedIndexChanged="idiomas_SelectedIndexChanged" ToolTipProperties.Text="Selector de idioma" FontFamily="espressonal"/>
+                    <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Text="{DynamicResource guardar_cambios}" x:Name="guardar2" Clicked="guardar2_Clicked"  ToolTipProperties.Text="Botón guardar cambios" SemanticProperties.Description="Botón guardar cambios" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                </Grid>
+            </Frame>
+        </Grid>
     </Grid>
 </ContentPage>

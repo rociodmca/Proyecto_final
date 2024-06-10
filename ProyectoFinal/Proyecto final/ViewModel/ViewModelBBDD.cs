@@ -108,6 +108,15 @@ namespace Proyecto_final.ViewModel
             }catch (Exception) { return false; }
         }
 
+        public bool BorrarMascota(string id)
+        {
+            try
+            {
+                bbdd.RemovePet(id);
+                return true;
+            } catch (Exception) { return false; }
+        }
+
         public List<Mascota> ObtenerListaMascotas(ObjectId id)
         {
             List<Mascota> mascotas;
@@ -153,11 +162,6 @@ namespace Proyecto_final.ViewModel
             List<Cita> citas;
             citas = bbdd.GetDatesVet(id);
             return citas;
-        }
-
-        public Dictionary<string, Object> ObtenerCitasP(string id)
-        {
-            return bbdd.GetDatesList(id);
         }
 
         public Ajuste ObtenerAjuste(ObjectId id)

@@ -10,11 +10,24 @@ public partial class RegistroUsuario : ContentPage
     public RegistroUsuario()
     {
         roles = [1, 2, 3];
-        InitializeComponent();
-        rol.ItemsSource = roles;
-        rol.SelectedIndex = 2;
-        //rol.IsEnabled = false;
         viewModelBBDD = new ViewModelBBDD();
+        InitializeComponent();
+        if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+        {
+            desktop.IsVisible = false;
+            phone.IsVisible = true;
+            rol2.ItemsSource = roles;
+            rol2.SelectedIndex = 2;
+            //rol.IsEnabled = false;
+        }
+        if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
+        {
+            desktop.IsVisible = true;
+            phone.IsVisible = false;
+            rol.ItemsSource = roles;
+            rol.SelectedIndex = 2;
+            //rol.IsEnabled = false;
+        }
     }
 
     public RegistroUsuario(int optionalRol)
@@ -47,5 +60,27 @@ public partial class RegistroUsuario : ContentPage
         email.Text = "";
         password.Text = "";
         rol.SelectedIndex = -1;
+    }
+
+    private void BtnCancelar2_Clicked(object sender, EventArgs e)
+    {
+        nombre2.Text = "";
+        apellidos2.Text = "";
+        email2.Text = "";
+        password2.Text = "";
+        rol2.SelectedIndex = -1;
+    }
+
+    private void BtnRegistrarse2_Clicked(object sender, EventArgs e)
+    {
+        if ((nombre2.Text.Length != 0) && (apellidos2.Text.Length != 0) && (email2.Text.Length != 0) && (password2.Text.Length != 0) && (rol2.SelectedIndex != -1))
+        {
+            viewModelBBDD.InsertarUsuario(nombre2.Text, apellidos2.Text, email2.Text, password2.Text, (rol2.SelectedIndex + 1));
+            nombre2.Text = "";
+            apellidos2.Text = "";
+            email2.Text = "";
+            password2.Text = "";
+            rol2.SelectedIndex = -1;
+        }
     }
 }

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto_final.View.Calendario"
+             xmlns:controls="clr-namespace:Plugin.Maui.Calendar.Controls;assembly=Plugin.Maui.Calendar"
+             xmlns:pages="clr-namespace:Proyecto_final.ViewModel"
+             Title="Calendario">
+
+    <ContentPage.Background>
+        <RadialGradientBrush Center="0.5,0.5">
+            <GradientStop Color="{DynamicResource start_claro}" Offset="1.0"/>
+            <GradientStop Color="{DynamicResource end_claro}" Offset="0.1" />
+        </RadialGradientBrush>
+    </ContentPage.Background>
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="cita1">
+            <Grid RowDefinitions="*" ColumnDefinitions="*" IsEnabled="True">
+                <Frame Grid.Row="0" Grid.Column="0" BorderColor="{DynamicResource frame_border}" Margin="20">
+                    <StackLayout>
+                        <Label Text="{Binding Id_cliente}" FontAttributes="Bold" FontSize="20" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label Text="{Binding Fecha}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label Text="{Binding Id_mascota}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label Text="{Binding Id_veterinario}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="cita2">
+            <Grid RowDefinitions="*" ColumnDefinitions="*" IsEnabled="False">
+                <Frame Grid.Row="0" Grid.Column="0" BorderColor="{DynamicResource frame_border}"  Margin="20">
+                    <StackLayout IsEnabled="False">
+                        <Label Text="{Binding Id_cliente}" FontAttributes="Bold" FontSize="20" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label Text="{Binding Fecha}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label Text="{Binding Id_mascota}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        <Label Text="{Binding Id_veterinario}" FontAttributes="Italic" VerticalOptions="End" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </DataTemplate>
+
+        <pages:CitaTemplateSelector x:Key="CitasSelector"
+                                    ValidTemplate="{StaticResource cita1}"
+                                    InvalidTemplate="{StaticResource cita2}" />
+
+        <DataTemplate x:Key="mascotas2dt">
+            <ViewCell>
+                <Grid RowDefinitions="*" ColumnDefinitions="*" Padding="10">
+                    <Frame Grid.Row="0" Grid.Column="0" BorderColor="{DynamicResource frame_border}" Margin="20">
+                        <Frame.Background>
+                            <LinearGradientBrush EndPoint="1,0">
+                                <GradientStop Color="{DynamicResource start_claro}" Offset="1.0"/>
+                                <GradientStop Color="{DynamicResource end_claro}" Offset="0.1" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+                        <HorizontalStackLayout Spacing="20">
+                            <StackLayout HorizontalOptions="Start" VerticalOptions="Center" >
+                                <Border StrokeThickness="6" StrokeShape="RoundRectangle 40,0,0,40" Background="#FBE8FB" Padding="0,0" HorizontalOptions="Center">
+                                    <Border.Stroke>
+                                        <LinearGradientBrush EndPoint="0,1">
+                                            <GradientStop Color="{DynamicResource start}" Offset="0.1" />
+                                            <GradientStop Color="{DynamicResource end}" Offset="1.0" />
+                                        </LinearGradientBrush>
+                                    </Border.Stroke>
+                                    <Image HeightRequest="200">
+                                        <Image.Source>
+                                            <UriImageSource Uri="{Binding Imagen}"/>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="End" VerticalOptions="Center">
+                                <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="20" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                <Label Text="{Binding Tipo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                <Label Text="{Binding Raza}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                <Label Text="{Binding Sexo}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                <Label Text="{Binding Peso}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                                <Label Text="{Binding Vacunas}" FontAttributes="Italic" VerticalOptions="End" FontSize="18" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                            </StackLayout>
+                        </HorizontalStackLayout>
+                    </Frame>
+                </Grid>
+            </ViewCell>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <Grid ColumnDefinitions="*" RowDefinitions="*">
+        <Frame x:Name="calenF" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Transparent" BorderColor="{DynamicResource frame_border}" Padding="5">
+            <!--<CollectionView ItemsSource="{Binding Citas}" x:Name="lista" ItemTemplate="{StaticResource CitasSelector}" SelectionMode="Single"/>-->
+            <controls:Calendar x:Name="calendario2" SelectedDates="{Binding Fechas}" VerticalOptions="Fill" HorizontalOptions="Fill" SelectedDayBackgroundColor="CornflowerBlue" EventsScrollViewVisible="True" Events="{Binding Eventos}" SwipeToChangeMonthEnabled="True" HeaderSectionVisible="True" >
+                <controls:Calendar.EventTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="15,0,0,0">
+                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                            <Label Text="{Binding Message}" FontSize="Small" LineBreakMode="WordWrap" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </controls:Calendar.EventTemplate>
+            </controls:Calendar>
+        </Frame>
+    </Grid>
+</ContentPage>

@@ -3,6 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_final.Resources.Idiomas.Espanol">
 
+    <x:String x:Key="bienvenida">Bienvenid@</x:String>
+    <x:String x:Key="flyoutitem1">Registro</x:String>
+    <x:String x:Key="flyoutitem2">Acceso</x:String>
+    <x:String x:Key="flyoutitem3">Manual</x:String>
+    <x:String x:Key="flyoutitem4">Info</x:String>
+    <x:String x:Key="flyoutitem5">Ajustes</x:String>
+    <x:String x:Key="flyoutitem6">Calendario</x:String>
+    <x:String x:Key="flyoutitem7">Inicio</x:String>
     <x:String x:Key="ajustes1">INFORMACIÓN</x:String>
     <x:String x:Key="ajustes2">Ajustes guardados correctamente</x:String>
     <x:String x:Key="ajustes3">Ok</x:String>
@@ -23,6 +31,7 @@
         <x:String>Tema oscuro</x:String>
         <x:String>Tema alto contraste</x:String>
     </x:Array>
+    <x:String x:Key="tam_letra_info">Tamaño de letra</x:String>
     <x:String x:Key="info1">¡Bienvenid@ a VetCare, tu compañero digital para el cuidado integral de tu mascota!&#x0a;&#x0a;</x:String>
     <x:String x:Key="info2">En VetCare, entendemos que tus mascotas son parte de tu familia. Por eso, hemos diseñado una aplicación completa y fácil de usar que te ayudará a gestionar todos los aspectos del bienestar de tus amigos peludos. Con VetCare, puedes:&#x0a;
     Gestionar Historial Médico: Guarda y accede a los registros médicos de tu mascota, incluyendo vacunaciones, tratamientos, y citas en el veterinario, todo en un solo lugar.&#x0a;
@@ -45,6 +54,8 @@
     <x:String x:Key="solicitar_cita">SOLICITAR CITA</x:String>
     <x:String x:Key="acceso_mascotas">ACCESO A FICHAS DE MASCOTAS</x:String>
     <x:String x:Key="acceso_citas">ACCESO A CITAS PROGRAMADAS</x:String>
+    <x:String x:Key="acceso_ajustes">ACCESO A AJUSTES</x:String>
+    <x:String x:Key="borrar_mascota">BORRAR MASCOTA</x:String>
     <x:String x:Key="borrar_usuario">BORRAR USUARIO</x:String>
     <x:String x:Key="agregar_veterinario">AGREGAR VETERINARIO</x:String>
     <x:String x:Key="nueva_pass">Introduce la nueva contraseña</x:String>
