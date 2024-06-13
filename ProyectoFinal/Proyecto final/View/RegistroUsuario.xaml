@@ -28,7 +28,7 @@
                     <Label x:Name="emaillbl" Text="{DynamicResource email}" FontSize="26" Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
                     <Entry x:Name="email" FontSize="26" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
                     <Label x:Name="passwordlbl" Text="{DynamicResource passw}" FontSize="26" Grid.Column="0" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                    <Entry x:Name="password" FontSize="26" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
+                    <Entry x:Name="password" FontSize="26" Grid.Column="1" Grid.Row="3" IsPassword="True" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
                     <Label x:Name="rollbl" Text="{DynamicResource rol}" FontSize="26" Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
                     <Picker x:Name="rol" FontSize="26" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
                     <Grid Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" ColumnDefinitions="*,*" RowDefinitions="*" ColumnSpacing="10">
@@ -54,7 +54,7 @@
                     <Label x:Name="emaillbl2" Text="{DynamicResource email}" FontSize="16" Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
                     <Entry x:Name="email2" FontSize="16" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
                     <Label x:Name="passwordlbl2" Text="{DynamicResource passw}" FontSize="16" Grid.Column="0" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
-                    <Entry x:Name="password2" FontSize="16" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
+                    <Entry x:Name="password2" FontSize="16" Grid.Column="1" Grid.Row="3" IsPassword="True" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
                     <Label x:Name="rollbl2" Text="{DynamicResource rol}" FontSize="16" Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{DynamicResource letra}" FontFamily="espressonal"/>
                     <Picker x:Name="rol2" FontSize="16" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" TextColor="{DynamicResource letra}" BackgroundColor="{DynamicResource bgd}" FontFamily="espressonal"/>
                     <Grid Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" ColumnDefinitions="*,*" RowDefinitions="*" ColumnSpacing="10">

@@ -14,6 +14,11 @@ public partial class Ajustes : ContentPage
     int idTema, idTema2;
     AppShell apps;
 
+    /// <summary>
+    /// Constructor de la clase Ajustes
+    /// </summary>
+    /// <param name="id">identificador del usuario</param>
+    /// <param name="apps"></param>
     public Ajustes(ObjectId id, AppShell apps)
     {
         viewModelBBDD = new ViewModelBBDD();
@@ -30,8 +35,8 @@ public partial class Ajustes : ContentPage
         }
         if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
         {
-            phone.IsVisible = false;
             desktop.IsVisible = true;
+            phone.IsVisible = false;
             idiomas.ItemsSource = idiomasList;
             if (viewModelAjuste.ajuste.Idioma == "Espanol")
             {
@@ -69,11 +74,20 @@ public partial class Ajustes : ContentPage
 
     }
 
+    /// <summary>
+    /// Método al que se llama cuando aparece se muestra esta ContentPage
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void MainPage_Appearing(object sender, EventArgs e)
     {
         CargarPag();
     }
 
+    /// <summary>
+    /// Método para ajustar la interfaz con los datos de la tabla Ajustes guardados en 
+    /// la base de datos
+    /// </summary>
     public void CargarPag()
     {
         viewModelAjuste.ajuste = viewModelBBDD.ObtenerAjuste(id);
@@ -122,6 +136,11 @@ public partial class Ajustes : ContentPage
         }
     }
 
+    /// <summary>
+    /// Método asociado al radiobutton de selección del tema
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         RadioButton miRadioButton = sender as RadioButton;
@@ -182,6 +201,11 @@ public partial class Ajustes : ContentPage
         }
     }
 
+    /// <summary>
+    /// Método asociado al botón para guardar los ajustes
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private async void guardar_Clicked(object sender, EventArgs e)
     {
         string tema_ = "", idioma_ = "";
@@ -215,9 +239,13 @@ public partial class Ajustes : ContentPage
         }
     }
 
+    /// <summary>
+    /// Método asociado al slider para modificar el tamaño de la letra
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void tam_letra_ValueChanged(object sender, ValueChangedEventArgs e)
     {
-        //DisplayAlert("Info", tam_letra.Value.ToString(), "Ok");
         tema.FontSize = tam_letra.Value;
         tam_letra_lbl.FontSize = tam_letra.Value;
         idiomals_lbl.FontSize = tam_letra.Value;
@@ -228,6 +256,11 @@ public partial class Ajustes : ContentPage
         idiomas.FontSize = tam_letra.Value;
     }
 
+    /// <summary>
+    /// Método asociado al selector de idiomas
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void idiomas_SelectedIndexChanged(object sender, EventArgs e)
     {
         ICollection<ResourceDictionary> miListaDiccionarios;
@@ -279,6 +312,11 @@ public partial class Ajustes : ContentPage
         }
     }
 
+    /// <summary>
+    /// Método asociado al botón para guardar los ajustes
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private async void guardar2_Clicked(object sender, EventArgs e)
     {
         string tema_ = "", idioma_ = "";
@@ -304,14 +342,19 @@ public partial class Ajustes : ContentPage
         }
         if (viewModelBBDD.ActualizarAjuste(id, tema_, tam_letra2.Value.ToString(), idioma_))
         {
-            /*var recurso1 = (string)Application.Current.Resources["ajustes1"];
+            var recurso1 = (string)Application.Current.Resources["ajustes1"];
             var recurso2 = (string)Application.Current.Resources["ajustes2"];
             var recurso3 = (string)Application.Current.Resources["ajustes3"];
-            await DisplayAlert(recurso1, recurso2, recurso3);*/
-            //await Navigation.PopAsync();
+            await DisplayAlert(recurso1, recurso2, recurso3);
+            await Navigation.PopAsync();
         }
     }
 
+    /// <summary>
+    /// Método asociado al slider para modificar el tamaño de la letra
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void tam_letra2_ValueChanged(object sender, ValueChangedEventArgs e)
     {
         tema2.FontSize = tam_letra2.Value;
@@ -324,6 +367,11 @@ public partial class Ajustes : ContentPage
         idiomas2.FontSize = tam_letra2.Value;
     }
 
+    /// <summary>
+    /// Método asociado al radiobutton de temas
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void op12_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         RadioButton miRadioButton = sender as RadioButton;

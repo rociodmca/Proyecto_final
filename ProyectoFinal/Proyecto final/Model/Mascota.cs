@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Proyecto_final.Model
 {
+    /// <summary>
+    /// Clase Mascota
+    /// </summary>
     public class Mascota
     {
         [BsonId]

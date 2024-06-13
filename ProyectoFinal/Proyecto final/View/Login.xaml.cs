@@ -14,6 +14,10 @@ public partial class Login : ContentPage
     ViewModelBBDD viewModelBBDD;
     private AppShell apps;
 
+    /// <summary>
+    /// Constructor para inicializar los controles
+    /// </summary>
+    /// <param name="apps"></param>
     public Login(AppShell apps)
     {
         this.apps = apps;
@@ -40,6 +44,11 @@ public partial class Login : ContentPage
         this.apps = apps;
     }
 
+    /// <summary>
+    /// Método asociado al botón de login
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private async void BtnLog_Clicked(object sender, EventArgs e)
     {
         if (email1.Text != null && password1.Text != null)
@@ -49,45 +58,45 @@ public partial class Login : ContentPage
             hilo.Start();
             string text = viewModelBBDD.ObtenerId(email1.Text, password1.Text);
             int rol = viewModelBBDD.ObtenerRol(email1.Text, password1.Text);
-            /*ToastDuration duration = ToastDuration.Short;
-            double fontSize = 14;*/
-            //Toast.Make(text, duration, fontSize).Show();
-
             if (rol == 1)
             {
                 email1.Text = null;
                 password1.Text = null;
-                await Navigation.PushAsync(new PanelAdministracion(apps));
+                await DisplayAlert("Info", "Usuario no compatible con el dispositivo", "Ok");
             }
             if (rol == 2)
             {
                 email1.Text = null;
                 password1.Text = null;
-                await Navigation.PushAsync(new PagVeterinario(new ObjectId(text), apps));
+                var tabBar = (TabBar)apps.Items.FirstOrDefault(item => item.Title == "log");
+                var calendario = tabBar.Items.FirstOrDefault(item => item.Route == "calendario");
+                var home = tabBar.Items.FirstOrDefault(item => item.Route == "home");
+
+                if (calendario != null)
+                {
+                    calendario.IsVisible = false;
+                }
+                if (home != null)
+                {
+                    home.Items[0].Content = new PagVeterinario(new ObjectId(text), apps);
+                }
+                await Shell.Current.GoToAsync("//home");
             }
             if (rol == 3)
             {
                 email1.Text = null;
                 password1.Text = null;
                 var tabBar = (TabBar)apps.Items.FirstOrDefault(item => item.Title == "log");
-                var calendario = tabBar.Items.FirstOrDefault(item => item.Title == "Calendario");
-                var home = tabBar.Items.FirstOrDefault(item => item.Title == "Home");
-                var ajustes = tabBar.Items.FirstOrDefault(item => item.Title == "Ajustes");
+                var calendario = tabBar.Items.FirstOrDefault(item => item.Route == "calendario");
+                var home = tabBar.Items.FirstOrDefault(item => item.Route == "home");
 
                 if (calendario != null)
                 {
-                    calendario.IsVisible = true;
                     calendario.Items[0].Content = new Calendario(new ObjectId(text), apps);
                 }
                 if (home != null)
                 {
-                    home.IsVisible = true;
                     home.Items[0].Content = new PagUsuarioLogeado(new ObjectId(text), apps);
-                }
-                if (ajustes != null)
-                {
-                    ajustes.IsVisible = true;
-                    ajustes.Items[0].Content = new Ajustes(new ObjectId(text), apps);
                 }
                 await Shell.Current.GoToAsync("//home");
             }
@@ -100,6 +109,9 @@ public partial class Login : ContentPage
 
     }
 
+    /// <summary>
+    /// Método para cargar los ajustes en los controles
+    /// </summary>
     private void AjustarInterfaz()
     {
         string text = viewModelBBDD.ObtenerId(email1.Text, password1.Text);
@@ -134,6 +146,9 @@ public partial class Login : ContentPage
         catch (Exception) { }
     }
 
+    /// <summary>
+    /// Método para cargar los ajustes en los controles
+    /// </summary>
     private void AjustarInterfaz2()
     {
         string text = viewModelBBDD.ObtenerId(email2.Text, password2.Text);
@@ -177,20 +192,22 @@ public partial class Login : ContentPage
         catch (Exception) { }
     }
 
+    /// <summary>
+    /// Método asociado al botón de login
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private async void BtnLog2_Clicked(object sender, EventArgs e)
     {
         try
         {
             if (email2.Text != null && password2.Text != null)
             {
-                /*Thread hilo = new Thread(new ThreadStart(AjustarInterfaz2));
+                Thread hilo = new Thread(new ThreadStart(AjustarInterfaz2));
                 hilo.IsBackground = true;
-                hilo.Start();*/
+                hilo.Start();
                 AjustarInterfaz2();
                 string text = viewModelBBDD.ObtenerId(email2.Text, password2.Text);
-                /*ToastDuration duration = ToastDuration.Short;
-                double fontSize = 14;*/
-                //Toast.Make(text, duration, fontSize).Show();
                 int rol = viewModelBBDD.ObtenerRol(email2.Text, password2.Text);
                 if (rol == 1)
                 {
@@ -229,6 +246,11 @@ public partial class Login : ContentPage
         }
     }
 
+    /// <summary>
+    /// Método asociado al slider para cambiar el tamaño de la letra
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void size_ValueChanged(object sender, ValueChangedEventArgs e)
     {
         lbl_email2.FontSize = size.Value;
@@ -236,5 +258,14 @@ public partial class Login : ContentPage
         lbl_pass2.FontSize = size.Value;
         password2.FontSize = size.Value;
         BtnLog2.FontSize = size.Value;
+    }
+
+    /// <summary>
+    /// Método sobreescrito de OnBackButtonPressed para inutilizar el botón de onback en Android
+    /// </summary>
+    /// <returns></returns>  
+    protected override bool OnBackButtonPressed()
+    {
+        return true;
     }
 }

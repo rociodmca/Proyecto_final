@@ -9,7 +9,7 @@
     <x:String x:Key="flyoutitem3">Manual</x:String>
     <x:String x:Key="flyoutitem4">Info</x:String>
     <x:String x:Key="flyoutitem5">Ajustes</x:String>
-    <x:String x:Key="flyoutitem6">Calendario</x:String>
+    <x:String x:Key="flyoutitem6">Citas</x:String>
     <x:String x:Key="flyoutitem7">Inicio</x:String>
     <x:String x:Key="ajustes1">INFORMACIÓN</x:String>
     <x:String x:Key="ajustes2">Ajustes guardados correctamente</x:String>
@@ -46,7 +46,11 @@
     <x:String x:Key="email">Correo electrónico</x:String>
     <x:String x:Key="passw">Contraseña</x:String>
     <x:String x:Key="singin">INICIAR SESIÓN</x:String>
-    <x:String x:Key="manual">Manual</x:String>
+    <x:String x:Key="manual">Esta aplicación se puede utilizar tanto en Windows como en Android&#x0a;
+    Si eres un usuario sin registrar solo tendrás acceso a esta página, a la página informativa, al registro y al login.&#x0a;
+    Si quieres registrate tendrás acceso a guardar tus mascotas y a concertar citas con los veterinarios.&#x0a;
+    Si eres veterinario, consulta on el administrador.&#x0a;
+    </x:String>
     <x:String x:Key="desconectar">CERRAR SESIÓN</x:String>
     <x:String x:Key="agregar_mascota">Agregar mascota</x:String>
     <x:String x:Key="ajustes">Ajustes</x:String>

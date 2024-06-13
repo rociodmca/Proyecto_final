@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Proyecto_final.Model
 {
+    /// <summary>
+    /// Clase EventModel
+    /// </summary>
     public class EventModel
     {
         public string Name { get; set; }

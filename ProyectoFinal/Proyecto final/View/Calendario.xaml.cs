@@ -5,122 +5,78 @@ using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Views;
 using Proyecto_final.Resources.Temas;
 using Proyecto_final.Resources.Idiomas;
+using Microsoft.Maui.HotReload;
 
 namespace Proyecto_final.View;
 
 public partial class Calendario : ContentPage
 {
     ObjectId id;
+    ViewModelMostrarCita viewModelMostrarCita;
     ViewModelBBDD viewModelBBDD;
-    ViewModelMascota viewModelMascota;
-    ViewModelCita viewModelCita;
-    string nombre;
-    List<DateTime> citas;
-    ViewModelEvento viewModelEvento;
-    bool flag = true;
     AppShell apps;
 
+    /// <summary>
+    /// Constructor que inicializa las variables
+    /// </summary>
+    /// <param name="id">identificador del usuario</param>
+    /// <param name="apps">instancia de la AppShell</param>
     public Calendario(ObjectId id, AppShell apps)
-	{
+    {
         this.id = id;
         this.apps = apps;
+        viewModelMostrarCita = new ViewModelMostrarCita();
         viewModelBBDD = new ViewModelBBDD();
-        viewModelMascota = new ViewModelMascota();
-        viewModelCita = new ViewModelCita();
-        citas = new List<DateTime>();
-        viewModelEvento = new ViewModelEvento();
-
-        viewModelMascota.Mascotas = viewModelBBDD.ObtenerListaMascotas(id);
-        viewModelCita.Citas = viewModelBBDD.ObtenerListaCitas(id);
-        nombre = viewModelBBDD.ObtenerNombre(id);
 
         InitializeComponent();
-
-        Appearing += MainPage_Appearing;
-
-        //CargarPag();
         
-
     }
 
-    public void CargarPag()
+    /// <summary>
+    /// Método asociado al collectionview para borrar una cita
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private async void lista2_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        Thread.Sleep(10);
-        Thread thread1 = new Thread(new ThreadStart(Ejecutar3));
-        thread1.Start();
-    }
-
-    public async Task VisualizarTabla()
-    {
-        await Task.Delay(20);
-        if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+        if (lista2.SelectedItem != null)
         {
-            MainThread.BeginInvokeOnMainThread(() =>
+            string idCita = "", fecha = "";
+            List<ViewModelMostrarCita> citas = viewModelMostrarCita.ObtenerCitas(id);
+            ViewModelMostrarCita dateSelected = lista2.SelectedItem as ViewModelMostrarCita;
+            foreach (ViewModelMostrarCita item in citas)
             {
-                string idioma = viewModelBBDD.ObtenerAjuste(id).Idioma;
-                if (idioma == "Espanol")
+                if (item.Id == dateSelected.Id)
                 {
-                    calendario2.Culture = new System.Globalization.CultureInfo("es-ES");
+                    idCita = item.Id;
+                    fecha = item.Fecha.ToShortDateString();
                 }
-                if (idioma == "Ingles")
+            }
+            var msg = await DisplayAlert("Borrar cita", "¿Está seguro que desea borrar la cita para el dia " + fecha + "?", "Sí", "No");
+            if (msg)
+            {
+                if (viewModelBBDD.BorrarCita(idCita))
                 {
-                    calendario2.Culture = new System.Globalization.CultureInfo("en-GB");
+                    await DisplayAlert("Información", "Cita correctamente borrada de la base de datos", "Ok");
+                    lista2.ItemsSource = null;
+                    lista2.ItemsSource = viewModelMostrarCita.ObtenerCitas(id);
                 }
-                calendario2.Events = viewModelEvento.eventos;
-                calendario2.IsVisible = true;
-            });
+                else
+                {
+                    await DisplayAlert("Información", "No se ha podido borrar", "Ok");
+                }
+            }
         }
-    }
-
-    public async void Ejecutar3()
-    {
-        Thread.Sleep(10);
-        await VisualizarTabla();
-    }
-
-    private void MainPage_Appearing(object sender, EventArgs e)
-    {
-        CargarPag();
-    }
-
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-        ICollection<ResourceDictionary> miListaDiccionarios;
-        miListaDiccionarios = Microsoft.Maui.Controls.Application.Current.Resources.MergedDictionaries;
-        miListaDiccionarios.Clear();
-        miListaDiccionarios.Add(new TemaClaro());
-        miListaDiccionarios.Add(new Espanol());
-        Navigation.PopAsync();
-    }
-
-    private void Button_Clicked_1(object sender, EventArgs e)
-    {
-        Navigation.PushAsync(new CuestionarioCita(id));
-    }
-
-    private void Button_Clicked_2(object sender, EventArgs e)
-    {
-        var pop = new PopupPass(id);
-        this.ShowPopup(pop);
-    }
-
-    private async void ImageButton_Clicked(object sender, EventArgs e)
-    {
-        bool msg = await DisplayAlert("Guardar mascota", "¿Quieres guardar una mascota?", "Aceptar", "Cancelar");
-        if (msg)
+        else
         {
-            await Navigation.PushAsync(new RegistroMascota(id));
-            //await Navigation.PushAsync(new Ajustes(id));
+            await DisplayAlert("Información", "No se ha seleccionado ninguna cita", "OK");
         }
     }
 
-    private void lista2_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-
-        //DisplayAlert("Info", lista2.SelectedItem.ToString(), "Ok");
-
-    }
-
+    /// <summary>
+    /// Método sobreescrito de OnBackButtonPressed para inutilizar el botón de onback en Android
+    /// </summary>
+    /// <returns></returns>
     protected override bool OnBackButtonPressed()
     {
         Dispatcher.Dispatch(async () =>
@@ -133,54 +89,19 @@ public partial class Calendario : ContentPage
 
             if (leave)
             {
-                //await Navigation.PushAsync(new MainPage());
-                /*var tabBar = (TabBar)apps.CurrentItem;
-                var info = tabBar.Items[0];
-                var registro = tabBar.Items[1];
-                var login = tabBar.Items[2];
-                var manual = tabBar.Items[3];
-                var calendario = tabBar.Items[4];
-                var home = tabBar.Items[5];
-                var ajustes = tabBar.Items[6];
-
-                if (info != null)
-                {
-                    info.IsVisible = true;
-                }
-                if (registro != null)
-                {
-                    registro.IsVisible = true;
-                }
-                if (login != null)
-                {
-                    login.IsVisible = true;
-                    // Cambia las propiedades según sea necesario
-                    //login.Title = "Ajustes";
-                    //login.Icon = "ajustes.png";
-                    //login.CurrentItem.Content = new Ajustes(new ObjectId(text));
-                }
-                if (manual != null)
-                {
-                    manual.IsVisible = true;
-                }
-                if (calendario != null)
-                {
-                    calendario.IsVisible = false;
-                }
-                if (home != null)
-                {
-                    home.IsVisible = false;
-                }
-                if (ajustes != null)
-                {
-                    ajustes.IsVisible = false;
-                }
-                await DisplayAlert("Info", Shell.Current.Items.Count.ToString(), "ok");*/
                 await Shell.Current.GoToAsync("//info");
-                //await Navigation.PopToRootAsync();
             }
         });
-
         return true;
+    }
+
+    /// <summary>
+    /// Método asociado a la aparición de la contentpage en la pila
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ContentPage_Appearing(object sender, EventArgs e)
+    {
+        lista2.ItemsSource = viewModelMostrarCita.ObtenerCitas(id);
     }
 }

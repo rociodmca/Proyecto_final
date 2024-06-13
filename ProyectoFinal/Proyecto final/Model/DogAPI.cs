@@ -7,11 +7,17 @@ using System.Threading.Tasks;
 
 namespace Proyecto_final.Model
 {
+    /// <summary>
+    /// Clase de llamada a la clase de DogAPI
+    /// </summary>
     public class DogAPI
     {
         public JsonDocument miJson1;
 
-        //Método para listar categorias
+        /// <summary>
+        /// Método para llenar el Json con los datos de la API
+        /// </summary>
+        /// <returns>true si se llena el Json y false si no</returns>
         public async Task<bool> ListarRazasAsync()
         {
             string respuesta;

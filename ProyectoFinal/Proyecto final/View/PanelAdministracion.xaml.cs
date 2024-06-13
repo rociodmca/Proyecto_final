@@ -7,8 +7,12 @@ public partial class PanelAdministracion : ContentPage
     AppShell apps;
     ViewModelBBDD viewModelBBDD;
     ViewModelUsuario viewModelUsuario;
-    string id;
+    string id = "";
 
+    /// <summary>
+    /// Constructor para inicializar los controles y hacer llamadas a la base de datos
+    /// </summary>
+    /// <param name="apps">instancia de la AppShell</param>
 	public PanelAdministracion(AppShell apps)
 	{
 		this.apps = apps;
@@ -17,41 +21,28 @@ public partial class PanelAdministracion : ContentPage
 
         InitializeComponent();
         viewModelUsuario.Usuarios = viewModelBBDD.ObtenerListaUsuarios();
-        if (DeviceInfo.Current.Platform == DevicePlatform.Android)
-        {
-            phone.IsVisible = true;
-            desktop.IsVisible = false;
-            usuarios1.ItemsSource = viewModelUsuario.Usuarios;
-        }
         if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
         {
-            phone.IsVisible = false;
             desktop.IsVisible = true;
             usuarios2.ItemsSource = viewModelUsuario.Usuarios;
         }
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-        bool respuesta = viewModelBBDD.BorrarUsuario(id);
-        DisplayAlert("INFO", respuesta.ToString(), "OK");
-        viewModelUsuario.Usuarios = viewModelBBDD.ObtenerListaUsuarios();
-        usuarios1.ItemsSource = viewModelUsuario.Usuarios;
-    }
-
+    /// <summary>
+    /// Método asociado a registrar un veterinario
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Button_Clicked_1(object sender, EventArgs e)
     {
         Navigation.PushAsync(new RegistroUsuario(1));
     }
 
-    private void usuarios_Refreshing(object sender, EventArgs e)
-    {
-        viewModelUsuario.Usuarios = viewModelBBDD.ObtenerListaUsuarios();
-        usuarios1.ItemsSource = null;
-        usuarios1.ItemsSource = viewModelUsuario.Usuarios;
-        usuarios1.IsRefreshing = false;
-    }
-
+    /// <summary>
+    /// Método asociado al listview usuarios2
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void usuarios2_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
         foreach (var item in viewModelUsuario.Usuarios)
@@ -63,17 +54,11 @@ public partial class PanelAdministracion : ContentPage
         }
     }
 
-    private void usuarios1_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-    {
-        foreach (var item in viewModelUsuario.Usuarios)
-        {
-            if (item.Equals(usuarios1.SelectedItem))
-            {
-                id = item.Id;
-            }
-        }
-    }
-
+    /// <summary>
+    /// Método asociado al botón para borrar un usuario
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Button_Clicked_2(object sender, EventArgs e)
     {
         bool respuesta = viewModelBBDD.BorrarUsuario(id);
@@ -81,12 +66,21 @@ public partial class PanelAdministracion : ContentPage
         viewModelUsuario.Usuarios = viewModelBBDD.ObtenerListaUsuarios();
         usuarios2.ItemsSource = viewModelUsuario.Usuarios;
     }
-
+    
+    /// <summary>
+    /// Método asociado al botón para registrar un veterinario
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Button_Clicked_3(object sender, EventArgs e)
     {
         Navigation.PushAsync(new RegistroUsuario(1));
     }
 
+    /// <summary>
+    /// Método para asignarle la función al botón onback
+    /// </summary>
+    /// <returns></returns>
     protected override bool OnBackButtonPressed()
     {
         Dispatcher.Dispatch(async () =>

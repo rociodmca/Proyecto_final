@@ -16,8 +16,12 @@ namespace Proyecto_final
             {
                 PhoneTabs.IsVisible = true;
                 FlyoutBehavior = FlyoutBehavior.Disabled;
-                SetNavBarIsVisible(this, false);
-                //SetTabBarIsVisible(this, true);
+                //SetNavBarIsVisible(this, false);
+                SetTabBarIsVisible(this, true);
+                SetBackButtonBehavior(this, new BackButtonBehavior
+                {
+                    IsEnabled = false
+                });
                 GoToAsync("///info");
             }
             if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)

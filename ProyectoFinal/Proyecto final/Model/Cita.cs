@@ -9,6 +9,9 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Proyecto_final.Model
 {
+    /// <summary>
+    /// Clase cita
+    /// </summary>
     public class Cita
     {
         [BsonId]

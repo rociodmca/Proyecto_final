@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_final.View.Info"
-             Title="Info"
-             Appearing="ContentPage_Appearing">
+             Title="Info">
+    
     <ContentPage.Background>
         <RadialGradientBrush Center="0.5,0.5">
             <GradientStop Color="{DynamicResource start_claro}" Offset="0.1"/>
@@ -11,40 +11,8 @@
         </RadialGradientBrush>
     </ContentPage.Background>
 
-    <!--<ContentPage.Resources>
-        <ControlTemplate x:Key="RadioButtonTemplate">
-            <Border BackgroundColor="#F3F2F1" HeightRequest="40" HorizontalOptions="Center" Stroke="#F3F2F1" StrokeShape="RoundRectangle 10" StrokeThickness="2" VerticalOptions="Center" WidthRequest="40">
-                <Grid WidthRequest="42">
-                    <Grid HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="20">
-                        <Ellipse Fill="White" HeightRequest="15" HorizontalOptions="Center" Stroke="Blue" VerticalOptions="Center" WidthRequest="15" />
-                        <Ellipse x:Name="check" Fill="Blue" HeightRequest="8" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="8" />
-                    </Grid>
-                    <ContentPresenter />
-                </Grid>
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CheckedStates">
-                            <VisualState x:Name="Checked">
-                                <VisualState.Setters>
-                                    <Setter Property="Stroke" Value="#FF3300" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Unchecked">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#F3F2F1" />
-                                    <Setter Property="Stroke" Value="#F3F2F1" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </VisualStateManager.VisualStateGroups>
-            </Border>
-        </ControlTemplate> ControlTemplate="{StaticResource RadioButtonTemplate}"
-    </ContentPage.Resources>-->
-
     <Grid RowDefinitions="Auto,*" ColumnDefinitions="*">
         <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowDefinitions="Auto" ColumnSpacing="10" HorizontalOptions="End" Margin="20">
-            <!--<Picker x:Name="tema" Grid.Column="0" Grid.Row="0" ItemsSource="{DynamicResource miArray}" SelectedIndex="0" BackgroundColor="{DynamicResource bgd}"/>-->
             <RadioButton  Grid.Column="0" Grid.Row="0" x:Name="op1" IsChecked="True" GroupName="Temas" VerticalOptions="Center" CheckedChanged="RadioButton_CheckedChanged" Value="0" ToolTipProperties.Text="Opción para elegir el tema original" SemanticProperties.Description="Opción para elegir el tema original">
                 <RadioButton.Content>
                     <Image Source="bombilla_color.png" WidthRequest="40" VerticalOptions="Center" BackgroundColor="White"/>
@@ -60,10 +28,10 @@
                     <Image Source="bombilla_contraste.png" WidthRequest="40" HeightRequest="40" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Black"/>
                 </RadioButton.Content>
             </RadioButton>
-            <Label x:Name="size" Grid.Column="3" Grid.Row="0" TextColor="{DynamicResource letra}" Text="{DynamicResource tam_letra_info}" FontFamily="espressonal" VerticalOptions="Center"/>
-            <Slider x:Name="tam_letra" Grid.Column="4" Grid.Row="0" Margin="10" WidthRequest="200" Minimum="12" Maximum="40" Value="16" ValueChanged="tam_letra_ValueChanged" ThumbColor="{DynamicResource letra}"/>
-            <Image Source="espanol.png" Grid.Column="5" Grid.Row="0" WidthRequest="20"/>
-            <Switch Grid.Column="6" Grid.Row="0" x:Name="idiomas" IsToggled="False" Toggled="idiomas_Toggled" ThumbColor="White"/>
+            <Label x:Name="size" Grid.Column="3" Grid.Row="0" TextColor="{DynamicResource letra}" Text="{DynamicResource tam_letra_info}" FontFamily="espressonal" VerticalOptions="Center" ToolTipProperties.Text="Etiqueta tamaño de letra" SemanticProperties.Description="Etiqueta tamaño de letra"/>
+            <Slider x:Name="tam_letra" Grid.Column="4" Grid.Row="0" Margin="10" WidthRequest="200" Minimum="12" Maximum="40" Value="16" ValueChanged="tam_letra_ValueChanged" ThumbColor="{DynamicResource letra}" ToolTipProperties.Text="Slider para cambiar el tamaño de la letra" SemanticProperties.Description="Slider para cambiar el tamaño de la letra"/>
+            <Image Source="espanol.png" Grid.Column="5" Grid.Row="0" WidthRequest="20" />
+            <Switch Grid.Column="6" Grid.Row="0" x:Name="idiomas" IsToggled="False" Toggled="idiomas_Toggled" ThumbColor="White" ToolTipProperties.Text="Toggle para cambiar de idioma" SemanticProperties.Description="Toggle para cambiar de idioma"/>
             <Image Source="ingles.png" Grid.Column="7" Grid.Row="0" WidthRequest="20"/>
         </Grid>
         <Grid Grid.Column="0" Grid.Row="1" RowDefinitions="*,10*,*" ColumnDefinitions="*,6*,*">

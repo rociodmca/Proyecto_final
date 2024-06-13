@@ -9,7 +9,7 @@
     <x:String x:Key="flyoutitem3">Manual</x:String>
     <x:String x:Key="flyoutitem4">Info</x:String>
     <x:String x:Key="flyoutitem5">Settings</x:String>
-    <x:String x:Key="flyoutitem6">Calendar</x:String>
+    <x:String x:Key="flyoutitem6">Dates</x:String>
     <x:String x:Key="flyoutitem7">Home</x:String>
     <x:String x:Key="ajustes1">INFORMATION</x:String>
     <x:String x:Key="ajustes2">Settings saved successfully</x:String>
@@ -46,7 +46,11 @@
     <x:String x:Key="email">Email</x:String>
     <x:String x:Key="passw">Password</x:String>
     <x:String x:Key="singin">SIGN IN</x:String>
-    <x:String x:Key="manual">Manual</x:String>
+    <x:String x:Key="manual">This application can be used on both Windows and Android&#x0a;
+    If you are an unregistered user you will only have access to this page, the information page, registration and login.&#x0a;
+    If you want to register, you will have access to keep your pets and make appointments with veterinarians.&#x0a;
+    If you are a veterinarian, consult the administrator.&#x0a;
+    </x:String>
     <x:String x:Key="desconectar">SIGN OFF</x:String>
     <x:String x:Key="agregar_mascota">Add pet</x:String>
     <x:String x:Key="ajustes">Settings</x:String>

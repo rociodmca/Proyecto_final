@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Proyecto_final.Model
 {
+    /// <summary>
+    /// Clase Usuario
+    /// </summary>
     public class Usuario
     {
         [BsonId]

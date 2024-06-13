@@ -4,6 +4,13 @@
              x:Class="Proyecto_final.View.PanelAdministracion"
              Title="Panel de administracion">
 
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="1,0">
+            <GradientStop Color="{DynamicResource end_claro}" Offset="0.1"/>
+            <GradientStop Color="{DynamicResource start_claro}" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
     <ContentPage.Resources>
         <DataTemplate x:Key="usuarios1">
             <ViewCell>
@@ -21,15 +28,14 @@
     </ContentPage.Resources>
 
     <Grid ColumnDefinitions="*" RowDefinitions="*">
-        <Grid x:Name="phone" Grid.Row="0" Grid.Column="0" IsVisible="False" Margin="100" ColumnDefinitions="*,2*,2*,*" RowDefinitions="4*,Auto" ColumnSpacing="20" RowSpacing="40" VerticalOptions="Center">
-            <Frame Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" BorderColor="{DynamicResource frame_border}" HeightRequest="400">
-                <ListView x:Name="usuarios1" ItemsSource="{Binding Usuarios}" ItemSelected="usuarios1_ItemSelected"  ItemTemplate="{StaticResource usuarios1}" IsPullToRefreshEnabled="True" RefreshControlColor="Blue" Refreshing="usuarios_Refreshing" HasUnevenRows="True" BackgroundColor="{DynamicResource bgd}" />
-            </Frame>
-            <Button Grid.Column="1" Grid.Row="1" Text="{DynamicResource borrar_usuario}" Clicked="Button_Clicked" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" FontFamily="espressonal"/>
-            <Button Grid.Column="2" Grid.Row="1" Text="{DynamicResource agregar_veterinario}" Clicked="Button_Clicked_1" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" FontFamily="espressonal"/>
-        </Grid>
         <Grid x:Name="desktop" Grid.Row="0" Grid.Column="0" IsVisible="False" Margin="100" ColumnDefinitions="*,2*,2*,*" RowDefinitions="6*,Auto" ColumnSpacing="20" RowSpacing="20">
             <Frame Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" BorderColor="{DynamicResource frame_border}">
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="{DynamicResource end_claro}" Offset="1.0"/>
+                        <GradientStop Color="{DynamicResource start_claro}" Offset="0.1" />
+                    </LinearGradientBrush>
+                </Frame.Background>
                 <ListView x:Name="usuarios2" ItemsSource="{Binding Usuarios}" ItemSelected="usuarios2_ItemSelected"  ItemTemplate="{StaticResource usuarios1}" BackgroundColor="{DynamicResource bgd}"/>
             </Frame>
             <Button Grid.Column="1" Grid.Row="1" Text="{DynamicResource borrar_usuario}" Clicked="Button_Clicked_2" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" FontFamily="espressonal"/>

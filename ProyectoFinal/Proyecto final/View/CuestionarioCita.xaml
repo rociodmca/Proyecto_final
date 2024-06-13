@@ -11,26 +11,50 @@
         </RadialGradientBrush>
     </ContentPage.Background>
 
-    <Grid ColumnDefinitions="*" RowDefinitions="*" Margin="20">
-        <Frame BorderColor="{DynamicResource frame_border}"  Grid.Column="0" Grid.Row="0" Margin="40">
-            <Frame.Background>
-                <LinearGradientBrush EndPoint="1,0">
-                    <GradientStop Color="{DynamicResource end_claro}" Offset="1.0"/>
-                    <GradientStop Color="{DynamicResource start_claro}" Offset="0.1" />
-                </LinearGradientBrush>
-            </Frame.Background>
-            <Grid RowDefinitions="*,Auto" ColumnDefinitions="*,*" RowSpacing="40" ColumnSpacing="40" Margin="40">
-                <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" ColumnDefinitions="*,2*" RowDefinitions="*,*,*" ColumnSpacing="20" RowSpacing="20">
-                    <Label x:Name="fechalbl" Text="{DynamicResource fecha}" Grid.Column="0" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta fecha" FontFamily="espressonal"/>
-                    <DatePicker x:Name="fecha" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" Format="dd/MM/yyyy" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Selector de fechas" FontFamily="espressonal" BackgroundColor="{DynamicResource bgd}"/>
-                    <Label x:Name="mascotaslbl" Text="{DynamicResource mascota}" Grid.Column="0" FontSize="40" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta mascota" FontFamily="espressonal"/>
-                    <Picker x:Name="mascotas" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" TextColor="{DynamicResource letra}" ItemDisplayBinding="{Binding Nombre}" ToolTipProperties.Text="Selector de mascota" FontFamily="espressonal" BackgroundColor="{DynamicResource bgd}"/>
-                    <Label x:Name="veterinarioslbl" Text="{DynamicResource veterinario}" Grid.Column="0" Grid.Row="2" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta veterinario" FontFamily="espressonal"/>
-                    <Picker x:Name="veterinarios" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" TextColor="{DynamicResource letra}" ItemDisplayBinding="{Binding Nombre}" ToolTipProperties.Text="Selector de veterinarios" FontFamily="espressonal" BackgroundColor="{DynamicResource bgd}"/>
+    <Grid RowDefinitions="*" ColumnDefinitions="*">
+        <Grid Grid.Row="0" Grid.Column="0" ColumnDefinitions="*" RowDefinitions="*" Margin="20" x:Name="desktop">
+            <Frame BorderColor="{DynamicResource frame_border}"  Grid.Column="0" Grid.Row="0" Margin="40">
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="{DynamicResource end_claro}" Offset="1.0"/>
+                        <GradientStop Color="{DynamicResource start_claro}" Offset="0.1" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <Grid RowDefinitions="*,Auto" ColumnDefinitions="*,*" RowSpacing="40" ColumnSpacing="40" Margin="40">
+                    <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" ColumnDefinitions="*,2*" RowDefinitions="*,*,*" ColumnSpacing="20" RowSpacing="20">
+                        <Label x:Name="fechalbl" Text="{DynamicResource fecha}" Grid.Column="0" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta fecha" SemanticProperties.Description="Etiqueta fecha" FontFamily="espressonal"/>
+                        <DatePicker x:Name="fecha" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" Format="dd/MM/yyyy" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Selector de fechas" SemanticProperties.Description="Selector de fecha" FontFamily="espressonal" BackgroundColor="{DynamicResource bgd}"/>
+                        <Label x:Name="mascotaslbl" Text="{DynamicResource mascota}" Grid.Column="0"  Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta mascota" SemanticProperties.Description="Etiqueta mascota" FontFamily="espressonal"/>
+                        <Picker x:Name="mascotas" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" TextColor="{DynamicResource letra}" ItemDisplayBinding="{Binding Nombre}" ToolTipProperties.Text="Selector de mascota" SemanticProperties.Description="Selector de mascota" FontFamily="espressonal" BackgroundColor="{DynamicResource bgd}"/>
+                        <Label x:Name="veterinarioslbl" Text="{DynamicResource veterinario}" Grid.Column="0" Grid.Row="2" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta veterinario" SemanticProperties.Description="Etiqueta veterinario" FontFamily="espressonal"/>
+                        <Picker x:Name="veterinarios" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" TextColor="{DynamicResource letra}" ItemDisplayBinding="{Binding Nombre}" ToolTipProperties.Text="Selector de veterinarios" SemanticProperties.Description="Selector de veterinarios" FontFamily="espressonal" BackgroundColor="{DynamicResource bgd}"/>
+                    </Grid>
+                    <Button x:Name="BtnAceptar" Text="{DynamicResource aceptar}" Clicked="BtnAceptar_Clicked"  Grid.Column="0" Grid.Row="1" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal" ToolTipProperties.Text="Botón aceptar" SemanticProperties.Description="Botón aceptar"/>
+                    <Button x:Name="BtnCancelar" Text="{DynamicResource cancelar}" Clicked="BtnCancelar_Clicked"  Grid.Column="1" Grid.Row="1" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal" ToolTipProperties.Text="Botón cancelar" SemanticProperties.Description="Botón cancelar"/>
                 </Grid>
-                <Button x:Name="BtnAceptar" Text="{DynamicResource aceptar}" Clicked="BtnAceptar_Clicked"  Grid.Column="0" Grid.Row="1" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
-                <Button x:Name="BtnCancelar" Text="{DynamicResource cancelar}" Clicked="BtnCancelar_Clicked"  Grid.Column="1" Grid.Row="1" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
-            </Grid>
-        </Frame>
+            </Frame>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="0" ColumnDefinitions="*" RowDefinitions="*" Margin="20" x:Name="phone">
+            <Frame BorderColor="{DynamicResource frame_border}"  Grid.Column="0" Grid.Row="0" Margin="0">
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="{DynamicResource end_claro}" Offset="1.0"/>
+                        <GradientStop Color="{DynamicResource start_claro}" Offset="0.1" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <Grid RowDefinitions="*,Auto" ColumnDefinitions="*,*" RowSpacing="40" ColumnSpacing="40" Margin="0">
+                    <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" ColumnDefinitions="Auto,2*" RowDefinitions="*,*,*" ColumnSpacing="20" RowSpacing="20">
+                        <Label x:Name="fechalbl2" Text="{DynamicResource fecha}" Grid.Column="0" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta fecha" FontFamily="espressonal"/>
+                        <DatePicker x:Name="fecha2" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" Format="dd/MM/yyyy" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Selector de fechas" FontFamily="espressonal" BackgroundColor="{DynamicResource bgd}"/>
+                        <Label x:Name="mascotaslbl2" Text="{DynamicResource mascota}" Grid.Column="0" FontSize="40" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta mascota" FontFamily="espressonal"/>
+                        <Picker x:Name="mascotas2" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" TextColor="{DynamicResource letra}" ItemDisplayBinding="{Binding Nombre}" ToolTipProperties.Text="Selector de mascota" FontFamily="espressonal" BackgroundColor="{DynamicResource bgd}"/>
+                        <Label x:Name="veterinarioslbl2" Text="{DynamicResource veterinario}" Grid.Column="0" Grid.Row="2" HorizontalOptions="End" VerticalOptions="Center" TextColor="{DynamicResource letra}" ToolTipProperties.Text="Etiqueta veterinario" FontFamily="espressonal"/>
+                        <Picker x:Name="veterinarios2" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" TextColor="{DynamicResource letra}" ItemDisplayBinding="{Binding Nombre}" ToolTipProperties.Text="Selector de veterinarios" FontFamily="espressonal" BackgroundColor="{DynamicResource bgd}"/>
+                    </Grid>
+                    <Button x:Name="BtnAceptar2" Text="{DynamicResource aceptar}" Clicked="BtnAceptar2_Clicked"  Grid.Column="0" Grid.Row="1" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                    <Button x:Name="BtnCancelar2" Text="{DynamicResource cancelar}" Clicked="BtnCancelar2_Clicked"  Grid.Column="1" Grid.Row="1" BackgroundColor="{DynamicResource btn_bgd}" TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                </Grid>
+            </Frame>
+        </Grid>
     </Grid>
 </ContentPage>

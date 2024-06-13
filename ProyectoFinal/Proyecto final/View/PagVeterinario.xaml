@@ -20,11 +20,10 @@
                     <GradientStop Color="{DynamicResource end_claro}" Offset="1.0" />
                 </LinearGradientBrush>
             </Frame.Background>
-            <Grid ColumnDefinitions="*" RowDefinitions="Auto,Auto,Auto,Auto,*" ColumnSpacing="10" RowSpacing="10" >
+            <Grid ColumnDefinitions="*" RowDefinitions="Auto,Auto,Auto,*" ColumnSpacing="10" RowSpacing="10" >
                 <Button Grid.Row="0" Grid.Column="0" Text="{DynamicResource acceso_mascotas}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="Button_Clicked_4"  TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
-                <Button Grid.Row="1" Grid.Column="0" Text="{DynamicResource acceso_ajustes}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="Button_Clicked_5"  TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
-                <Button Grid.Row="2" Grid.Column="0" x:Name="btn_borrar1" IsVisible="False" Text="{DynamicResource borrar_mascota}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="btn_borrar1_Clicked"  TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
-                <Button Grid.Row="3" Grid.Column="0" Text="{DynamicResource acceso_citas}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="Button_Clicked_6"  TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                <Button Grid.Row="1" Grid.Column="0" x:Name="btn_borrar1" IsVisible="False" Text="{DynamicResource borrar_mascota}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="btn_borrar1_Clicked"  TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
+                <Button Grid.Row="2" Grid.Column="0" Text="{DynamicResource acceso_citas}" BackgroundColor="{DynamicResource btn_bgd}" Clicked="Button_Clicked_6"  TextColor="{DynamicResource btn_txt}" BorderColor="{DynamicResource btn_border}" FontFamily="espressonal"/>
                 <Frame BorderColor="{DynamicResource frame_border}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
                     <Frame.Background>
                         <LinearGradientBrush EndPoint="1,0">

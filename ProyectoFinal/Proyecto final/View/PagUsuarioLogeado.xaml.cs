@@ -16,6 +16,7 @@ using Proyecto_final.Resources.Idiomas;
 
 namespace Proyecto_final.View;
 
+[XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class PagUsuarioLogeado : ContentPage
 {
     ObjectId id;
@@ -29,6 +30,11 @@ public partial class PagUsuarioLogeado : ContentPage
     ViewModelEvento viewModelEvento;
     bool flag = true;
 
+    /// <summary>
+    /// Constructor para inicializar los controles y hacer consultas a la base de datos
+    /// </summary>
+    /// <param name="id">identificador del usuario</param>
+    /// <param name="apps">instancia de la AppShell</param>
     public PagUsuarioLogeado(ObjectId id, AppShell apps)
     {
         this.id = id;
@@ -45,8 +51,6 @@ public partial class PagUsuarioLogeado : ContentPage
         nombre = viewModelBBDD.ObtenerNombre(id);
 
         InitializeComponent();
-        
-        
 
         mascotas.IsVisible = false;
         mascotas2.IsVisible = false;
@@ -72,33 +76,48 @@ public partial class PagUsuarioLogeado : ContentPage
         {
             avatar2.Source = diceBearAPI.OnGenerateAvatar(nombre);
         }
+
         Appearing += MainPage_Appearing;
-        //CargarPag();
     }
 
+    /// <summary>
+    /// Método para cargar los controles desde la base de datos
+    /// </summary>
     public void CargarPag()
     {
-        if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+        /*if (DeviceInfo.Current.Platform == DevicePlatform.Android)
         {
-            mascotas.ItemsSource = viewModelBBDD.ObtenerListaMascotas(id);
-        }
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                mascotas.ItemsSource = viewModelBBDD.ObtenerListaMascotas(id);
+                mascotas.IsVisible = true;
+            });
+        }*/
         if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
         {
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                //mascotas2.ItemsSource = null;
                 mascotas2.ItemsSource = viewModelBBDD.ObtenerListaMascotas(id);
                 mascotas2.IsVisible = true;
+                double size = double.Parse(viewModelBBDD.ObtenerAjuste(id).Tam_letra);
+                btnCita.FontSize = size;
+                btnDesconectar.FontSize = size;
+                btnPass.FontSize = size;
             });
         }
-        Thread.Sleep(10);
+        Thread.Sleep(1);
         Thread thread1 = new Thread(new ThreadStart(Ejecutar3));
+        thread1.IsBackground = true;
         thread1.Start();
     }
 
+    /// <summary>
+    /// Método asíncrono para visualizar los controles que ya se han cargado
+    /// </summary>
+    /// <returns></returns>
     public async Task VisualizarTabla()
     {
-        await Task.Delay(20);
+        await Task.Delay(2);
         if (DeviceInfo.Current.Platform == DevicePlatform.Android)
         {
             MainThread.BeginInvokeOnMainThread(() =>
@@ -107,12 +126,17 @@ public partial class PagUsuarioLogeado : ContentPage
                 cargando.IsVisible = false;
                 phone.IsVisible = true;
                 desktop.IsVisible = false;
-                mascotas.ItemsSource = viewModelMascota.Mascotas;
+                mascotas.ItemsSource = viewModelBBDD.ObtenerListaMascotas(id);
                 mascotas.IsVisible = true;
             });
         }
         if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
         {
+            calendario.Events.Clear();
+            calendario.ClearLogicalChildren();
+            calendario.EventTemplate = eventTemplate;
+            
+            
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 cargando.IsRunning = false;
@@ -120,29 +144,45 @@ public partial class PagUsuarioLogeado : ContentPage
                 phone.IsVisible = false;
                 desktop.IsVisible = true;
                 calendario.Events = viewModelEvento.RellenarEventos(id);
-                calendario.IsVisible = true;
             });
         }
     }
 
+    /// <summary>
+    /// Método asíncrono que llama al método anterior
+    /// </summary>
     public async void Ejecutar3()
     {
-        Thread.Sleep(10);
+        Thread.Sleep(1);
         await VisualizarTabla();
     }
 
+    /// <summary>
+    /// Método asociado a la aparición de la ContentPage
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void MainPage_Appearing(object sender, EventArgs e)
     {
+        calendario.IsVisible = false;
+        calendario.SelectedDate = DateTime.Now;
         CargarPag();
+        Ejecutar3();
         MainThread.BeginInvokeOnMainThread(() =>
         {
             cargando.IsRunning = true;
             cargando.IsVisible = true;
             phone.IsVisible = false;
             desktop.IsVisible = false;
+            calendario.IsVisible = true;
         });
     }
 
+    /// <summary>
+    /// Método asociado al botón de cerrar sesión
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Button_Clicked(object sender, EventArgs e)
     {
         ICollection<ResourceDictionary> miListaDiccionarios;
@@ -153,32 +193,56 @@ public partial class PagUsuarioLogeado : ContentPage
         Shell.Current.GoToAsync("//info");
     }
 
+    /// <summary>
+    /// Método asociado al botón de guardar cita
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Button_Clicked_1(object sender, EventArgs e)
     {
         Navigation.PushAsync(new CuestionarioCita(id));
     }
 
+    /// <summary>
+    /// Método asociado al botón para cambiar la contraseña
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Button_Clicked_2(object sender, EventArgs e)
     {
         var pop = new PopupPass(id);
         this.ShowPopup(pop);
     }
 
+    /// <summary>
+    /// Método asociado al click de la imagen del avatar
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
         bool msg = await DisplayAlert("Guardar mascota", "¿Quieres guardar una mascota?", "Aceptar", "Cancelar");
         if (msg)
         {
             await Navigation.PushAsync(new RegistroMascota(id));
-            //await Navigation.PushAsync(new Ajustes(id));
         }
     }
 
+    /// <summary>
+    /// Método asociado al selector del listview
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void mascotas2_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
         DisplayAlert("Info", mascotas2.SelectedItem.ToString(), "Ok");
     }
 
+    /// <summary>
+    /// Método asociado al selector del listview
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void mascotas_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
         string text = mascotas.SelectedItem.ToString();
@@ -187,6 +251,11 @@ public partial class PagUsuarioLogeado : ContentPage
         Toast.Make(text, duration, fontSize).Show();
     }
 
+    /// <summary>
+    /// Método asociado al borrado de un elemento en el listview
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void mascotas_ChildRemoved(object sender, ElementEventArgs e)
     {
         if (DeviceInfo.Current.Platform == DevicePlatform.Android)
@@ -201,6 +270,11 @@ public partial class PagUsuarioLogeado : ContentPage
         }
     }
 
+    /// <summary>
+    /// Método asociado a la selección del listview
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void lista2_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
 
@@ -208,12 +282,21 @@ public partial class PagUsuarioLogeado : ContentPage
 
     }
 
+    /// <summary>
+    /// Método asociado al menú contextual del avatar
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private async void MenuFlyoutItem_Clicked(object sender, EventArgs e)
     {
         await Task.Delay(10);
         await Navigation.PushAsync(new Ajustes(id, apps));
     }
 
+    /// <summary>
+    /// Método sobreescrito de OnBackButtonPressed para asignar funciones al botón onback
+    /// </summary>
+    /// <returns></returns>
     protected override bool OnBackButtonPressed()
     {
         Dispatcher.Dispatch(async () =>
@@ -226,15 +309,26 @@ public partial class PagUsuarioLogeado : ContentPage
 
             if (leave)
             {
-                //await Navigation.PushAsync(new MainPage());
-                await Navigation.PopAsync();
-                apps.FlyoutBehavior = FlyoutBehavior.Flyout;
+                if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+                {
+                    await Shell.Current.GoToAsync("//login");
+                }
+                if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
+                {
+                    await Navigation.PopAsync();
+                    apps.FlyoutBehavior = FlyoutBehavior.Flyout;
+                }              
             }
         });
 
         return true;
     }
 
+    /// <summary>
+    /// Método asociado al botón de desconexión
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Button_Clicked_3(object sender, EventArgs e)
     {
         ICollection<ResourceDictionary> miListaDiccionarios;
@@ -245,4 +339,5 @@ public partial class PagUsuarioLogeado : ContentPage
         apps.FlyoutBehavior = FlyoutBehavior.Flyout;
         Navigation.PopAsync();
     }
+
 }

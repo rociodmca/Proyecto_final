@@ -12,7 +12,7 @@
     </ContentPage.Background>
 
     <Grid ColumnDefinitions="*" RowDefinitions="*">
-        <Grid Grid.Row="0" Grid.Column="0" x:Name="phone" ColumnDefinitions="*" RowDefinitions="*" Margin="40" Padding="40">
+        <Grid Grid.Row="0" Grid.Column="0" x:Name="phone" ColumnDefinitions="*" RowDefinitions="*" Margin="10" Padding="0">
             <Frame BorderColor="{DynamicResource frame_border}" Grid.Column="0" Grid.Row="0">
                 <Frame.Background>
                     <LinearGradientBrush EndPoint="1,0">

@@ -12,6 +12,10 @@ public partial class RegistroMascota : ContentPage
     List<string> listaRazasGatos;
     List<string> listaRazasPerros;
 
+    /// <summary>
+    /// Constructor que inicializa los controles y hace consultas a la API y a la BBDD
+    /// </summary>
+    /// <param name="id"></param>
 	public RegistroMascota(ObjectId id)
 	{
 		viewModelCat = new ViewModelCatAPI();
@@ -51,6 +55,11 @@ public partial class RegistroMascota : ContentPage
         
     }
 
+    /// <summary>
+    /// Método asociado al botón para registrar una mascota
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void BtnRegistrarse1_Clicked(object sender, EventArgs e)
     {
         if ((nombre1.Text != "") && (tipo1.SelectedIndex != -1) && (raza1.SelectedIndex != -1) && (sexo1.SelectedIndex != -1) && (peso1.Text != ""))
@@ -82,6 +91,11 @@ public partial class RegistroMascota : ContentPage
         }
     }
 
+    /// <summary>
+    /// Método asociado al botón cancelar, vacía los campos y vuelve a la página anterior
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void BtnCancelar1_Clicked(object sender, EventArgs e)
     {
         nombre1.Text = "";
@@ -92,6 +106,11 @@ public partial class RegistroMascota : ContentPage
         Navigation.PopAsync();
     }
 
+    /// <summary>
+    /// Método asíncrono para realizar el método según el índice seleccionado
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private async void Tipo1_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (tipo1.SelectedIndex == 0)
@@ -106,36 +125,60 @@ public partial class RegistroMascota : ContentPage
         }
     }
 
+    /// <summary>
+    /// Método para rellenar las listas con lo obtenido de la API
+    /// </summary>
     public void Ejecutar()
     {
         listaRazasGatos = viewModelCat.RazasList();
         listaRazasPerros = viewModelDog.RazasList();
     }
 
+    /// <summary>
+    /// Método para llenar el selector con la lista de razas de gatos de la API
+    /// </summary>
+    /// <returns></returns>
     public async Task RellenarListRazasGatos()
     {
         await Task.Delay(10);
         raza1.ItemsSource = listaRazasGatos;
     }
 
+    /// <summary>
+    /// Método para llenar el selector con la lista de razas de perros de la API
+    /// </summary>
+    /// <returns></returns>
     public async Task RellenarListRazasPerros()
     {
         await Task.Delay(10);
         raza1.ItemsSource = listaRazasPerros;
     }
 
+    /// <summary>
+    /// Método para llenar el selector con la lista de razas de gatos de la API
+    /// </summary>
+    /// <returns></returns>
     public async Task RellenarListRazasGatos2()
     {
         await Task.Delay(10);
         raza2.ItemsSource = listaRazasGatos;
     }
 
+    /// <summary>
+    /// Método para llenar el selector con la lista de razas de perros de la API
+    /// </summary>
+    /// <returns></returns>
     public async Task RellenarListRazasPerros2()
     {
         await Task.Delay(10);
         raza2.ItemsSource = listaRazasPerros;
     }
 
+    /// <summary>
+    /// Método asíncrono para realizar el método según el índice seleccionado
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private async void Tipo2_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (tipo2.SelectedIndex == 0)
@@ -150,6 +193,11 @@ public partial class RegistroMascota : ContentPage
         }
     }
 
+    /// <summary>
+    /// Método asociado al botón registrar para guardar la mascota en la BBDD
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void BtnRegistrarse2_Clicked(object sender, EventArgs e)
     {
         if ((nombre2.Text != "") && (tipo2.SelectedIndex != -1) && (raza2.SelectedIndex != -1) && (sexo2.SelectedIndex != -1) && (peso2.Text != ""))
@@ -182,6 +230,12 @@ public partial class RegistroMascota : ContentPage
         }
     }
 
+    /// <summary>
+    /// Método asociado al botón cancelar que vacía los campos y vuelve a la contentpage
+    /// anterior
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void BtnCancelar2_Clicked(object sender, EventArgs e)
     {
         nombre2.Text = "";

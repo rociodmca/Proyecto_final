@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Proyecto_final.Model
 {
+    /// <summary>
+    /// Clase Ajuste
+    /// </summary>
     public class Ajuste
     {
         public ObjectId Id { get; set; }

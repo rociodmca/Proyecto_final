@@ -59,9 +59,6 @@
         <Tab Title="Home" Icon="inicio.png" Route="home">
             <ShellContent x:Name="homePhone"/>
         </Tab>
-        <Tab Title="{DynamicResource flyoutitem5}" Icon="ajustes.png" Route="ajustes">
-            <ShellContent x:Name="settingsPhone"/>
-        </Tab>
     </TabBar>
 
     <ShellContent
