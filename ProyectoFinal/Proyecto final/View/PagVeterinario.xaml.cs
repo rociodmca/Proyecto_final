@@ -1,6 +1,8 @@
 using MongoDB.Bson;
 using Plugin.Maui.Calendar.Models;
 using Proyecto_final.Model;
+using Proyecto_final.Resources.Idiomas;
+using Proyecto_final.Resources.Temas;
 using Proyecto_final.ViewModel;
 
 namespace Proyecto_final.View;
@@ -66,10 +68,16 @@ public partial class PagVeterinario : ContentPage
         Ejecutar1();
         if (DeviceInfo.Current.Platform == DevicePlatform.Android)
         {
+            calendario1.Events.Clear();
+            calendario1.ClearLogicalChildren();
+            calendario1.EventTemplate = eventTemplate1;
             calendario1.Events = viewModelEvento.eventos;
         }
         if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
         {
+            calendario2.Events.Clear();
+            calendario2.ClearLogicalChildren();
+            calendario2.EventTemplate = eventTemplate2;
             calendario2.Events = viewModelEvento.eventos;
         }
     }
@@ -277,6 +285,21 @@ public partial class PagVeterinario : ContentPage
         btn_borrar1.IsVisible = false;
         mascotas1.IsVisible = false;
         citas1.IsVisible = true;
+    }
+
+    /// <summary>
+    /// Método asociado al botón de cerrar sesión
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void Button_Clicked_Salir(object sender, EventArgs e)
+    {
+        ICollection<ResourceDictionary> miListaDiccionarios;
+        miListaDiccionarios = Application.Current.Resources.MergedDictionaries;
+        miListaDiccionarios.Clear();
+        miListaDiccionarios.Add(new TemaClaro());
+        miListaDiccionarios.Add(new Espanol());
+        Shell.Current.GoToAsync("//info");
     }
 
     /// <summary>
