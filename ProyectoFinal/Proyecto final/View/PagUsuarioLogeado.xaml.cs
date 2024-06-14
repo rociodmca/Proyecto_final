@@ -164,8 +164,11 @@ public partial class PagUsuarioLogeado : ContentPage
     /// <param name="e"></param>
     private void MainPage_Appearing(object sender, EventArgs e)
     {
-        calendario.IsVisible = false;
-        calendario.SelectedDate = DateTime.Now;
+        if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
+        {
+            calendario.IsVisible = false;
+            calendario.SelectedDate = DateTime.Now;
+        }
         CargarPag();
         Ejecutar3();
         MainThread.BeginInvokeOnMainThread(() =>
